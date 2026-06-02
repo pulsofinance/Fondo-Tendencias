@@ -273,6 +273,19 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
   </div>
 </div>
 
+<!-- BL: PI vs E[R] COMPARISON -->
+<div class="sdiv"><span class="sdiv-label">Black-Litterman — Impacto de las visiones PULSO</span><div class="sdiv-line"></div><span class="sdiv-meta">π equilibrio implícito → E[R] posterior con visiones research institucional</span></div>
+<div class="chart-wrap" style="padding:1.5rem">
+  <div class="chart-title">π Equilibrio vs E[R] Black-Litterman — todos los activos</div>
+  <div style="font-size:10px;color:var(--t3);margin-bottom:1rem">Las barras muestran cuánto suben (o bajan) los retornos esperados al incorporar las visiones de JPMorgan, Santander PB y SBS Research sobre cada activo. La separación entre ambas barras mide el "peso" del research institucional.</div>
+  <canvas id="blCompareChart" height="160"></canvas>
+  <div style="display:flex;gap:1.5rem;margin-top:.8rem;font-size:9px">
+    <span style="display:flex;align-items:center;gap:.4rem"><span style="display:inline-block;width:12px;height:12px;background:#444;opacity:.8"></span> π Equilibrio (implícito en market cap)</span>
+    <span style="display:flex;align-items:center;gap:.4rem"><span style="display:inline-block;width:12px;height:12px;background:#D4BC00"></span> E[R] Black-Litterman (con visiones PULSO)</span>
+    <span style="color:var(--t3);margin-left:auto">─── separador CEDEARs | Acciones ARG</span>
+  </div>
+</div>
+
 <!-- CAPM TABLE -->
 <div class="sdiv"><span class="sdiv-label">CAPM + Fama-French — Validación de activos</span><div class="sdiv-line"></div><span class="sdiv-meta">10/13 activos subvaluados o neutros</span></div>
 <div style="background:var(--card);padding:1.2rem 1.5rem">
@@ -296,6 +309,42 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
   </table>
   <div style="margin-top:1rem;padding:.7rem;background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.2);font-size:10px;color:var(--t2);line-height:1.6">
     <strong style="color:var(--cyan)">Hallazgo Fama-French:</strong> Las acciones argentinas (VIST, GGAL, TGS) tienen beta negativo respecto al S&P500 — sus R² son cercanos a 0 (0.006 - 0.049). Esto confirma matemáticamente que son un <strong>factor de diversificación genuino</strong>: se mueven por drivers locales (Vaca Muerta, ciclo político, FMI) independientemente del mercado global.
+  </div>
+</div>
+
+<!-- MONTE CARLO IMAGEN -->
+<div class="sdiv"><span class="sdiv-label">Monte Carlo — Simulación 10.000 trayectorias</span><div class="sdiv-line"></div><span class="sdiv-meta">GBM · dS = μ·S·dt + σ·S·dW · 18 meses · 10.000 escenarios</span></div>
+<div class="chart-wrap" style="padding:1.5rem">
+  <div class="chart-title">CVaR + Monte Carlo — retornos históricos · trayectorias · distribución final · stress test · escenarios · CVaR por escenario</div>
+  <div style="font-size:10px;color:var(--t3);margin-bottom:1rem;line-height:1.7">
+    Simulación mediante <strong style="color:var(--cyan)">Geometric Brownian Motion</strong> con μ y σ calibrados sobre datos históricos 2024-2026.
+    Incluye 5 escenarios de stress: base (+78%) · bull (+141%) · bear leve (+14%) · crisis EM (−32%) · crisis ARG (−53%).
+  </div>
+  <img id="mcImg" src="fondo_tendencias_CVaR_MonteCarlo.png"
+       alt="CVaR + Monte Carlo — Fondo Tendencias"
+       style="width:100%;border:1px solid var(--border2);display:block;border-radius:2px"
+       onerror="this.style.display='none';document.getElementById('mcFallback').style.display='flex'">
+  <div id="mcFallback" style="display:none;height:280px;align-items:center;justify-content:center;flex-direction:column;gap:.8rem;border:1px dashed var(--border2);color:var(--t4);border-radius:2px">
+    <div style="font-size:11px;letter-spacing:.06em;color:var(--t3)">Imagen generada por Python</div>
+    <div style="font-size:9px;letter-spacing:.08em">Subir a la misma carpeta: <b style="color:var(--a)">fondo_tendencias_CVaR_MonteCarlo.png</b></div>
+    <div style="font-size:8px;color:var(--t4)">Se genera en Celda 6 de colab_cvar_montecarlo.py</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:1rem">
+    <div style="background:var(--card2);padding:.6rem .8rem">
+      <div style="font-size:7.5px;font-weight:700;letter-spacing:.16em;color:var(--t3);margin-bottom:.3rem">VAR DIARIO 95%</div>
+      <div style="font-size:18px;font-weight:700;color:var(--r)">−1.75%</div>
+      <div style="font-size:8px;color:var(--t3)">histórico</div>
+    </div>
+    <div style="background:var(--card2);padding:.6rem .8rem">
+      <div style="font-size:7.5px;font-weight:700;letter-spacing:.16em;color:var(--t3);margin-bottom:.3rem">CVaR DIARIO 95%</div>
+      <div style="font-size:18px;font-weight:700;color:var(--r)">−2.31%</div>
+      <div style="font-size:8px;color:var(--t3)">promedio peor 5%</div>
+    </div>
+    <div style="background:var(--card2);padding:.6rem .8rem">
+      <div style="font-size:7.5px;font-weight:700;letter-spacing:.16em;color:var(--t3);margin-bottom:.3rem">P(GANAR 18m)</div>
+      <div style="font-size:18px;font-weight:700;color:var(--g)">99.5%</div>
+      <div style="font-size:8px;color:var(--t3)">10.000 simulaciones</div>
+    </div>
   </div>
 </div>
 
@@ -588,6 +637,96 @@ new Chart(mcCtx, {
       y: {
         title: { display: true, text: 'Densidad', color: '#888', font: { family: 'IBM Plex Mono', size: 9 } },
         ticks: { color: '#555', font: { family: 'IBM Plex Mono', size: 8 } },
+        grid: { color: '#1E1E1E' }
+      }
+    }
+  }
+});
+
+// ============================================================
+// BL: π EQUILIBRIO vs E[R] BLACK-LITTERMAN
+// ============================================================
+const blActivos = ['NVDA','AVGO','META','MA','AMZN','LLY','ASML','MSFT','XOM',
+                   'VIST','GGAL','BMA','TGS','YPF'];
+const blPi      = [37.5, 33.4, 21.3,  5.6, 18.9,  8.2, 24.7, 14.0,  0.6,
+                   60.9, 77.7, 78.3, 68.3, 66.2];
+const blEr      = [47.4, 42.9, 32.6, 14.9, 28.0, 16.9, 31.9, 19.5,  2.9,
+                   47.1, 51.2, 51.2, 45.1, 45.3];
+
+// Plugin para la línea divisoria CEDEARs | ARG
+const dividerPlugin = {
+  id: 'divider',
+  afterDraw(chart) {
+    const { ctx, chartArea, scales } = chart;
+    const xScale = scales.x;
+    const xPos = xScale.getPixelForValue(8.5);
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(xPos, chartArea.top);
+    ctx.lineTo(xPos, chartArea.bottom);
+    ctx.strokeStyle = '#E0302066';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    ctx.stroke();
+    ctx.fillStyle = '#E03020';
+    ctx.font = '700 8px IBM Plex Mono';
+    ctx.fillText('CEDEARs ←', xPos - 70, chartArea.top + 12);
+    ctx.fillText('→ ARG', xPos + 6, chartArea.top + 12);
+    ctx.restore();
+  }
+};
+
+const blCtx = document.getElementById('blCompareChart').getContext('2d');
+new Chart(blCtx, {
+  type: 'bar',
+  plugins: [dividerPlugin],
+  data: {
+    labels: blActivos,
+    datasets: [
+      {
+        label: 'π Equilibrio',
+        data: blPi,
+        backgroundColor: '#44444499',
+        borderColor: '#666',
+        borderWidth: 1,
+        borderRadius: 2
+      },
+      {
+        label: 'E[R] Black-Litterman',
+        data: blEr,
+        backgroundColor: '#D4BC00CC',
+        borderColor: '#D4BC00',
+        borderWidth: 1,
+        borderRadius: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          title: ctx => ctx[0].label,
+          label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`
+        },
+        backgroundColor: '#0E0E0E',
+        borderColor: '#D4BC00',
+        borderWidth: 1,
+        titleColor: '#D4BC00',
+        bodyColor: '#C8C8C0',
+        titleFont: { family: 'IBM Plex Mono', size: 11 },
+        bodyFont:  { family: 'IBM Plex Mono', size: 10 }
+      }
+    },
+    scales: {
+      x: {
+        ticks: { color: '#C8C8C0', font: { family: 'IBM Plex Mono', size: 10, weight: '600' } },
+        grid: { color: '#1E1E1E' }
+      },
+      y: {
+        title: { display: true, text: 'Retorno anual esperado (%)', color: '#888', font: { family: 'IBM Plex Mono', size: 9 } },
+        ticks: { color: '#555', font: { family: 'IBM Plex Mono', size: 8 }, callback: v => v + '%' },
         grid: { color: '#1E1E1E' }
       }
     }
