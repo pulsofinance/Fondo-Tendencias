@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fondo Tendencias — Modelo Matemático FCI</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg:#000;--bg2:#0A0A0A;--bg3:#111;
+  --card:#0E0E0E;--card2:#141414;--card3:#191919;
+  --border:#1E1E1E;--border2:#2A2A2A;
+  --t:#F0F0E8;--t2:#C8C8C0;--t3:#888;--t4:#555;
+  --a:#D4BC00;--r:#E03020;--g:#22A055;
+  --cyan:#00B0CC;--orange:#E06000;
+  --a-dim:rgba(212,188,0,.12);--r-dim:rgba(224,48,32,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t);font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.6;}
+a{color:var(--a);text-decoration:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:400;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 1.5rem;height:50px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{display:flex;align-items:baseline;gap:10px}
+.nav-name{font-size:18px;font-weight:700;letter-spacing:.2em;color:var(--a)}
+.nav-sub{font-size:8px;letter-spacing:.12em;color:var(--t3)}
+.nav-badges{display:flex;gap:.5rem;align-items:center}
+.badge{font-size:7.5px;font-weight:700;letter-spacing:.1em;padding:2px 8px;border:1px solid}
+.badge-g{color:var(--g);border-color:rgba(34,160,85,.4);background:rgba(34,160,85,.07)}
+.badge-a{color:var(--a);border-color:rgba(212,188,0,.4);background:var(--a-dim)}
+.badge-r{color:var(--r);border-color:rgba(224,48,32,.4);background:var(--r-dim)}
+
+/* HERO */
+.hero{padding:2.5rem 1.5rem 2rem;background:linear-gradient(180deg,#0A0A0A 0%,#000 100%);border-bottom:2px solid var(--a);}
+.hero-title{font-size:32px;font-weight:700;letter-spacing:-.02em;color:var(--t);margin-bottom:.3rem}
+.hero-title span{color:var(--a)}
+.hero-sub{font-size:11px;color:var(--t3);letter-spacing:.08em;margin-bottom:1.5rem}
+.hero-metrics{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--border);margin-top:1.5rem}
+.hm{background:var(--card);padding:.8rem 1rem}
+.hm-lbl{font-size:7.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--t3);margin-bottom:.3rem}
+.hm-val{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.hm-sub{font-size:9px;color:var(--t3);margin-top:.2rem}
+
+/* SECTION */
+.sdiv{display:flex;align-items:center;gap:1rem;padding:.6rem 1.5rem;background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:1.5rem}
+.sdiv-label{font-size:8px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--a)}
+.sdiv-label::before{content:"§ "}
+.sdiv-line{flex:1;height:1px;background:var(--border2)}
+.sdiv-meta{font-size:7.5px;color:var(--t3)}
+
+/* GRID 2 COL */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)}
+.panel{background:var(--card);padding:1.2rem 1.5rem}
+.panel-title{font-size:8px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--a);margin-bottom:1rem}
+.panel-title::before{content:"// "}
+
+/* TORTA */
+.torta-wrap{display:grid;grid-template-columns:380px 1fr;gap:0;background:var(--border)}
+.torta-chart{background:var(--card);padding:1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.torta-detail{background:var(--card2);padding:1.5rem;overflow-y:auto;max-height:480px}
+.torta-detail-title{font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--a);margin-bottom:1rem}
+.detail-card{padding:.8rem;border:1px solid var(--border2);margin-bottom:.6rem;border-radius:2px;cursor:pointer;transition:all .15s}
+.detail-card:hover{border-color:var(--a);background:var(--card3)}
+.detail-card.active{border-color:var(--a);background:var(--card3)}
+.dc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem}
+.dc-name{font-size:12px;font-weight:700;color:var(--t)}
+.dc-pct{font-size:14px;font-weight:700;color:var(--a)}
+.dc-tipo{font-size:7px;font-weight:700;letter-spacing:.12em;padding:1px 5px;border:1px solid}
+.dc-banco{font-size:9px;color:var(--cyan);margin:.3rem 0 .2rem}
+.dc-banco::before{content:"Recomendado por: "}
+.dc-why{font-size:10px;color:var(--t2);line-height:1.5}
+.dc-ret{font-size:9px;color:var(--g);margin-top:.3rem;font-weight:600}
+
+/* TABLA */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:7.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t3);padding:.4rem .6rem;border-bottom:1px solid var(--border);text-align:left}
+.tbl td{font-size:11px;padding:.4rem .6rem;border-bottom:1px solid var(--border);color:var(--t);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--card2)}
+.up{color:var(--g);font-weight:600}.dn{color:var(--r);font-weight:600}.am{color:var(--a);font-weight:600}
+.tag{font-size:7px;font-weight:700;letter-spacing:.1em;padding:1px 5px;border:1px solid;display:inline-block}
+.tag-c{color:var(--a);border-color:rgba(212,188,0,.4)}
+.tag-a{color:var(--r);border-color:rgba(224,48,32,.4)}
+.tag-b{color:var(--cyan);border-color:rgba(0,176,204,.4)}
+.tag-g{color:var(--g);border-color:rgba(34,160,85,.4)}
+
+/* MODELO CARD */
+.modelo-card{background:var(--card);border-left:3px solid var(--a);padding:1rem 1.2rem;margin-bottom:1px}
+.mc-formula{background:var(--bg3);padding:.6rem .8rem;font-size:11px;color:var(--cyan);margin:.6rem 0;border-left:2px solid var(--cyan);letter-spacing:.02em}
+.mc-desc{font-size:11px;color:var(--t2);line-height:1.65}
+.mc-result{font-size:11px;color:var(--g);margin-top:.5rem;padding:.4rem .6rem;background:rgba(34,160,85,.06);border:1px solid rgba(34,160,85,.2)}
+
+/* STRESS */
+.stress-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.stress-card{background:var(--card);padding:1rem}
+.sc-name{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.4rem}
+.sc-ret{font-size:24px;font-weight:700;letter-spacing:-.02em;line-height:1;margin-bottom:.3rem}
+.sc-desc{font-size:9px;color:var(--t3);line-height:1.4}
+.sc-prob{font-size:8px;color:var(--t3);margin-top:.4rem}
+
+/* BONO CARD */
+.bono-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.bono-card{background:var(--card);padding:1rem 1.2rem;transition:background .15s}
+.bono-card:hover{background:var(--card2)}
+.bc-ticker{font-size:13px;font-weight:700;color:var(--a);margin-bottom:.2rem}
+.bc-banco{font-size:8px;color:var(--cyan);letter-spacing:.06em;margin-bottom:.4rem}
+.bc-ret{font-size:11px;font-weight:700;color:var(--g);margin-bottom:.3rem}
+.bc-why{font-size:10px;color:var(--t2);line-height:1.5}
+.bc-tag{display:inline-block;font-size:7px;font-weight:700;letter-spacing:.1em;padding:1px 5px;border:1px solid;margin-bottom:.4rem}
+
+/* CHART CONTAINERS */
+.chart-wrap{background:var(--card);padding:1.2rem 1.5rem}
+.chart-title{font-size:8px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--a);margin-bottom:1rem}
+.chart-title::before{content:"// "}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;display:flex;justify-content:space-between;align-items:center;margin-top:2rem}
+.footer-l{font-size:9px;color:var(--t3)}
+.footer-l b{color:var(--a)}
+.disclaimer{font-size:8px;color:var(--t4);font-style:italic}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-metrics{grid-template-columns:repeat(3,1fr)}
+  .torta-wrap{grid-template-columns:1fr}
+  .grid2,.grid3,.bono-grid,.stress-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <span class="nav-name">FONDO TENDENCIAS</span>
+    <span class="nav-sub">FCI Abierto · Renta Mixta · CNV Ley 24.083</span>
+  </div>
+  <div class="nav-badges">
+    <span class="badge badge-a">AGRESIVO</span>
+    <span class="badge badge-g">SHARPE 1.78</span>
+    <span class="badge badge-r">7 MODELOS MATEMÁTICOS</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-title">Fondo <span>Tendencias</span></div>
+  <div class="hero-sub">Matemática Financiera · FCI Real · Modelos Cuantitativos sobre Mercados Argentinos · 2026</div>
+  <div class="hero-metrics">
+    <div class="hm"><div class="hm-lbl">Patrimonio</div><div class="hm-val" style="color:var(--a)">$50M</div><div class="hm-sub">ARS · 50.000 cuotapartes</div></div>
+    <div class="hm"><div class="hm-lbl">Retorno esperado</div><div class="hm-val" style="color:var(--g)">28.23%</div><div class="hm-sub">Anual en USD</div></div>
+    <div class="hm"><div class="hm-lbl">Sharpe Ratio</div><div class="hm-val" style="color:var(--a)">1.78</div><div class="hm-sub">Muy bueno (&gt;1.5)</div></div>
+    <div class="hm"><div class="hm-lbl">Volatilidad</div><div class="hm-val" style="color:var(--cyan)">14.74%</div><div class="hm-sub">Anual estimada</div></div>
+    <div class="hm"><div class="hm-lbl">CVaR mensual 95%</div><div class="hm-val" style="color:var(--r)">-10.56%</div><div class="hm-sub">Pérdida máx. esperada</div></div>
+    <div class="hm"><div class="hm-lbl">P(ganar 18m)</div><div class="hm-val" style="color:var(--g)">99.5%</div><div class="hm-sub">Monte Carlo · 10.000 sim.</div></div>
+  </div>
+</div>
+
+<!-- COMPOSICIÓN -->
+<div class="sdiv"><span class="sdiv-label">Composición del fondo</span><div class="sdiv-line"></div><span class="sdiv-meta">Click en cada sector para ver detalle del activo</span></div>
+
+<div class="torta-wrap">
+  <div class="torta-chart">
+    <div class="panel-title" style="margin-bottom:.5rem">Distribución por tramo</div>
+    <canvas id="tortaChart" width="320" height="320"></canvas>
+  </div>
+  <div class="torta-detail">
+    <div class="torta-detail-title">// DETALLE POR ACTIVO</div>
+    <div id="detailPanel">
+      <div style="color:var(--t3);font-size:10px;padding:1rem 0">← Hacé click en un sector de la torta para ver el detalle</div>
+    </div>
+  </div>
+</div>
+
+<!-- PESOS COMPLETOS -->
+<div class="sdiv"><span class="sdiv-label">Pesos absolutos en el fondo</span><div class="sdiv-line"></div><span class="sdiv-meta">Resultado Black-Litterman + Markowitz</span></div>
+<div style="background:var(--card);padding:1.2rem 1.5rem">
+  <table class="tbl">
+    <thead><tr><th>Activo</th><th>Tipo</th><th>% Fondo</th><th>USD asignado</th><th>ARS asignado</th><th>Retorno BL</th><th>Banco research</th><th>Señal CAPM</th></tr></thead>
+    <tbody>
+      <tr><td class="am">GD35/AL30</td><td><span class="tag tag-b">Soberano USD</span></td><td class="am">15.00%</td><td>$5,357</td><td>$7,500,000</td><td class="up">12.0%</td><td>Mariva · SBS</td><td>—</td></tr>
+      <tr><td class="am">MA</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">10.60%</td><td>$3,787</td><td>$5,302,000</td><td class="up">14.9%</td><td>Santander PB</td><td class="up">✅ +27.14%</td></tr>
+      <tr><td class="am">VIST</td><td><span class="tag tag-a">Acción ARG</span></td><td class="am">10.00%</td><td>$3,571</td><td>$5,000,000</td><td class="up">47.1%</td><td>JPM · SBS · IEB</td><td class="up">✅ +58.47%</td></tr>
+      <tr><td class="am">YPF ON/TGS ON</td><td><span class="tag tag-b">ON Corp</span></td><td class="am">10.00%</td><td>$3,571</td><td>$5,000,000</td><td class="up">10.0%</td><td>Grupo SBS · IEB</td><td>—</td></tr>
+      <tr><td class="am">YPF</td><td><span class="tag tag-a">Acción ARG</span></td><td class="am">9.65%</td><td>$3,446</td><td>$4,825,000</td><td class="up">45.3%</td><td>Grupo SBS</td><td>➡ Neutro</td></tr>
+      <tr><td class="am">CER (TZXO6/TZXD6)</td><td><span class="tag tag-b">CER</span></td><td class="am">7.00%</td><td>$2,500</td><td>$3,500,000</td><td class="up">35.0%</td><td>Balanz · Bull Cap.</td><td>—</td></tr>
+      <tr><td class="am">NVDA</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">6.86%</td><td>$2,449</td><td>$3,428,000</td><td class="up">47.4%</td><td>Santander PB</td><td class="up">✅ +13.48%</td></tr>
+      <tr><td class="am">AMZN</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">5.09%</td><td>$1,816</td><td>$2,543,000</td><td class="up">28.0%</td><td>Santander PB</td><td>➡ Neutro</td></tr>
+      <tr><td class="am">SFD34</td><td><span class="tag tag-b">Prov. USD</span></td><td class="am">5.00%</td><td>$1,786</td><td>$2,500,000</td><td class="up">15.0%</td><td>Facimex</td><td>—</td></tr>
+      <tr><td class="am">GGAL</td><td><span class="tag tag-a">Acción ARG</span></td><td class="am">4.21%</td><td>$1,505</td><td>$2,107,000</td><td class="up">51.2%</td><td>JPM · Grupo SBS</td><td class="up">✅ +40.65%</td></tr>
+      <tr><td class="am">META</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">3.92%</td><td>$1,398</td><td>$1,958,000</td><td class="up">32.6%</td><td>Santander PB</td><td class="up">✅ +8.19%</td></tr>
+      <tr><td class="am">LLY</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">3.44%</td><td>$1,227</td><td>$1,718,000</td><td class="up">16.9%</td><td>Santander PB</td><td class="up">✅ +20.42%</td></tr>
+      <tr><td class="am">Caución</td><td><span class="tag tag-g">Liquidez</span></td><td class="am">3.00%</td><td>$1,071</td><td>$1,500,000</td><td class="up">20.0%</td><td>CNV mínimo</td><td>—</td></tr>
+      <tr><td class="am">AVGO</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">2.99%</td><td>$1,067</td><td>$1,494,000</td><td class="up">42.9%</td><td>Santander PB</td><td class="up">✅ +17.33%</td></tr>
+      <tr><td class="am">MSFT</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">2.00%</td><td>$715</td><td>$1,001,000</td><td class="up">19.5%</td><td>PULSO · Barron's</td><td>➡ Neutro</td></tr>
+      <tr><td class="am">BMA</td><td><span class="tag tag-a">Acción ARG</span></td><td class="am">1.08%</td><td>$387</td><td>$542,000</td><td class="up">51.2%</td><td>JPMorgan</td><td class="up">✅ +22.12%</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MODELOS MATEMÁTICOS -->
+<div class="sdiv"><span class="sdiv-label">Los 4 modelos matemáticos</span><div class="sdiv-line"></div><span class="sdiv-meta">Implementados con Python · datos reales 2024-2026</span></div>
+
+<div style="padding:0 0 1px">
+  <!-- BL -->
+  <div class="modelo-card">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--orange);margin-bottom:.4rem">01 · BLACK-LITTERMAN</div>
+    <div class="mc-desc">Combina lo que dice el mercado (retornos de equilibrio implícitos en los market caps) con las visiones del research institucional PULSO. Resuelve el principal problema de Markowitz puro: la sensibilidad extrema a los retornos esperados.</div>
+    <div class="mc-formula">E[R] = [(τΣ)⁻¹ + P'Ω⁻¹P]⁻¹ × [(τΣ)⁻¹π + P'Ω⁻¹Q]</div>
+    <div class="mc-desc" style="margin-bottom:.5rem">Donde π = retornos de equilibrio · Q = visiones PULSO · Ω = incertidumbre de visiones · τ = 0.05</div>
+    <div class="mc-result">✓ Output: retornos ajustados BL por activo — NVDA 47.4% · VIST 47.1% · GGAL 51.2% · MA 14.9%</div>
+  </div>
+  <!-- Markowitz -->
+  <div class="modelo-card" style="border-left-color:var(--g)">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--g);margin-bottom:.4rem">02 · MARKOWITZ — OPTIMIZACIÓN DE PORTAFOLIO</div>
+    <div class="mc-desc">Con los retornos de Black-Litterman, maximiza el Sharpe Ratio sujeto a restricciones CNV (máximo 15% por activo). Encuentra la combinación óptima de activos en la frontera eficiente.</div>
+    <div class="mc-formula">max Sharpe = (w'μ_BL - Rf) / √(w'Σ_BL w)  sujeto a: Σwᵢ=1 · 0≤wᵢ≤0.15</div>
+    <div class="mc-result">✓ Sharpe Ratio: 1.78 · Retorno esperado: 28.23% · Volatilidad: 14.74% — portafolio de máximo Sharpe</div>
+  </div>
+  <!-- CAPM FF -->
+  <div class="modelo-card" style="border-left-color:var(--cyan)">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--cyan);margin-bottom:.4rem">03 · CAPM + FAMA-FRENCH 3 FACTORES</div>
+    <div class="mc-desc">CAPM valida si cada activo elegido por Markowitz está sobre la Security Market Line — es decir, si el retorno esperado supera lo que justifica su riesgo sistemático (beta). Fama-French agrega los factores de tamaño (SMB) y valor (HML).</div>
+    <div class="mc-formula">CAPM: E[R] = Rf + β×(Rm-Rf)  |  FF3: E[R] = Rf + β×MKT + s×SMB + h×HML</div>
+    <div class="mc-result">✓ 10/13 activos subvaluados o neutros · Hallazgo clave: acciones ARG tienen beta negativo — diversificación genuina vs S&P500</div>
+  </div>
+  <!-- CVaR MC -->
+  <div class="modelo-card" style="border-left-color:var(--r)">
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--r);margin-bottom:.4rem">04 · CVaR + MONTE CARLO</div>
+    <div class="mc-desc">CVaR mide el promedio de pérdidas en el peor 5% de escenarios — más conservador que el VAR clásico. Monte Carlo simula 10.000 trayectorias de 18 meses usando Geometric Brownian Motion.</div>
+    <div class="mc-formula">GBM: dS = μ×S×dt + σ×S×dW  |  CVaR = E[R | R ≤ VaR_α]</div>
+    <div class="mc-result">✓ P(ganar a 18m): 99.5% · Mediana: +76.89% USD · CVaR mensual 95%: -10.56% · VAR diario 95%: -1.75%</div>
+  </div>
+</div>
+
+<!-- BL TABLE -->
+<div class="sdiv"><span class="sdiv-label">Black-Litterman — Retornos ajustados</span><div class="sdiv-line"></div><span class="sdiv-meta">π equilibrio → visión PULSO → E[R] posterior</span></div>
+<div class="grid2">
+  <div style="background:var(--card);padding:1.2rem 1.5rem">
+    <div class="panel-title">CEDEARs — Retornos BL</div>
+    <table class="tbl">
+      <thead><tr><th>Activo</th><th>π Equilibrio</th><th>Visión PULSO</th><th>Confianza</th><th>E[R] BL</th></tr></thead>
+      <tbody>
+        <tr><td class="am">NVDA</td><td>37.5%</td><td class="up">51.4%</td><td>85%</td><td class="up">47.4%</td></tr>
+        <tr><td class="am">AVGO</td><td>33.4%</td><td class="up">48.4%</td><td>85%</td><td class="up">42.9%</td></tr>
+        <tr><td class="am">META</td><td>21.3%</td><td class="up">42.6%</td><td>85%</td><td class="up">32.6%</td></tr>
+        <tr><td class="am">MA</td><td>5.6%</td><td class="up">36.8%</td><td>85%</td><td class="up">14.9%</td></tr>
+        <tr><td class="am">AMZN</td><td>18.9%</td><td class="up">34.7%</td><td>85%</td><td class="up">28.0%</td></tr>
+        <tr><td class="am">LLY</td><td>8.2%</td><td class="up">33.4%</td><td>85%</td><td class="up">16.9%</td></tr>
+        <tr><td class="am">ASML</td><td>24.7%</td><td class="up">28.9%</td><td>85%</td><td class="up">31.9%</td></tr>
+        <tr><td class="am">MSFT</td><td>14.0%</td><td class="up">28.0%</td><td>70%</td><td class="up">19.5%</td></tr>
+        <tr><td class="am">XOM</td><td>0.6%</td><td>10.0%</td><td>55%</td><td>2.9%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="background:var(--card);padding:1.2rem 1.5rem">
+    <div class="panel-title">Acciones ARG — Retornos BL</div>
+    <table class="tbl">
+      <thead><tr><th>Activo</th><th>π Equilibrio</th><th>Visión PULSO</th><th>Confianza</th><th>E[R] BL</th></tr></thead>
+      <tbody>
+        <tr><td class="am">VIST</td><td>60.9%</td><td class="up">58.0%</td><td>85%</td><td class="up">47.1%</td></tr>
+        <tr><td class="am">GGAL</td><td>77.7%</td><td class="up">35.0%</td><td>85%</td><td class="up">51.2%</td></tr>
+        <tr><td class="am">BMA</td><td>78.3%</td><td class="up">30.0%</td><td>85%</td><td class="up">51.2%</td></tr>
+        <tr><td class="am">TGS</td><td>68.3%</td><td class="up">25.0%</td><td>85%</td><td class="up">45.1%</td></tr>
+        <tr><td class="am">YPF</td><td>66.2%</td><td>10.0%</td><td>85%</td><td class="up">45.3%</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:1rem;padding:.6rem;background:var(--a-dim);border:1px solid rgba(212,188,0,.2);font-size:10px;color:var(--t2);line-height:1.6">
+      <strong style="color:var(--a)">Hallazgo clave:</strong> Los π de equilibrio de acciones ARG son muy altos (60-78%) porque históricamente tuvieron retornos extraordinarios. Black-Litterman los baja hacia las visiones PULSO más conservadoras, generando retornos BL finales de 45-51%.
+    </div>
+  </div>
+</div>
+
+<!-- CAPM TABLE -->
+<div class="sdiv"><span class="sdiv-label">CAPM + Fama-French — Validación de activos</span><div class="sdiv-line"></div><span class="sdiv-meta">10/13 activos subvaluados o neutros</span></div>
+<div style="background:var(--card);padding:1.2rem 1.5rem">
+  <table class="tbl">
+    <thead><tr><th>Activo</th><th>Beta (β)</th><th>CAPM exige</th><th>PULSO espera</th><th>Alpha (α)</th><th>β SMB</th><th>β HML</th><th>Exposición FF</th><th>Señal</th></tr></thead>
+    <tbody>
+      <tr><td class="am">NVDA</td><td>1.986</td><td>37.92%</td><td class="up">51.40%</td><td class="up">+13.48%</td><td>-0.430</td><td>-0.663</td><td>Large/Growth/Agresivo</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">AVGO</td><td>1.608</td><td>31.07%</td><td class="up">48.40%</td><td class="up">+17.33%</td><td>+0.359</td><td>-2.633</td><td>Small/Growth/Defensivo</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">META</td><td>1.792</td><td>34.41%</td><td class="up">42.60%</td><td class="up">+8.19%</td><td>-1.019</td><td>+0.198</td><td>Large/Agresivo</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">MA</td><td>0.424</td><td>9.66%</td><td class="up">36.80%</td><td class="up">+27.14%</td><td>+0.015</td><td>+0.207</td><td>Value/Defensivo</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">AMZN</td><td>1.696</td><td>32.67%</td><td class="up">34.70%</td><td>+2.03%</td><td>+0.583</td><td>-1.130</td><td>Small/Growth</td><td>➡ NEUTRO</td></tr>
+      <tr><td class="am">LLY</td><td>0.607</td><td>12.98%</td><td class="up">33.40%</td><td class="up">+20.42%</td><td>-2.203</td><td>+1.221</td><td>Large/Value/Agresivo</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">ASML</td><td>1.559</td><td>30.19%</td><td>28.90%</td><td>-1.29%</td><td>+0.187</td><td>-0.064</td><td>Agresivo</td><td>➡ NEUTRO</td></tr>
+      <tr><td class="am">MSFT</td><td>1.353</td><td>26.46%</td><td>28.0%</td><td>+1.54%</td><td>-0.315</td><td>-0.755</td><td>Large/Growth</td><td>➡ NEUTRO</td></tr>
+      <tr><td class="am">VIST</td><td style="color:var(--r)">-0.137</td><td class="dn">-0.47%</td><td class="up">58.00%</td><td class="up">+58.47%</td><td>+0.384</td><td>-0.253</td><td>Small/Growth</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">GGAL</td><td style="color:var(--r)">-0.423</td><td class="dn">-5.65%</td><td class="up">35.00%</td><td class="up">+40.65%</td><td>-0.907</td><td>-0.832</td><td>Large/Growth/Def.</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">BMA</td><td>0.325</td><td>7.88%</td><td class="up">30.00%</td><td class="up">+22.12%</td><td>+0.283</td><td>-1.698</td><td>Small/Growth/Def.</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">TGS</td><td style="color:var(--r)">-0.485</td><td class="dn">-6.77%</td><td class="up">25.00%</td><td class="up">+31.77%</td><td>+0.612</td><td>-0.585</td><td>Small/Growth/Def.</td><td class="up">✅ SUBVALUADO</td></tr>
+      <tr><td class="am">YPF</td><td>0.339</td><td>8.14%</td><td>10.00%</td><td>+1.86%</td><td>+1.601</td><td>-0.894</td><td>Small/Growth/Def.</td><td>➡ NEUTRO</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:1rem;padding:.7rem;background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.2);font-size:10px;color:var(--t2);line-height:1.6">
+    <strong style="color:var(--cyan)">Hallazgo Fama-French:</strong> Las acciones argentinas (VIST, GGAL, TGS) tienen beta negativo respecto al S&P500 — sus R² son cercanos a 0 (0.006 - 0.049). Esto confirma matemáticamente que son un <strong>factor de diversificación genuino</strong>: se mueven por drivers locales (Vaca Muerta, ciclo político, FMI) independientemente del mercado global.
+  </div>
+</div>
+
+<!-- CVaR -->
+<div class="sdiv"><span class="sdiv-label">CVaR + Monte Carlo — Riesgo del fondo</span><div class="sdiv-line"></div><span class="sdiv-meta">10.000 simulaciones × 18 meses · GBM</span></div>
+<div class="grid2">
+  <div style="background:var(--card);padding:1.2rem 1.5rem">
+    <div class="panel-title">VAR y CVaR histórico</div>
+    <table class="tbl">
+      <thead><tr><th>Métrica</th><th>90%</th><th>95%</th><th>99%</th></tr></thead>
+      <tbody>
+        <tr><td>VAR diario</td><td class="dn">-1.16%</td><td class="dn">-1.75%</td><td class="dn">-2.59%</td></tr>
+        <tr><td>CVaR diario</td><td class="dn">-1.86%</td><td class="dn">-2.31%</td><td class="dn">-3.28%</td></tr>
+        <tr><td>VAR mensual</td><td class="dn">-5.30%</td><td class="dn">-8.01%</td><td class="dn">-11.87%</td></tr>
+        <tr><td>CVaR mensual</td><td class="dn">-8.51%</td><td class="dn">-10.56%</td><td class="dn">-15.03%</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:1rem">
+      <div class="panel-title">Monte Carlo — 18 meses</div>
+      <table class="tbl">
+        <thead><tr><th>Percentil</th><th>Retorno</th><th>Patrimonio USD</th></tr></thead>
+        <tbody>
+          <tr><td>5%</td><td class="up">+23.4%</td><td>$44,077</td></tr>
+          <tr><td>25%</td><td class="up">+53.0%</td><td>$54,641</td></tr>
+          <tr><td>50% (mediana)</td><td class="up">+76.9%</td><td>$63,176</td></tr>
+          <tr><td>75%</td><td class="up">+105.9%</td><td>$73,526</td></tr>
+          <tr><td>95%</td><td class="up">+153.8%</td><td>$90,640</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div style="background:var(--card);padding:1.2rem 1.5rem">
+    <div class="panel-title">Distribución Monte Carlo</div>
+    <canvas id="mcChart" height="280"></canvas>
+  </div>
+</div>
+
+<!-- STRESS TEST -->
+<div class="sdiv"><span class="sdiv-label">Stress Test — 6 escenarios</span><div class="sdiv-line"></div><span class="sdiv-meta">Retorno mediano a 18 meses por escenario</span></div>
+<div class="stress-grid">
+  <div class="stress-card"><div class="sc-name" style="color:var(--g)">Base (central)</div><div class="sc-ret" style="color:var(--g)">+78.2%</div><div class="sc-desc">Condiciones actuales se mantienen. Programa FMI en curso, BCRA acumula reservas.</div><div class="sc-prob">P(ganar): 99.6%</div></div>
+  <div class="stress-card"><div class="sc-name" style="color:var(--a)">Bull (optimista)</div><div class="sc-ret" style="color:var(--a)">+140.8%</div><div class="sc-desc">MSCI upgrade Argentina + Fed baja tasas + compresión EMBI a 300 bps.</div><div class="sc-prob">P(ganar): 100%</div></div>
+  <div class="stress-card"><div class="sc-name" style="color:var(--orange)">Bear leve</div><div class="sc-ret" style="color:var(--orange)">+14.4%</div><div class="sc-desc">Guerra en Medio Oriente se prolonga + inflación ARG sube + Fed sin bajar tasas.</div><div class="sc-prob">P(ganar): 66.8%</div></div>
+  <div class="stress-card"><div class="sc-name" style="color:var(--r)">Crisis EM</div><div class="sc-ret" style="color:var(--r)">-32.2%</div><div class="sc-desc">Fed sube tasas + salida de capitales emergentes + EMBI ARG vuelve a 900 bps.</div><div class="sc-prob">P(ganar): 18.8%</div></div>
+  <div class="stress-card"><div class="sc-name" style="color:var(--r)">Crisis ARG</div><div class="sc-ret" style="color:var(--r)">-52.8%</div><div class="sc-desc">Devaluación + ruptura programa FMI. Escenario de cola, probabilidad &lt;10%.</div><div class="sc-prob">P(ganar): 8.2%</div></div>
+  <div class="stress-card"><div class="sc-name" style="color:var(--r)">Shock político</div><div class="sc-ret" style="color:var(--r)">~-60%</div><div class="sc-desc">Resultado electoral adverso al mercado. EMBI 1500 bps. Volatilidad 3× histórica.</div><div class="sc-prob">P(ganar): &lt;5%</div></div>
+</div>
+
+<!-- BONOS -->
+<div class="sdiv"><span class="sdiv-label">Renta fija — Bonos recomendados por el research</span><div class="sdiv-line"></div><span class="sdiv-meta">Fuente: PULSO Finance · research institucional</span></div>
+
+<!-- Soberanos -->
+<div style="padding:.5rem 1.5rem .3rem;background:var(--bg3);font-size:8px;font-weight:700;letter-spacing:.2em;color:var(--t3)">BONOS SOBERANOS USD</div>
+<div class="bono-grid">
+  <div class="bono-card"><div class="bc-ticker">GD35 / GD41</div><div class="bc-banco">Mariva · Grupo SBS</div><span class="bc-tag" style="color:var(--g);border-color:rgba(34,160,85,.4)">OVERWEIGHT</span><div class="bc-ret">~12% upside · TIR 9.8%</div><div class="bc-why">Upgrade Fitch CCC+ → B-. EMBI+ en 515 bps con margen de compresión hacia 300 bps. Tramo largo captura mayor duration.</div></div>
+  <div class="bono-card"><div class="bc-ticker">AO27</div><div class="bc-banco">Grupo SBS</div><span class="bc-tag" style="color:var(--cyan);border-color:rgba(0,176,204,.4)">CONSERVADOR</span><div class="bc-ret">TIR 5.12% · Renta mensual</div><div class="bc-why">Para perfil conservador dentro del tramo soberano. Precio máximo USD 1.016,66. Cupón mensual en USD.</div></div>
+  <div class="bono-card"><div class="bc-ticker">AN29 / AO28</div><div class="bc-banco">Banco Comafi</div><span class="bc-tag" style="color:var(--a);border-color:rgba(212,188,0,.4)">TRAMO CORTO</span><div class="bc-ret">8.5-8.9% TEA</div><div class="bc-why">Preferencia por tramo corto ante incertidumbre global. Menor duration = menor sensibilidad a tasas Fed.</div></div>
+</div>
+
+<!-- CER -->
+<div style="padding:.5rem 1.5rem .3rem;margin-top:1px;background:var(--bg3);font-size:8px;font-weight:700;letter-spacing:.2em;color:var(--t3)">BONOS CER — INFLACIÓN</div>
+<div class="bono-grid">
+  <div class="bono-card"><div class="bc-ticker">TZXO6</div><div class="bc-banco">Balanz Capital · IEB Research</div><span class="bc-tag" style="color:var(--a);border-color:rgba(212,188,0,.4)">POSICIÓN CENTRAL</span><div class="bc-ret">CER + liquidez · Favorito cash mgmt</div><div class="bc-why">Combina protección CER y cambiaria hasta junio. TTD26 favorito duales: TAMAR +2.3%, breakeven TAMAR zona 22.8%.</div></div>
+  <div class="bono-card"><div class="bc-ticker">TZXS8</div><div class="bc-banco">Bull Capital · Facimex Valores</div><span class="bc-tag" style="color:var(--g);border-color:rgba(34,160,85,.4)">COMPRA</span><div class="bc-ret">300 bps más que TZXD7</div><div class="bc-why">+300 bps de rendimiento con menos de 1 año extra de duration. Facimex: descuenta tasas reales extremas pre-elección 2027.</div></div>
+  <div class="bono-card"><div class="bc-ticker">BONCER 2028</div><div class="bc-banco">BofA Securities</div><span class="bc-tag" style="color:var(--orange);border-color:rgba(224,96,0,.4)">TRADE ACTIVO</span><div class="bc-ret">Entrada 84.5 → Target 92.0</div><div class="bc-why">Trade: BONCER 2028 cubierto con FX. Fundamento: reducción tasas reales de ~9% a 6-7%. Upside capital +8.9%.</div></div>
+</div>
+
+<!-- Provinciales -->
+<div style="padding:.5rem 1.5rem .3rem;margin-top:1px;background:var(--bg3);font-size:8px;font-weight:700;letter-spacing:.2em;color:var(--t3)">BONOS PROVINCIALES USD</div>
+<div class="bono-grid">
+  <div class="bono-card"><div class="bc-ticker">SFD34 (Santa Fe)</div><div class="bc-banco">Facimex Valores</div><span class="bc-tag" style="color:var(--g);border-color:rgba(34,160,85,.4)">TOP PICK</span><div class="bc-ret">Z+448 bps · Tramo largo calidad</div><div class="bc-why">Santa Fe tiene deuda neta NEGATIVA — más activos que pasivos. Única provincia del país en esa situación. Liquidez 1.4× el stock de deuda.</div></div>
+  <div class="bono-card"><div class="bc-ticker">CO29 / PMM29</div><div class="bc-banco">Facimex Valores</div><span class="bc-tag" style="color:var(--a);border-color:rgba(212,188,0,.4)">ROTACIÓN</span><div class="bc-ret">+80-120 bps vs soberanos</div><div class="bc-why">Rotar desde GD29/GD30. Mayor current yield con menor volatilidad que soberanos. Córdoba y Mendoza: finanzas sólidas.</div></div>
+  <div class="bono-card"><div class="bc-ticker">BOCADE (Chubut)</div><div class="bc-banco">BTG Pactual</div><span class="bc-tag" style="color:var(--cyan);border-color:rgba(0,176,204,.4)">GARANTIZADO</span><div class="bc-ret">Garantía sobre regalías O&G</div><div class="bc-why">Fideicomiso sobre regalías hidrocarburíferas — no pasan por caja fiscal provincial. En restructuraciones 2020/21 perdió solo 11% VPN. Nueva emisión USD 450-600M en evaluación.</div></div>
+</div>
+
+<!-- ONs -->
+<div style="padding:.5rem 1.5rem .3rem;margin-top:1px;background:var(--bg3);font-size:8px;font-weight:700;letter-spacing:.2em;color:var(--t3)">OBLIGACIONES NEGOCIABLES CORPORATIVAS USD</div>
+<div class="bono-grid">
+  <div class="bono-card"><div class="bc-ticker">YPF 2027/2029</div><div class="bc-banco">Grupo SBS · IEB Research</div><span class="bc-tag" style="color:var(--g);border-color:rgba(34,160,85,.4)">O&G FAVORITO</span><div class="bc-ret">5.7-7% TEA · Hard dollar</div><div class="bc-why">Ingresos en USD por exportaciones de Vaca Muerta. YPF Luz también recomendada. Exposición al boom energético con menor volatilidad que equity.</div></div>
+  <div class="bono-card"><div class="bc-ticker">TGS ON</div><div class="bc-banco">Grupo SBS</div><span class="bc-tag" style="color:var(--g);border-color:rgba(34,160,85,.4)">O&G FAVORITO</span><div class="bc-ret">7-9% TEA · Hard dollar</div><div class="bc-why">Transportadora de Gas del Sur. EBITDA récord USD 216M (+19% YoY). Proyecto Perito Moreno Pipeline aprobado RIGI (USD 700M). FID NGL próximo.</div></div>
+  <div class="bono-card"><div class="bc-ticker">PAE 2027</div><div class="bc-banco">Grupo SBS · Facimex</div><span class="bc-tag" style="color:var(--a);border-color:rgba(212,188,0,.4)">TRAMO CORTO</span><div class="bc-ret">7-9% TEA · Hard dollar</div><div class="bc-why">Pan American Energy. Tramo corto O&G con perfil conservador. Menor riesgo duración que soberanos con spread corporativo atractivo.</div></div>
+</div>
+
+<!-- GRÁFICO BARRAS PESOS -->
+<div class="sdiv"><span class="sdiv-label">Visualización de pesos óptimos</span><div class="sdiv-line"></div><span class="sdiv-meta">Resultado Markowitz máximo Sharpe</span></div>
+<div class="grid2">
+  <div class="chart-wrap">
+    <div class="chart-title">Pesos por activo — Tramo CEDEARs (35%)</div>
+    <canvas id="cedearChart" height="250"></canvas>
+  </div>
+  <div class="chart-wrap">
+    <div class="chart-title">Pesos por activo — Tramo Acciones ARG (25%)</div>
+    <canvas id="argChart" height="250"></canvas>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-l">FONDO TENDENCIAS · <b>Trabajo Final Matemática Financiera 2026</b> · Basado en PULSO Finance · Research institucional real</div>
+  <div class="disclaimer">No constituye asesoramiento de inversión · Modelos matemáticos con datos reales al 30/05/2026</div>
+</footer>
+
+<script>
+// ============================================================
+// DATOS
+// ============================================================
+const ACTIVOS_DATA = {
+  'CEDEARs EE.UU.': {
+    pct: 35, color: '#D4BC00',
+    tipo: 'CEDEAR',
+    banco: 'Santander Private Banking · PULSO',
+    why: 'Exposición USD sin depender del mercado local. 9 activos globales seleccionados por research institucional con upside promedio +37% según consenso.',
+    ret: '+28.0% esperado anual en USD',
+    activos: 'NVDA · AVGO · META · MA · AMZN · LLY · ASML · MSFT · XOM'
+  },
+  'Acciones ARG': {
+    pct: 25, color: '#E03020',
+    tipo: 'Renta Variable ARG',
+    banco: 'JPMorgan · SBS Research · IEB',
+    why: 'Beta negativo vs S&P500 — diversificación genuina. VIST y GGAL como top picks con catalizador MSCI upgrade. Exposición directa a Vaca Muerta.',
+    ret: '+47.3% esperado anual en USD',
+    activos: 'VIST · GGAL · BMA · TGS · YPF'
+  },
+  'Bonos Soberanos USD': {
+    pct: 15, color: '#00B0CC',
+    tipo: 'Renta Fija USD',
+    banco: 'Mariva · Grupo SBS · Banco Comafi',
+    why: 'Ancla en dólares del fondo. Upgrade Fitch CCC+ → B- abre espacio de compresión de spread. GD35/AL30 como top picks con TIR 9.8%.',
+    ret: '+12.0% upside estimado',
+    activos: 'GD35 · AL30 · AN29'
+  },
+  'ONs Corporativas': {
+    pct: 10, color: '#E06000',
+    tipo: 'Renta Fija USD Corp',
+    banco: 'Grupo SBS · IEB Research · Facimex',
+    why: 'Ingresos en USD por exportaciones de Vaca Muerta. Menor volatilidad que equity con spread corporativo atractivo. TIR 5.7-9% TEA.',
+    ret: '+10.0% anual hard dollar',
+    activos: 'YPF ON · TGS ON · PAE ON'
+  },
+  'Bonos CER': {
+    pct: 7, color: '#9B5DE5',
+    tipo: 'Renta Fija ARS',
+    banco: 'Balanz · Bull Capital · BofA · Facimex',
+    why: 'Cobertura contra inflación argentina. CER + 5-8.3% de retorno real. TZXS8 con +300 bps vs alternativas de menor duration.',
+    ret: 'CER + 6% real (~35% ARS)',
+    activos: 'TZXO6 · TZXD6 · TZXS8'
+  },
+  'Bonos Provinciales': {
+    pct: 5, color: '#22A055',
+    tipo: 'Renta Fija Sub-Sobe',
+    banco: 'Facimex · BTG Pactual · IEB',
+    why: 'Santa Fe deuda neta negativa — top pick calidad. BOCADE Chubut con garantía sobre regalías O&G. +80-120 bps vs soberanos.',
+    ret: '+15.0% estimado anual',
+    activos: 'SFD34 · BOCADE · CO29'
+  },
+  'Liquidez': {
+    pct: 3, color: '#555',
+    tipo: 'Liquidez CNV',
+    banco: 'Regulatorio CNV',
+    why: 'Mínimo regulatorio CNV para rescates en 24 horas hábiles. Caución a 1 día al 20% TNA. Buffer para rebalanceos.',
+    ret: '20% TNA (caución)',
+    activos: 'Caución overnight'
+  }
+};
+
+// ============================================================
+// TORTA INTERACTIVA
+// ============================================================
+const labels  = Object.keys(ACTIVOS_DATA);
+const data    = labels.map(k => ACTIVOS_DATA[k].pct);
+const colors  = labels.map(k => ACTIVOS_DATA[k].color);
+const borders = colors.map(c => c);
+
+const tortaCtx = document.getElementById('tortaChart').getContext('2d');
+const tortaChart = new Chart(tortaCtx, {
+  type: 'doughnut',
+  data: {
+    labels: labels,
+    datasets: [{
+      data: data,
+      backgroundColor: colors.map(c => c + 'CC'),
+      borderColor: colors,
+      borderWidth: 2,
+      hoverBorderWidth: 3,
+      hoverOffset: 8
+    }]
+  },
+  options: {
+    responsive: false,
+    cutout: '55%',
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ` ${ctx.label}: ${ctx.parsed}%`
+        },
+        backgroundColor: '#0E0E0E',
+        borderColor: '#D4BC00',
+        borderWidth: 1,
+        titleColor: '#D4BC00',
+        bodyColor: '#C8C8C0',
+        padding: 10,
+        titleFont: { family: 'IBM Plex Mono', size: 11 },
+        bodyFont:  { family: 'IBM Plex Mono', size: 10 }
+      }
+    },
+    onClick: (e, elements) => {
+      if (elements.length > 0) {
+        const idx   = elements[0].index;
+        const label = labels[idx];
+        showDetail(label);
+      }
+    }
+  }
+});
+
+function showDetail(label) {
+  const d = ACTIVOS_DATA[label];
+  const color = d.color;
+  document.getElementById('detailPanel').innerHTML = `
+    <div class="detail-card active" style="border-color:${color}">
+      <div class="dc-header">
+        <span class="dc-name">${label}</span>
+        <span class="dc-pct" style="color:${color}">${d.pct}%</span>
+      </div>
+      <span class="dc-tipo tag" style="color:${color};border-color:${color}44">${d.tipo}</span>
+      <div class="dc-banco" style="color:${color}">${d.banco}</div>
+      <div class="dc-why">${d.why}</div>
+      <div class="dc-why" style="margin-top:.4rem;color:#888">Instrumentos: <span style="color:#F0F0E8">${d.activos}</span></div>
+      <div class="dc-ret" style="color:${color}">Retorno estimado: ${d.ret}</div>
+    </div>
+  `;
+}
+
+// ============================================================
+// MONTE CARLO — Distribución normal aproximada
+// ============================================================
+function normalDist(x, mu, sigma) {
+  return (1/(sigma*Math.sqrt(2*Math.PI))) * Math.exp(-0.5*((x-mu)/sigma)**2);
+}
+
+const mcCtx = document.getElementById('mcChart').getContext('2d');
+const mcLabels = [];
+const mcData   = [];
+for (let x = -50; x <= 350; x += 5) {
+  mcLabels.push(x);
+  mcData.push(normalDist(x, 81.52, 40.38) * 100);
+}
+
+new Chart(mcCtx, {
+  type: 'line',
+  data: {
+    labels: mcLabels,
+    datasets: [{
+      label: 'Distribución retornos 18m',
+      data: mcData,
+      borderColor: '#00B0CC',
+      backgroundColor: 'rgba(0,176,204,0.1)',
+      fill: true,
+      tension: 0.4,
+      pointRadius: 0,
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      annotation: {},
+      tooltip: {
+        callbacks: {
+          title: ctx => `Retorno: ${ctx[0].label}%`,
+          label: ctx => `Densidad: ${ctx.parsed.y.toFixed(3)}`
+        },
+        backgroundColor: '#0E0E0E',
+        borderColor: '#00B0CC',
+        borderWidth: 1,
+        titleColor: '#00B0CC',
+        bodyColor: '#C8C8C0',
+        titleFont: { family: 'IBM Plex Mono', size: 10 },
+        bodyFont:  { family: 'IBM Plex Mono', size: 9 }
+      }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: 'Retorno total 18m (%)', color: '#888', font: { family: 'IBM Plex Mono', size: 9 } },
+        ticks: { color: '#555', font: { family: 'IBM Plex Mono', size: 8 }, maxTicksLimit: 10 },
+        grid: { color: '#1E1E1E' }
+      },
+      y: {
+        title: { display: true, text: 'Densidad', color: '#888', font: { family: 'IBM Plex Mono', size: 9 } },
+        ticks: { color: '#555', font: { family: 'IBM Plex Mono', size: 8 } },
+        grid: { color: '#1E1E1E' }
+      }
+    }
+  }
+});
+
+// ============================================================
+// CEDEAR PESOS
+// ============================================================
+const cedearCtx = document.getElementById('cedearChart').getContext('2d');
+new Chart(cedearCtx, {
+  type: 'bar',
+  data: {
+    labels: ['MA','NVDA','AMZN','META','LLY','MSFT','AVGO','ASML','XOM'],
+    datasets: [{
+      label: 'Peso dentro del tramo (%)',
+      data: [30.3, 19.6, 14.5, 11.2, 9.8, 5.7, 8.5, 0.3, 0],
+      backgroundColor: [
+        '#D4BC00CC','#D4BC00CC','#D4BC00CC','#D4BC00CC','#D4BC00CC',
+        '#D4BC00CC','#D4BC00CC','#55555580','#33333340'
+      ],
+      borderColor: '#D4BC00',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => ` ${ctx.parsed.x.toFixed(1)}% del tramo` },
+        backgroundColor: '#0E0E0E',
+        borderColor: '#D4BC00',
+        borderWidth: 1,
+        titleColor: '#D4BC00',
+        bodyColor: '#C8C8C0',
+        titleFont: { family: 'IBM Plex Mono', size: 10 },
+        bodyFont:  { family: 'IBM Plex Mono', size: 9 }
+      }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: 'Peso dentro del tramo (%)', color: '#888', font: { family: 'IBM Plex Mono', size: 9 } },
+        ticks: { color: '#555', font: { family: 'IBM Plex Mono', size: 8 } },
+        grid: { color: '#1E1E1E' }
+      },
+      y: {
+        ticks: { color: '#C8C8C0', font: { family: 'IBM Plex Mono', size: 10, weight: '600' } },
+        grid: { color: '#1E1E1E' }
+      }
+    }
+  }
+});
+
+// ============================================================
+// ARG PESOS
+// ============================================================
+const argCtx = document.getElementById('argChart').getContext('2d');
+new Chart(argCtx, {
+  type: 'bar',
+  data: {
+    labels: ['VIST','YPF','GGAL','BMA','TGS'],
+    datasets: [{
+      label: 'Peso dentro del tramo (%)',
+      data: [40.0, 38.6, 16.9, 4.3, 0.2],
+      backgroundColor: ['#E03020CC','#E03020CC','#E03020CC','#E0302080','#E0302040'],
+      borderColor: '#E03020',
+      borderWidth: 1
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: { label: ctx => ` ${ctx.parsed.x.toFixed(1)}% del tramo` },
+        backgroundColor: '#0E0E0E',
+        borderColor: '#E03020',
+        borderWidth: 1,
+        titleColor: '#E03020',
+        bodyColor: '#C8C8C0',
+        titleFont: { family: 'IBM Plex Mono', size: 10 },
+        bodyFont:  { family: 'IBM Plex Mono', size: 9 }
+      }
+    },
+    scales: {
+      x: {
+        title: { display: true, text: 'Peso dentro del tramo (%)', color: '#888', font: { family: 'IBM Plex Mono', size: 9 } },
+        ticks: { color: '#555', font: { family: 'IBM Plex Mono', size: 8 } },
+        grid: { color: '#1E1E1E' }
+      },
+      y: {
+        ticks: { color: '#C8C8C0', font: { family: 'IBM Plex Mono', size: 10, weight: '600' } },
+        grid: { color: '#1E1E1E' }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
