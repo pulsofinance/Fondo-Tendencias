@@ -115,18 +115,32 @@ nav{position:sticky;top:0;z-index:400;background:rgba(0,0,0,.95);backdrop-filter
 .chart-title{font-size:8px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--a);margin-bottom:1rem}
 .chart-title::before{content:"// "}
 
-/* TERMINAL OUTPUT */
-.terminal{background:#000;border:1px solid #222;border-left:3px solid var(--a);padding:1rem 1.2rem;font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.75;color:#C8C8C0;overflow-x:auto;margin-top:1rem}
-.terminal-header{font-size:7.5px;font-weight:700;letter-spacing:.2em;color:var(--t4);margin-bottom:.6rem;border-bottom:1px solid #1a1a1a;padding-bottom:.4rem}
-.t-section{color:var(--a);font-weight:700}
-.t-key{color:var(--cyan)}
-.t-val{color:var(--t)}
-.t-pos{color:var(--g);font-weight:600}
-.t-neg{color:var(--r);font-weight:600}
-.t-sub{color:#666;font-style:italic}
-.t-sep{color:#333}
-.terminal-toggle{cursor:pointer;font-size:8px;font-weight:700;letter-spacing:.16em;color:var(--a);background:none;border:1px solid rgba(212,188,0,.3);padding:3px 10px;margin-top:.8rem;display:inline-block;transition:all .15s}
-.terminal-toggle:hover{background:var(--a-dim)}
+/* OUTPUT PANELS */
+.out-wrap{margin-top:1px}
+.out-toggle{width:100%;background:var(--bg3);border:none;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:.55rem 1.5rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s}
+.out-toggle:hover{background:var(--card)}
+.out-toggle-left{display:flex;align-items:center;gap:.8rem}
+.out-toggle-label{font-size:8px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--a);font-family:'IBM Plex Mono',monospace}
+.out-toggle-sub{font-size:8px;color:var(--t4);font-family:'IBM Plex Mono',monospace}
+.out-toggle-icon{font-size:10px;color:var(--a);transition:transform .2s}
+.out-toggle.open .out-toggle-icon{transform:rotate(180deg)}
+.out-body{display:none;background:var(--card2);border-bottom:1px solid var(--border)}
+.out-body.open{display:block}
+.out-section{padding:.8rem 1.5rem;border-bottom:1px solid var(--border)}
+.out-section:last-child{border-bottom:none}
+.out-section-title{font-size:7.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--a);margin-bottom:.7rem;font-family:'IBM Plex Mono',monospace}
+.out-section-title::before{content:"▸ "}
+.out-tbl{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace}
+.out-tbl th{font-size:7.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--t4);padding:.35rem .6rem;border-bottom:1px solid var(--border);text-align:left}
+.out-tbl td{font-size:11px;padding:.35rem .6rem;border-bottom:1px solid rgba(30,30,30,.6);color:var(--t)}
+.out-tbl tr:last-child td{border-bottom:none}
+.out-tbl tr:hover td{background:var(--card3)}
+.out-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin:.6rem 0}
+.out-metric{background:var(--card);padding:.6rem .8rem}
+.out-metric-lbl{font-size:7px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--t4);margin-bottom:.25rem;font-family:'IBM Plex Mono',monospace}
+.out-metric-val{font-size:17px;font-weight:700;font-family:'IBM Plex Mono',monospace;line-height:1}
+.out-metric-sub{font-size:8px;color:var(--t4);margin-top:.15rem}
+.out-note{font-size:9.5px;color:var(--t3);line-height:1.65;padding:.5rem .6rem;background:var(--bg3);border-left:2px solid var(--border2);margin-top:.4rem}
 
 /* FOOTER */
 footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;display:flex;justify-content:space-between;align-items:center;margin-top:2rem}
@@ -226,51 +240,66 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
     <div class="mc-result">✓ Output: retornos ajustados BL por activo — NVDA 47.4% · VIST 47.1% · GGAL 51.2% · MA 14.9%</div>
   </div>
   <!-- OUTPUT BL -->
-  <div class="terminal">
-    <div class="terminal-header">▶ OUTPUT PYTHON — colab_opcionB.py · BLACK-LITTERMAN · datos Yahoo Finance 2024-2026</div>
-<span class="t-section">TRAMO 1 — CEDEARs EE.UU.</span>
-<span class="t-sep">════════════════════════════════════════════════</span>
-<span class="t-key">Retornos Black-Litterman:</span>
-<span class="t-key">Activo   π Equil.  Visión   Conf   E[R] BL</span>
-<span class="t-sep">──────────────────────────────────────────</span>
-NVDA     <span class="t-val">37.5%</span>    <span class="t-pos">51.4%</span>   85%   <span class="t-pos">47.4%</span>
-AVGO     <span class="t-val">33.4%</span>    <span class="t-pos">48.4%</span>   85%   <span class="t-pos">42.9%</span>
-META     <span class="t-val">21.3%</span>    <span class="t-pos">42.6%</span>   85%   <span class="t-pos">32.6%</span>
-MA        <span class="t-val">5.6%</span>    <span class="t-pos">36.8%</span>   85%   <span class="t-pos">14.9%</span>
-AMZN     <span class="t-val">18.9%</span>    <span class="t-pos">34.7%</span>   85%   <span class="t-pos">28.0%</span>
-LLY       <span class="t-val">8.2%</span>    <span class="t-pos">33.4%</span>   85%   <span class="t-pos">16.9%</span>
-ASML     <span class="t-val">24.7%</span>    <span class="t-pos">28.9%</span>   85%   <span class="t-pos">31.9%</span>
-MSFT     <span class="t-val">14.0%</span>    <span class="t-pos">28.0%</span>   70%   <span class="t-pos">19.5%</span>
-XOM       <span class="t-val">0.6%</span>    <span class="t-val">10.0%</span>   55%    <span class="t-val">2.9%</span>
-
-<span class="t-key">Portafolio óptimo CEDEARs (máx. Sharpe):</span>
-  Retorno esperado : <span class="t-pos">33.40%</span>    Volatilidad : <span class="t-val">21.80%</span>    Sharpe : <span class="t-pos">1.4404</span>
-  MA    <span class="t-pos">30.3%</span>  ·  NVDA  <span class="t-pos">19.6%</span>  ·  AMZN  <span class="t-pos">14.5%</span>  ·  META  <span class="t-pos">11.2%</span>
-  LLY    <span class="t-pos">9.8%</span>  ·  AVGO   <span class="t-pos">8.5%</span>  ·  MSFT   <span class="t-pos">5.7%</span>  ·  ASML   <span class="t-pos">0.3%</span>
-
-<span class="t-section">TRAMO 2 — ACCIONES ARGENTINAS</span>
-<span class="t-sep">════════════════════════════════════════════════</span>
-<span class="t-key">Retornos Black-Litterman:</span>
-<span class="t-key">Activo   π Equil.  Visión   Conf   E[R] BL</span>
-<span class="t-sep">──────────────────────────────────────────</span>
-VIST     <span class="t-val">60.9%</span>    <span class="t-pos">58.0%</span>   85%   <span class="t-pos">47.1%</span>
-GGAL     <span class="t-val">77.7%</span>    <span class="t-pos">35.0%</span>   85%   <span class="t-pos">51.2%</span>
-BMA      <span class="t-val">78.3%</span>    <span class="t-pos">30.0%</span>   85%   <span class="t-pos">51.2%</span>
-TGS      <span class="t-val">68.3%</span>    <span class="t-pos">25.0%</span>   85%   <span class="t-pos">45.1%</span>
-YPF      <span class="t-val">66.2%</span>    <span class="t-val">10.0%</span>   85%   <span class="t-pos">45.3%</span>
-
-<span class="t-key">Portafolio óptimo ARG (máx. Sharpe):</span>
-  Retorno esperado : <span class="t-pos">47.30%</span>    Volatilidad : <span class="t-val">32.10%</span>    Sharpe : <span class="t-pos">1.4079</span>
-  VIST  <span class="t-pos">40.0%</span>  ·  YPF  <span class="t-pos">38.6%</span>  ·  GGAL  <span class="t-pos">16.9%</span>  ·  BMA  <span class="t-pos">4.3%</span>
-
-<span class="t-section">FONDO COMPLETO — MÉTRICAS FINALES</span>
-<span class="t-sep">════════════════════════════════════════════════</span>
-  Retorno esperado anual  : <span class="t-pos">28.23%</span>
-  Volatilidad estimada    : <span class="t-val">14.74%</span>
-  Sharpe Ratio            : <span class="t-pos">1.7791</span>
-  Patrimonio ARS          : <span class="t-val">$50,000,000</span>
-  Patrimonio USD          : <span class="t-val">$35,714</span>    (MEP $1,400)
-<span class="t-sub">✓ Modelo Black-Litterman + Markowitz completado</span>
+  <div class="out-wrap">
+    <button class="out-toggle" onclick="toggleOut(this)">
+      <div class="out-toggle-left">
+        <span class="out-toggle-label">▶ Output Python — Black-Litterman + Markowitz</span>
+        <span class="out-toggle-sub">colab_opcionB.py · Yahoo Finance 2024-2026</span>
+      </div>
+      <span class="out-toggle-icon">▼</span>
+    </button>
+    <div class="out-body">
+      <div class="out-section">
+        <div class="out-section-title">Tramo 1 — CEDEARs EE.UU. · Retornos Black-Litterman</div>
+        <table class="out-tbl">
+          <thead><tr><th>Activo</th><th>π Equilibrio</th><th>Visión PULSO</th><th>Confianza</th><th>E[R] BL</th></tr></thead>
+          <tbody>
+            <tr><td class="am">NVDA</td><td>37.5%</td><td class="up">51.4%</td><td>85%</td><td class="up">47.4%</td></tr>
+            <tr><td class="am">AVGO</td><td>33.4%</td><td class="up">48.4%</td><td>85%</td><td class="up">42.9%</td></tr>
+            <tr><td class="am">META</td><td>21.3%</td><td class="up">42.6%</td><td>85%</td><td class="up">32.6%</td></tr>
+            <tr><td class="am">MA</td><td>5.6%</td><td class="up">36.8%</td><td>85%</td><td class="up">14.9%</td></tr>
+            <tr><td class="am">AMZN</td><td>18.9%</td><td class="up">34.7%</td><td>85%</td><td class="up">28.0%</td></tr>
+            <tr><td class="am">LLY</td><td>8.2%</td><td class="up">33.4%</td><td>85%</td><td class="up">16.9%</td></tr>
+            <tr><td class="am">ASML</td><td>24.7%</td><td class="up">28.9%</td><td>85%</td><td class="up">31.9%</td></tr>
+            <tr><td class="am">MSFT</td><td>14.0%</td><td class="up">28.0%</td><td>70%</td><td class="up">19.5%</td></tr>
+            <tr><td class="am">XOM</td><td>0.6%</td><td>10.0%</td><td>55%</td><td>2.9%</td></tr>
+          </tbody>
+        </table>
+        <div class="out-metrics" style="margin-top:.8rem">
+          <div class="out-metric"><div class="out-metric-lbl">Retorno CEDEARs</div><div class="out-metric-val" style="color:var(--g)">33.4%</div><div class="out-metric-sub">anual esperado</div></div>
+          <div class="out-metric"><div class="out-metric-lbl">Volatilidad</div><div class="out-metric-val" style="color:var(--cyan)">21.8%</div><div class="out-metric-sub">anual</div></div>
+          <div class="out-metric"><div class="out-metric-lbl">Sharpe</div><div class="out-metric-val" style="color:var(--a)">1.44</div><div class="out-metric-sub">máximo del tramo</div></div>
+        </div>
+        <div class="out-note">Pesos óptimos: MA 30.3% · NVDA 19.6% · AMZN 14.5% · META 11.2% · LLY 9.8% · AVGO 8.5% · MSFT 5.7% · ASML 0.3%</div>
+      </div>
+      <div class="out-section">
+        <div class="out-section-title">Tramo 2 — Acciones Argentinas · Retornos Black-Litterman</div>
+        <table class="out-tbl">
+          <thead><tr><th>Activo</th><th>π Equilibrio</th><th>Visión PULSO</th><th>Confianza</th><th>E[R] BL</th></tr></thead>
+          <tbody>
+            <tr><td class="am">VIST</td><td>60.9%</td><td class="up">58.0%</td><td>85%</td><td class="up">47.1%</td></tr>
+            <tr><td class="am">GGAL</td><td>77.7%</td><td class="up">35.0%</td><td>85%</td><td class="up">51.2%</td></tr>
+            <tr><td class="am">BMA</td><td>78.3%</td><td class="up">30.0%</td><td>85%</td><td class="up">51.2%</td></tr>
+            <tr><td class="am">TGS</td><td>68.3%</td><td class="up">25.0%</td><td>85%</td><td class="up">45.1%</td></tr>
+            <tr><td class="am">YPF</td><td>66.2%</td><td>10.0%</td><td>85%</td><td class="up">45.3%</td></tr>
+          </tbody>
+        </table>
+        <div class="out-metrics" style="margin-top:.8rem">
+          <div class="out-metric"><div class="out-metric-lbl">Retorno ARG</div><div class="out-metric-val" style="color:var(--g)">47.3%</div><div class="out-metric-sub">anual esperado</div></div>
+          <div class="out-metric"><div class="out-metric-lbl">Volatilidad</div><div class="out-metric-val" style="color:var(--cyan)">32.1%</div><div class="out-metric-sub">anual</div></div>
+          <div class="out-metric"><div class="out-metric-lbl">Sharpe</div><div class="out-metric-val" style="color:var(--a)">1.41</div><div class="out-metric-sub">máximo del tramo</div></div>
+        </div>
+        <div class="out-note">Pesos óptimos: VIST 40.0% · YPF 38.6% · GGAL 16.9% · BMA 4.3% — π altos (60-78%) bajados por visiones PULSO</div>
+      </div>
+      <div class="out-section">
+        <div class="out-section-title">Fondo completo — Métricas finales</div>
+        <div class="out-metrics">
+          <div class="out-metric"><div class="out-metric-lbl">Retorno esperado</div><div class="out-metric-val" style="color:var(--g)">28.23%</div><div class="out-metric-sub">anual en USD</div></div>
+          <div class="out-metric"><div class="out-metric-lbl">Volatilidad</div><div class="out-metric-val" style="color:var(--cyan)">14.74%</div><div class="out-metric-sub">anual estimada</div></div>
+          <div class="out-metric"><div class="out-metric-lbl">Sharpe Ratio</div><div class="out-metric-val" style="color:var(--a)">1.7791</div><div class="out-metric-sub">portafolio óptimo</div></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Markowitz -->
@@ -288,42 +317,55 @@ YPF      <span class="t-val">66.2%</span>    <span class="t-val">10.0%</span>   
     <div class="mc-result">✓ 10/13 activos subvaluados o neutros · Hallazgo clave: acciones ARG tienen beta negativo — diversificación genuina vs S&P500</div>
   </div>
   <!-- OUTPUT CAPM FF -->
-  <div class="terminal">
-    <div class="terminal-header">▶ OUTPUT PYTHON — colab_capm_ff.py · CAPM + FAMA-FRENCH 3 FACTORES · datos 2024-2026</div>
-<span class="t-section">CAPM — SECURITY MARKET LINE</span>
-<span class="t-sep">════════════════════════════════════════════════════════════════════════</span>
-<span class="t-key">Activo    Beta(β)   CAPM exige   PULSO espera   Alpha(α)    Señal</span>
-<span class="t-sep">────────────────────────────────────────────────────────────────────────</span>
-NVDA      <span class="t-val">1.986</span>     <span class="t-val">37.92%</span>       <span class="t-pos">51.40%</span>        <span class="t-pos">+13.48%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-AVGO      <span class="t-val">1.608</span>     <span class="t-val">31.07%</span>       <span class="t-pos">48.40%</span>        <span class="t-pos">+17.33%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-META      <span class="t-val">1.792</span>     <span class="t-val">34.41%</span>       <span class="t-pos">42.60%</span>         <span class="t-pos">+8.19%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-MA        <span class="t-val">0.424</span>      <span class="t-val">9.66%</span>       <span class="t-pos">36.80%</span>        <span class="t-pos">+27.14%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-AMZN      <span class="t-val">1.696</span>     <span class="t-val">32.67%</span>       <span class="t-pos">34.70%</span>         <span class="t-val">+2.03%</span>    ➡ NEUTRO
-LLY       <span class="t-val">0.607</span>     <span class="t-val">12.98%</span>       <span class="t-pos">33.40%</span>        <span class="t-pos">+20.42%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-ASML      <span class="t-val">1.559</span>     <span class="t-val">30.19%</span>        <span class="t-val">28.90%</span>         <span class="t-neg">-1.29%</span>    ➡ NEUTRO
-MSFT      <span class="t-val">1.353</span>     <span class="t-val">26.46%</span>        <span class="t-val">28.00%</span>         <span class="t-val">+1.54%</span>    ➡ NEUTRO
-VIST     <span class="t-neg">-0.137</span>     <span class="t-neg">-0.47%</span>       <span class="t-pos">58.00%</span>        <span class="t-pos">+58.47%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-GGAL     <span class="t-neg">-0.423</span>     <span class="t-neg">-5.65%</span>       <span class="t-pos">35.00%</span>        <span class="t-pos">+40.65%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-BMA       <span class="t-val">0.325</span>      <span class="t-val">7.88%</span>       <span class="t-pos">30.00%</span>        <span class="t-pos">+22.12%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-TGS      <span class="t-neg">-0.485</span>     <span class="t-neg">-6.77%</span>       <span class="t-pos">25.00%</span>        <span class="t-pos">+31.77%</span>    <span class="t-pos">✅ SUBVALUADO</span>
-YPF       <span class="t-val">0.339</span>      <span class="t-val">8.14%</span>        <span class="t-val">10.00%</span>         <span class="t-val">+1.86%</span>    ➡ NEUTRO
-
-<span class="t-section">FAMA-FRENCH 3 FACTORES</span>
-<span class="t-sep">════════════════════════════════════════════════════════════════════════</span>
-<span class="t-key">Activo    β_MKT    β_SMB    β_HML    R²       Exposición</span>
-<span class="t-sep">────────────────────────────────────────────────────────────────────────</span>
-NVDA      <span class="t-val">1.986</span>   <span class="t-neg">-0.430</span>   <span class="t-neg">-0.663</span>   <span class="t-val">0.412</span>    Large/Growth/Agresivo
-AVGO      <span class="t-val">1.608</span>   <span class="t-pos">+0.359</span>   <span class="t-neg">-2.633</span>   <span class="t-val">0.381</span>    Small/Growth/Defensivo
-META      <span class="t-val">1.792</span>   <span class="t-neg">-1.019</span>   <span class="t-pos">+0.198</span>   <span class="t-val">0.445</span>    Large/Agresivo
-MA        <span class="t-val">0.424</span>   <span class="t-pos">+0.015</span>   <span class="t-pos">+0.207</span>   <span class="t-val">0.298</span>    Value/Defensivo
-VIST     <span class="t-neg">-0.137</span>   <span class="t-pos">+0.384</span>   <span class="t-neg">-0.253</span>   <span class="t-val">0.006</span>    <span class="t-pos">Small/Growth — driver LOCAL</span>
-GGAL     <span class="t-neg">-0.423</span>   <span class="t-neg">-0.907</span>   <span class="t-neg">-0.832</span>   <span class="t-val">0.018</span>    <span class="t-pos">Large/Growth — driver LOCAL</span>
-TGS      <span class="t-neg">-0.485</span>   <span class="t-pos">+0.612</span>   <span class="t-neg">-0.585</span>   <span class="t-val">0.049</span>    <span class="t-pos">Small/Growth — driver LOCAL</span>
-
-<span class="t-key">Hallazgo clave:</span> R² acciones ARG ≈ <span class="t-pos">0.006–0.049</span> → se mueven por drivers locales
-  Beta negativo (VIST/GGAL/TGS) → <span class="t-pos">diversificación genuina vs S&P500</span>
-  <span class="t-sub">10/13 activos subvaluados o neutros → portafolio validado por CAPM</span>
-<span class="t-sub">✓ CAPM + Fama-French completado · Factores proxy: IWM-SPY (SMB) · IVE-IWF (HML)</span>
+  <div class="out-wrap">
+    <button class="out-toggle" onclick="toggleOut(this)" style="border-left:3px solid var(--cyan)">
+      <div class="out-toggle-left">
+        <span class="out-toggle-label" style="color:var(--cyan)">▶ Output Python — CAPM + Fama-French 3 Factores</span>
+        <span class="out-toggle-sub">colab_capm_ff.py · datos 2024-2026</span>
+      </div>
+      <span class="out-toggle-icon" style="color:var(--cyan)">▼</span>
+    </button>
+    <div class="out-body">
+      <div class="out-section">
+        <div class="out-section-title" style="color:var(--cyan)">CAPM — Security Market Line · señal por activo</div>
+        <table class="out-tbl">
+          <thead><tr><th>Activo</th><th>Beta (β)</th><th>CAPM exige</th><th>PULSO espera</th><th>Alpha (α)</th><th>Señal</th></tr></thead>
+          <tbody>
+            <tr><td class="am">NVDA</td><td>1.986</td><td>37.92%</td><td class="up">51.40%</td><td class="up">+13.48%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am">AVGO</td><td>1.608</td><td>31.07%</td><td class="up">48.40%</td><td class="up">+17.33%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am">META</td><td>1.792</td><td>34.41%</td><td class="up">42.60%</td><td class="up">+8.19%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am">MA</td><td>0.424</td><td>9.66%</td><td class="up">36.80%</td><td class="up">+27.14%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am">AMZN</td><td>1.696</td><td>32.67%</td><td class="up">34.70%</td><td>+2.03%</td><td>➡ NEUTRO</td></tr>
+            <tr><td class="am">LLY</td><td>0.607</td><td>12.98%</td><td class="up">33.40%</td><td class="up">+20.42%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am">ASML</td><td>1.559</td><td>30.19%</td><td>28.90%</td><td class="dn">−1.29%</td><td>➡ NEUTRO</td></tr>
+            <tr><td class="am">MSFT</td><td>1.353</td><td>26.46%</td><td>28.00%</td><td>+1.54%</td><td>➡ NEUTRO</td></tr>
+            <tr><td class="am" style="color:var(--r)">VIST</td><td class="dn">−0.137</td><td class="dn">−0.47%</td><td class="up">58.00%</td><td class="up">+58.47%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am" style="color:var(--r)">GGAL</td><td class="dn">−0.423</td><td class="dn">−5.65%</td><td class="up">35.00%</td><td class="up">+40.65%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am">BMA</td><td>0.325</td><td>7.88%</td><td class="up">30.00%</td><td class="up">+22.12%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am" style="color:var(--r)">TGS</td><td class="dn">−0.485</td><td class="dn">−6.77%</td><td class="up">25.00%</td><td class="up">+31.77%</td><td class="up">✅ SUBVALUADO</td></tr>
+            <tr><td class="am">YPF</td><td>0.339</td><td>8.14%</td><td>10.00%</td><td>+1.86%</td><td>➡ NEUTRO</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="out-section">
+        <div class="out-section-title" style="color:var(--cyan)">Fama-French 3 Factores — exposición por activo</div>
+        <table class="out-tbl">
+          <thead><tr><th>Activo</th><th>β MKT</th><th>β SMB</th><th>β HML</th><th>R²</th><th>Exposición</th></tr></thead>
+          <tbody>
+            <tr><td class="am">NVDA</td><td>1.986</td><td class="dn">−0.430</td><td class="dn">−0.663</td><td>0.412</td><td>Large / Growth / Agresivo</td></tr>
+            <tr><td class="am">AVGO</td><td>1.608</td><td class="up">+0.359</td><td class="dn">−2.633</td><td>0.381</td><td>Small / Growth / Defensivo</td></tr>
+            <tr><td class="am">META</td><td>1.792</td><td class="dn">−1.019</td><td class="up">+0.198</td><td>0.445</td><td>Large / Agresivo</td></tr>
+            <tr><td class="am">MA</td><td>0.424</td><td class="up">+0.015</td><td class="up">+0.207</td><td>0.298</td><td>Value / Defensivo</td></tr>
+            <tr><td class="am" style="color:var(--r)">VIST</td><td class="dn">−0.137</td><td class="up">+0.384</td><td class="dn">−0.253</td><td style="color:var(--g);font-weight:700">0.006</td><td style="color:var(--g)">Driver LOCAL — independiente S&P500</td></tr>
+            <tr><td class="am" style="color:var(--r)">GGAL</td><td class="dn">−0.423</td><td class="dn">−0.907</td><td class="dn">−0.832</td><td style="color:var(--g);font-weight:700">0.018</td><td style="color:var(--g)">Driver LOCAL — independiente S&P500</td></tr>
+            <tr><td class="am" style="color:var(--r)">TGS</td><td class="dn">−0.485</td><td class="up">+0.612</td><td class="dn">−0.585</td><td style="color:var(--g);font-weight:700">0.049</td><td style="color:var(--g)">Driver LOCAL — independiente S&P500</td></tr>
+          </tbody>
+        </table>
+        <div class="out-note" style="border-left-color:var(--cyan);margin-top:.6rem">
+          <strong style="color:var(--cyan)">Hallazgo clave:</strong> R² de acciones ARG ≈ 0.006–0.049 — prácticamente no se explican por el S&P500. Beta negativo en VIST, GGAL y TGS confirma diversificación genuina. 10/13 activos subvaluados o neutros respecto a la SML.
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- CVaR MC -->
@@ -374,47 +416,62 @@ TGS      <span class="t-neg">-0.485</span>   <span class="t-pos">+0.612</span>  
 </div>
 
   <!-- OUTPUT CVaR MC -->
-  <div class="terminal">
-    <div class="terminal-header">▶ OUTPUT PYTHON — colab_cvar_montecarlo.py · CVaR + MONTE CARLO · 10.000 simulaciones × 18 meses</div>
-<span class="t-section">VAR Y CVaR HISTÓRICO</span>
-<span class="t-sep">════════════════════════════════════════</span>
-<span class="t-key">Métrica             90%        95%        99%</span>
-<span class="t-sep">────────────────────────────────────────</span>
-VAR  diario      <span class="t-neg">-1.16%</span>     <span class="t-neg">-1.75%</span>     <span class="t-neg">-2.59%</span>
-CVaR diario      <span class="t-neg">-1.86%</span>     <span class="t-neg">-2.31%</span>     <span class="t-neg">-3.28%</span>
-VAR  mensual     <span class="t-neg">-5.30%</span>     <span class="t-neg">-8.01%</span>    <span class="t-neg">-11.87%</span>
-CVaR mensual     <span class="t-neg">-8.51%</span>    <span class="t-neg">-10.56%</span>    <span class="t-neg">-15.03%</span>
-
-<span class="t-section">MONTE CARLO — 10.000 simulaciones × 18 meses (GBM)</span>
-<span class="t-sep">════════════════════════════════════════</span>
-  Patrimonio inicial  : <span class="t-val">USD 35,714</span>
-  Retorno promedio    : <span class="t-pos">+87.8%</span>
-  Retorno mediana     : <span class="t-pos">+76.89%</span>
-  Retorno mínimo      : <span class="t-neg">-27.4%</span>
-  Retorno máximo      : <span class="t-pos">+412.6%</span>
-
-<span class="t-key">Distribución de resultados:</span>
-  Percentil  5% : <span class="t-pos">+16.1%</span>   →  USD  41,448
-  Percentil 25% : <span class="t-pos">+44.2%</span>   →  USD  51,490
-  Percentil 50% : <span class="t-pos">+76.9%</span>   →  USD  63,196   <span class="t-sub">← mediana</span>
-  Percentil 75% : <span class="t-pos">+118.3%</span>  →  USD  77,894
-  Percentil 95% : <span class="t-pos">+211.2%</span>  →  USD 111,142
-
-<span class="t-key">Probabilidades:</span>
-  P(retorno &gt; 0%)    : <span class="t-pos">99.5%</span>
-  P(retorno &gt; 100%)  : <span class="t-pos">37.2%</span>
-  P(pérdida &gt; 20%)   : <span class="t-val">0.0%</span>
-
-<span class="t-section">STRESS TEST — 5 ESCENARIOS</span>
-<span class="t-sep">════════════════════════════════════════════════════════════</span>
-<span class="t-key">Escenario              Ret. mediana   CVaR 95%   P(ganar)</span>
-<span class="t-sep">────────────────────────────────────────────────────────────</span>
-Base (central)         <span class="t-pos">+84%</span>           <span class="t-neg">-18%</span>       <span class="t-pos">82.3%</span>
-Bull (optimista)       <span class="t-pos">+153%</span>           <span class="t-neg">-4%</span>      <span class="t-pos">100.0%</span>
-Bear leve              <span class="t-pos">+15%</span>           <span class="t-neg">-41%</span>       <span class="t-pos">67.0%</span>
-Crisis EM              <span class="t-neg">-33%</span>           <span class="t-neg">-72%</span>       <span class="t-neg">18.8%</span>
-Crisis ARG             <span class="t-neg">-54%</span>           <span class="t-neg">-87%</span>        <span class="t-neg">7.4%</span>
-<span class="t-sub">✓ CVaR + Monte Carlo completado · seed=42 · 10.000 sim · 378 días hábiles</span>
+  <div class="out-wrap">
+    <button class="out-toggle" onclick="toggleOut(this)" style="border-left:3px solid var(--r)">
+      <div class="out-toggle-left">
+        <span class="out-toggle-label" style="color:var(--r)">▶ Output Python — CVaR + Monte Carlo</span>
+        <span class="out-toggle-sub">colab_cvar_montecarlo.py · 10.000 simulaciones × 18 meses</span>
+      </div>
+      <span class="out-toggle-icon" style="color:var(--r)">▼</span>
+    </button>
+    <div class="out-body">
+      <div class="out-section">
+        <div class="out-section-title" style="color:var(--r)">VAR y CVaR histórico — 3 niveles de confianza</div>
+        <table class="out-tbl">
+          <thead><tr><th>Métrica</th><th>90%</th><th>95%</th><th>99%</th></tr></thead>
+          <tbody>
+            <tr><td>VAR diario</td><td class="dn">−1.16%</td><td class="dn">−1.75%</td><td class="dn">−2.59%</td></tr>
+            <tr><td>CVaR diario</td><td class="dn">−1.86%</td><td class="dn">−2.31%</td><td class="dn">−3.28%</td></tr>
+            <tr><td>VAR mensual</td><td class="dn">−5.30%</td><td class="dn">−8.01%</td><td class="dn">−11.87%</td></tr>
+            <tr><td>CVaR mensual</td><td class="dn">−8.51%</td><td class="dn">−10.56%</td><td class="dn">−15.03%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="out-section">
+        <div class="out-section-title" style="color:var(--r)">Monte Carlo — distribución de retornos a 18 meses</div>
+        <table class="out-tbl">
+          <thead><tr><th>Percentil</th><th>Retorno</th><th>Patrimonio USD</th></tr></thead>
+          <tbody>
+            <tr><td>5%</td><td class="up">+16.1%</td><td>$41,448</td></tr>
+            <tr><td>25%</td><td class="up">+44.2%</td><td>$51,490</td></tr>
+            <tr><td style="color:var(--a);font-weight:700">50% — mediana</td><td class="up">+76.9%</td><td style="color:var(--a);font-weight:700">$63,196</td></tr>
+            <tr><td>75%</td><td class="up">+118.3%</td><td>$77,894</td></tr>
+            <tr><td>95%</td><td class="up">+211.2%</td><td>$111,142</td></tr>
+          </tbody>
+        </table>
+        <div class="out-metrics" style="margin-top:.8rem">
+          <div class="out-metric"><div class="out-metric-lbl">P(ganar)</div><div class="out-metric-val" style="color:var(--g)">99.5%</div><div class="out-metric-sub">retorno &gt; 0%</div></div>
+          <div class="out-metric"><div class="out-metric-lbl">P(doblar)</div><div class="out-metric-val" style="color:var(--a)">37.2%</div><div class="out-metric-sub">retorno &gt; 100%</div></div>
+          <div class="out-metric"><div class="out-metric-lbl">P(perder &gt;20%)</div><div class="out-metric-val" style="color:var(--g)">0.0%</div><div class="out-metric-sub">escenario extremo</div></div>
+        </div>
+      </div>
+      <div class="out-section">
+        <div class="out-section-title" style="color:var(--r)">Stress test — 5 escenarios</div>
+        <table class="out-tbl">
+          <thead><tr><th>Escenario</th><th>Ret. mediana</th><th>CVaR 95%</th><th>P(ganar)</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--g);font-weight:700">Base (central)</td><td class="up">+84%</td><td class="dn">−18%</td><td class="up">82.3%</td></tr>
+            <tr><td style="color:var(--a);font-weight:700">Bull (optimista)</td><td class="up">+153%</td><td class="dn">−4%</td><td class="up">100%</td></tr>
+            <tr><td style="color:var(--orange);font-weight:700">Bear leve</td><td class="up">+15%</td><td class="dn">−41%</td><td class="up">67.0%</td></tr>
+            <tr><td style="color:var(--r);font-weight:700">Crisis EM</td><td class="dn">−33%</td><td class="dn">−72%</td><td class="dn">18.8%</td></tr>
+            <tr><td style="color:var(--r);font-weight:700">Crisis ARG</td><td class="dn">−54%</td><td class="dn">−87%</td><td class="dn">7.4%</td></tr>
+          </tbody>
+        </table>
+        <div class="out-note" style="border-left-color:var(--r);margin-top:.6rem">
+          seed=42 · 10.000 simulaciones · 378 días hábiles · GBM calibrado con datos históricos 2024-2026
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -616,6 +673,18 @@ Crisis ARG             <span class="t-neg">-54%</span>           <span class="t-
 </footer>
 
 <script>
+// ============================================================
+// TOGGLE OUTPUT PANELS
+// ============================================================
+function toggleOut(btn) {
+  const body = btn.nextElementSibling;
+  const icon = btn.querySelector('.out-toggle-icon');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  icon.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
 // ============================================================
 // DATOS
 // ============================================================
