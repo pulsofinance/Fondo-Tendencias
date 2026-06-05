@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Oral — Fondo Tendencias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b22;
+    --bg3: #1c2128;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --gold: #D4BC00;
+    --blue: #00B0CC;
+    --green: #22A055;
+    --red: #E03020;
+    --purple: #a371f7;
+    --sidebar-w: 260px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.6; }
+
+  /* NAVBAR */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,17,23,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    height: 58px; display: flex; align-items: center; padding: 0 20px; gap: 16px;
+  }
+  .navbar-logo {
+    width: 32px; height: 32px; background: var(--gold); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 14px; color: #000; flex-shrink: 0;
+  }
+  .navbar-title { font-weight: 700; font-size: 16px; color: var(--text); }
+  .navbar-sub { font-size: 12px; color: var(--text2); margin-left: 4px; }
+  .navbar-badges { margin-left: auto; display: flex; gap: 8px; }
+  .badge {
+    padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+  }
+  .badge-green { background: rgba(34,160,85,0.15); color: var(--green); border: 1px solid rgba(34,160,85,0.3); }
+  .badge-gold { background: rgba(212,188,0,0.12); color: var(--gold); border: 1px solid rgba(212,188,0,0.25); }
+  .hamburger { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 6px; }
+
+  /* LAYOUT */
+  .layout { display: flex; margin-top: 58px; min-height: calc(100vh - 58px); }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: var(--sidebar-w); flex-shrink: 0; position: fixed; top: 58px; left: 0;
+    bottom: 0; overflow-y: auto; background: var(--bg2);
+    border-right: 1px solid var(--border); padding: 20px 0;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .sidebar-section { padding: 0 16px 12px; }
+  .sidebar-label { font-size: 10px; font-weight: 600; color: var(--text2); text-transform: uppercase;
+    letter-spacing: 1px; padding: 0 8px 8px; }
+  .sidebar a {
+    display: block; padding: 7px 12px; border-radius: 6px; color: var(--text2);
+    text-decoration: none; font-size: 13px; transition: all 0.15s; margin-bottom: 2px;
+  }
+  .sidebar a:hover { background: var(--bg3); color: var(--text); }
+  .sidebar a.active { background: rgba(212,188,0,0.1); color: var(--gold); }
+  .sidebar-divider { height: 1px; background: var(--border); margin: 12px 16px; }
+
+  /* MAIN */
+  .main { margin-left: var(--sidebar-w); padding: 32px 40px 80px; max-width: 1100px; width: 100%; }
+
+  /* SECTION */
+  .section { margin-bottom: 40px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px; cursor: pointer;
+    padding: 16px 20px; background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 10px; transition: border-color 0.2s; user-select: none;
+    position: relative;
+  }
+  .section-header:hover { border-color: var(--gold); }
+  .section-number {
+    width: 32px; height: 32px; border-radius: 8px; background: rgba(212,188,0,0.12);
+    border: 1px solid rgba(212,188,0,0.25); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; flex-shrink: 0;
+  }
+  .section-title { font-weight: 600; font-size: 17px; flex: 1; }
+  .section-tag { font-size: 11px; padding: 2px 8px; border-radius: 4px;
+    background: rgba(0,176,204,0.1); color: var(--blue); border: 1px solid rgba(0,176,204,0.2); }
+  .chevron { color: var(--text2); transition: transform 0.2s; font-size: 18px; }
+  .section-header.open .chevron { transform: rotate(180deg); }
+  .section-body { display: none; padding-top: 4px; }
+  .section-body.open { display: block; }
+
+  /* SUBSECTIONS */
+  .subsection { margin-bottom: 28px; }
+  .subsection-title {
+    font-size: 14px; font-weight: 600; color: var(--gold); text-transform: uppercase;
+    letter-spacing: 0.8px; margin-bottom: 16px; padding-bottom: 8px;
+    border-bottom: 1px solid rgba(212,188,0,0.2); display: flex; align-items: center; gap: 8px;
+  }
+  .subsection-title::before { content: '▸'; font-size: 12px; }
+  h3 { font-size: 16px; font-weight: 600; color: var(--text); margin: 20px 0 10px; }
+  h4 { font-size: 14px; font-weight: 600; color: var(--text2); margin: 16px 0 8px; }
+
+  /* CARDS */
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+  .card-simple { background: #1a2233; border: 1px solid #253347; border-radius: 8px; padding: 14px 18px; margin: 8px 0; }
+  .card-simple-label { font-size: 10px; font-weight: 600; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .card-tecnico { background: #1a1f2e; border-left: 3px solid var(--purple); border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 8px 0; }
+  .card-tecnico-label { font-size: 10px; font-weight: 600; color: var(--purple); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+
+  /* QUOTE */
+  blockquote {
+    border-left: 3px solid var(--gold); padding: 12px 16px; margin: 10px 0;
+    background: rgba(212,188,0,0.04); border-radius: 0 6px 6px 0; font-style: italic;
+    color: #c9d1d9; font-size: 14px;
+  }
+  blockquote cite { display: block; margin-top: 6px; font-size: 12px; font-style: normal;
+    color: var(--gold); font-weight: 600; }
+  .quote-resumen { background: rgba(0,176,204,0.05); border-left: 3px solid var(--blue);
+    padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 4px 0 12px; font-size: 13.5px; color: var(--text2); }
+  .quote-resumen-label { font-size: 10px; font-weight: 700; color: var(--blue); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 4px; }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin: 16px 0; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  thead tr { background: #1c2128; }
+  th { padding: 10px 14px; text-align: left; font-weight: 600; color: var(--text2);
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 14px; border-bottom: 1px solid rgba(48,54,61,0.5); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(22,27,34,0.6); }
+  .td-gold { color: var(--gold); font-weight: 600; }
+  .td-green { color: var(--green); font-weight: 600; }
+  .td-blue { color: var(--blue); }
+  .td-red { color: var(--red); }
+
+  /* KPI GRID */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 16px 0; }
+  .kpi-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 14px 16px; text-align: center;
+  }
+  .kpi-value { font-size: 22px; font-weight: 700; color: var(--gold); }
+  .kpi-label { font-size: 11px; color: var(--text2); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ASSET CARD */
+  .asset-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 20px; margin: 16px 0; position: relative; overflow: hidden;
+  }
+  .asset-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--blue));
+  }
+  .asset-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+  .asset-ticker {
+    background: rgba(212,188,0,0.1); border: 1px solid rgba(212,188,0,0.25);
+    color: var(--gold); font-weight: 700; font-size: 16px; padding: 6px 12px;
+    border-radius: 6px; flex-shrink: 0;
+  }
+  .asset-name { font-size: 15px; font-weight: 600; }
+  .asset-meta { font-size: 12px; color: var(--text2); margin-top: 3px; }
+  .asset-scenarios { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 14px; }
+  .scenario { padding: 10px; border-radius: 6px; text-align: center; border: 1px solid; }
+  .scenario-bull { background: rgba(34,160,85,0.07); border-color: rgba(34,160,85,0.2); }
+  .scenario-base { background: rgba(0,176,204,0.07); border-color: rgba(0,176,204,0.2); }
+  .scenario-bear { background: rgba(224,48,32,0.07); border-color: rgba(224,48,32,0.2); }
+  .scenario-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .scenario-bull .scenario-label { color: var(--green); }
+  .scenario-base .scenario-label { color: var(--blue); }
+  .scenario-bear .scenario-label { color: var(--red); }
+  .scenario-price { font-size: 15px; font-weight: 700; }
+  .scenario-bull .scenario-price { color: var(--green); }
+  .scenario-base .scenario-price { color: var(--blue); }
+  .scenario-bear .scenario-price { color: var(--red); }
+  .scenario-pct { font-size: 11px; color: var(--text2); margin-top: 2px; }
+
+  /* PORTFOLIO BAR */
+  .portfolio-bar { margin: 16px 0; }
+  .pb-row { margin-bottom: 10px; }
+  .pb-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+  .pb-bar-bg { background: var(--bg3); border-radius: 4px; height: 8px; overflow: hidden; }
+  .pb-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+
+  /* EXAMPLE BOX */
+  .example-box {
+    background: rgba(34,160,85,0.07); border: 1px solid rgba(34,160,85,0.2);
+    border-radius: 8px; padding: 14px 18px; margin: 10px 0;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .example-icon { font-size: 22px; }
+  .example-text { font-size: 13.5px; }
+  .example-text strong { color: var(--green); }
+
+  /* RISK BADGE */
+  .risk { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .risk-low { background: rgba(34,160,85,0.12); color: var(--green); }
+  .risk-mid { background: rgba(212,188,0,0.12); color: var(--gold); }
+  .risk-high { background: rgba(224,48,32,0.12); color: var(--red); }
+
+  /* BACK TO TOP */
+  #back-top {
+    position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px;
+    background: var(--gold); color: #000; border-radius: 50%; border: none;
+    cursor: pointer; font-size: 20px; display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.3s; z-index: 99; box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+  #back-top.visible { opacity: 1; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 32px 20px; color: var(--text2); font-size: 12px;
+    border-top: 1px solid var(--border); margin-left: var(--sidebar-w);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; z-index: 99; }
+    .sidebar.open { transform: translateX(0); }
+    .main { margin-left: 0; padding: 20px 16px 60px; }
+    footer { margin-left: 0; }
+    .hamburger { display: block; }
+    .navbar-badges { display: none; }
+    .asset-scenarios { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 98; }
+    .overlay.open { display: block; }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* HIGHLIGHT */
+  .highlight { color: var(--gold); font-weight: 600; }
+  .highlight-blue { color: var(--blue); font-weight: 600; }
+  .highlight-green { color: var(--green); font-weight: 600; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  ul.styled { list-style: none; padding: 0; }
+  ul.styled li { padding: 5px 0 5px 20px; position: relative; color: var(--text2); font-size: 14px; }
+  ul.styled li::before { content: '•'; color: var(--gold); position: absolute; left: 0; }
+
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+  .tag { padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600;
+    background: var(--bg3); border: 1px solid var(--border); color: var(--text2); }
+
+  .comparativa-header { font-size: 13px; font-weight: 700; color: var(--blue); padding: 10px 14px;
+    background: rgba(0,176,204,0.05); border-bottom: 1px solid var(--border); }
+
+  p { color: var(--text2); font-size: 14px; margin-bottom: 10px; }
+  p strong { color: var(--text); }
+
+  .section-intro { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px 20px; margin-bottom: 20px; color: var(--text2); font-size: 14px; }
+  .section-intro strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <button class="hamburger" onclick="toggleSidebar()">☰</button>
+  <div class="navbar-logo">FT</div>
+  <div>
+    <span class="navbar-title">Fondo Tendencias</span>
+    <span class="navbar-sub">FCI Renta Mixta · CNV Ley 24.083</span>
+  </div>
+  <div class="navbar-badges">
+    <span class="badge badge-green">+14,03% ARS ene-may 2026</span>
+    <span class="badge badge-gold">Sharpe 1,34</span>
+  </div>
+</nav>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Índice</div>
+    <a href="#s1" onclick="closeSidebar()">① Introducción al Fondo</a>
+    <a href="#s2" onclick="closeSidebar()">② ONs Corporativas <small style="color:var(--text2)">10%</small></a>
+    <a href="#s3" onclick="closeSidebar()">③ Bonos Provinciales <small style="color:var(--text2)">5%</small></a>
+    <a href="#s4" onclick="closeSidebar()">④ Bonos CER <small style="color:var(--text2)">7%</small></a>
+    <a href="#s5" onclick="closeSidebar()">⑤ Bonos Soberanos USD <small style="color:var(--text2)">15%</small></a>
+    <a href="#s6" onclick="closeSidebar()">⑥ Renta Variable <small style="color:var(--text2)">60%</small></a>
+  </div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">CEDEARs EE.UU. — 35%</div>
+    <a href="#ma" onclick="closeSidebar()">MA — Mastercard</a>
+    <a href="#nvda" onclick="closeSidebar()">NVDA — Nvidia</a>
+    <a href="#amzn" onclick="closeSidebar()">AMZN — Amazon</a>
+    <a href="#meta" onclick="closeSidebar()">META — Meta</a>
+    <a href="#lly" onclick="closeSidebar()">LLY — Eli Lilly</a>
+    <a href="#avgo" onclick="closeSidebar()">AVGO — Broadcom</a>
+    <a href="#msft" onclick="closeSidebar()">MSFT — Microsoft</a>
+    <a href="#xom" onclick="closeSidebar()">XOM — Exxon</a>
+  </div>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Acciones ARG — 25%</div>
+    <a href="#vist" onclick="closeSidebar()">VIST — Vista Oil</a>
+    <a href="#ggal" onclick="closeSidebar()">GGAL — Grupo Galicia</a>
+    <a href="#bma" onclick="closeSidebar()">BMA — Banco Macro</a>
+    <a href="#tgs" onclick="closeSidebar()">TGS — Trans. Gas</a>
+    <a href="#ypf" onclick="closeSidebar()">YPF</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 1 — INTRODUCCIÓN -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="section-header open" onclick="toggleSection(this)">
+    <div class="section-number">1</div>
+    <div class="section-title">Introducción — ¿Qué es el Fondo Tendencias?</div>
+    <span class="section-tag">Expositor: compañera</span>
+    <span class="chevron">⌄</span>
+  </div>
+  <div class="section-body open">
+
+    <div class="section-intro" style="margin-top:16px">
+      Sección introductoria: qué es un FCI, qué es el Fondo Tendencias, ficha técnica, comisiones, marco regulatorio y resultados reales ene-may 2026.
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">¿Qué es un FCI?</div>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div>Patrimonio indiviso formado por cuotapartistas, administrado por <strong>Sociedad Gerente</strong> autorizada por CNV, custodiado por <strong>Sociedad Depositaria</strong> independiente. Marco legal <strong>Ley 24.083</strong>.</div>
+      <div class="card-simple"><div class="card-simple-label">Para explicar simple</div>Una <strong>vaquita de inversión profesional</strong> regulada por el Estado. Muchos inversores juntan plata, un equipo especializado la invierte, el Estado controla que todo sea transparente.</div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">¿Qué es el Fondo Tendencias?</div>
+      <p>FCI <strong>Abierto de Renta Mixta en pesos</strong> que invierte siguiendo tendencias del research institucional de <span class="highlight">20+ bancos globales</span>, filtradas por modelos matemáticos de <strong>Harry Markowitz</strong>, <strong>Black-Litterman</strong>, <strong>CAPM</strong> y simulaciones de <strong>Monte Carlo</strong>.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Ficha Técnica</div>
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-value">$50M</div><div class="kpi-label">Patrimonio inicial ARS</div></div>
+        <div class="kpi-card"><div class="kpi-value">$1.140,30</div><div class="kpi-label">Cuotaparte mayo 2026</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--green)">+14,03%</div><div class="kpi-label">Retorno ARS ene-may</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--green)">+20,1%</div><div class="kpi-label">Retorno USD ene-may</div></div>
+        <div class="kpi-card"><div class="kpi-value">1,34</div><div class="kpi-label">Sharpe Ratio</div></div>
+        <div class="kpi-card"><div class="kpi-value">37,4%</div><div class="kpi-label">TEA proyectada</div></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Atributo</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>Tipo</td><td class="td-gold">FCI Abierto de Renta Mixta</td></tr>
+            <tr><td>Regulación</td><td>CNV — Ley 24.083</td></tr>
+            <tr><td>Perfil</td><td><span class="risk risk-high">Agresivo</span></td></tr>
+            <tr><td>Horizonte</td><td>18 meses</td></tr>
+            <tr><td>Patrimonio inicial</td><td>$50.000.000 ARS</td></tr>
+            <tr><td>Cuotaparte inicial</td><td>$1.000 ARS</td></tr>
+            <tr><td>Cuotaparte mayo 2026</td><td class="td-green">$1.140,30 ARS</td></tr>
+            <tr><td>Benchmark</td><td>TAMAR + EMBI Argentina</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Comisiones y Operatoria</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Concepto</th><th>Valor</th></tr></thead>
+          <tbody>
+            <tr><td>Comisión de gestión</td><td class="td-gold">2% anual</td></tr>
+            <tr><td>Comisión de custodia</td><td>0,1% anual</td></tr>
+            <tr><td>Entrada / Salida</td><td class="td-green">Sin cargo</td></tr>
+            <tr><td>Suscripción mínima</td><td>$1.000 ARS</td></tr>
+            <tr><td>Rescate</td><td>48 hs hábiles (T+2)</td></tr>
+            <tr><td>Penalidad</td><td class="td-green">Ninguna</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Marco Regulatorio — Preguntas Frecuentes</div>
+
+      <h3>¿Quién es dueño de las acciones?</h3>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div>Los activos son <strong>propiedad colectiva e indivisa</strong> de los cuotapartistas. La Sociedad Gerente solo tiene mandato de administración. Patrimonio separado — <strong>inembargable</strong> por deudas de Gerente o Depositaria.</div>
+      <div class="card-simple"><div class="card-simple-label">Simple</div>Los <strong>dueños son los inversores</strong>. Si la empresa que administra quiebra, las acciones siguen siendo de los inversores.</div>
+
+      <h3>¿Qué pasa si el fondo quiebra?</h3>
+      <p>Los activos se venden y el producido se distribuye entre cuotapartistas. Son <strong>acreedores privilegiados</strong>.</p>
+
+      <h3>¿Puede la Gerente hacer lo que quiera?</h3>
+      <p>No. Debe invertir dentro del <strong>Reglamento de Gestión</strong> aprobado por CNV. Límite máximo <strong>10% por emisor</strong>.</p>
+
+      <h3>¿Qué es la Sociedad Depositaria?</h3>
+      <p>El banco que custodia los activos. <strong>Separado de la Gerente por ley</strong> para proteger al inversor.</p>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Resultados Reales — Enero a Mayo 2026</div>
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--green)">+14,03%</div><div class="kpi-label">Retorno ARS</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--green)">+20,1%</div><div class="kpi-label">Retorno USD</div></div>
+        <div class="kpi-card"><div class="kpi-value">37,4%</div><div class="kpi-label">TEA</div></div>
+        <div class="kpi-card"><div class="kpi-value">1,34</div><div class="kpi-label">Sharpe Ratio</div></div>
+        <div class="kpi-card"><div class="kpi-value">~12,6%</div><div class="kpi-label">Inflación del período</div></div>
+        <div class="kpi-card"><div class="kpi-value" style="color:var(--green)">+1,43%</div><div class="kpi-label">Retorno real (vs inflación)</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Estructura del Portafolio</div>
+      <div class="portfolio-bar">
+        <div class="pb-row"><div class="pb-label"><span>CEDEARs EE.UU. — NVDA, MA, AMZN, META, LLY, AVGO, MSFT, XOM</span><span class="td-gold">35%</span></div><div class="pb-bar-bg"><div class="pb-bar-fill" style="width:35%;background:linear-gradient(90deg,#D4BC00,#e6d800)"></div></div></div>
+        <div class="pb-row"><div class="pb-label"><span>Acciones ARG — VIST, GGAL, BMA, TGS, YPF</span><span class="td-blue">25%</span></div><div class="pb-bar-bg"><div class="pb-bar-fill" style="width:25%;background:var(--blue)"></div></div></div>
+        <div class="pb-row"><div class="pb-label"><span>Bonos Soberanos USD — GD35 / AL30</span><span style="color:var(--purple)">15%</span></div><div class="pb-bar-bg"><div class="pb-bar-fill" style="width:15%;background:var(--purple)"></div></div></div>
+        <div class="pb-row"><div class="pb-label"><span>ONs Corporativas — YPF ON, TGS ON, PAE ON</span><span style="color:#f78166">10%</span></div><div class="pb-bar-bg"><div class="pb-bar-fill" style="width:10%;background:#f78166"></div></div></div>
+        <div class="pb-row"><div class="pb-label"><span>Bonos CER — TZXO6 / TZXD6</span><span style="color:#3fb950">7%</span></div><div class="pb-bar-bg"><div class="pb-bar-fill" style="width:7%;background:#3fb950"></div></div></div>
+        <div class="pb-row"><div class="pb-label"><span>Bonos Provinciales — SFD34 / BOCADE</span><span style="color:#79c0ff">5%</span></div><div class="pb-bar-bg"><div class="pb-bar-fill" style="width:5%;background:#79c0ff"></div></div></div>
+        <div class="pb-row"><div class="pb-label"><span>Liquidez — Caución</span><span style="color:var(--text2)">3%</span></div><div class="pb-bar-bg"><div class="pb-bar-fill" style="width:3%;background:var(--text2)"></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 2 — ONs CORPORATIVAS -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="section-header open" onclick="toggleSection(this)">
+    <div class="section-number">2</div>
+    <div class="section-title">ONs Corporativas</div>
+    <span class="section-tag">10% del portafolio</span>
+    <span class="chevron">⌄</span>
+  </div>
+  <div class="section-body open">
+
+    <div class="section-intro" style="margin-top:16px">
+      Tres Obligaciones Negociables en dólares con vencimientos 2027-2029. Exposición al sector energético argentino con cobertura cambiaria total o parcial.
+    </div>
+
+    <!-- YPF ON -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">YPF ON</div>
+        <div>
+          <div class="asset-name">YPF Obligación Negociable 2029</div>
+          <div class="asset-meta">Vencimiento 2029 · ~5,7% TEA USD · Spread ~+180 bps · Gestión mixta</div>
+        </div>
+      </div>
+
+      <blockquote>"YPF 2029 presenta un rendimiento de 5,7% TEA, ubicándose como una de las opciones más atractivas dentro del universo corporativo O&G."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>IEB recomienda YPF ON porque paga buen rendimiento en dólares y la expansión de Vaca Muerta mejora su perfil crediticio con el tiempo.</div>
+
+      <blockquote>"Rotamos hacia mayor exposición en el sector energético. YPF y YPF Luz son parte de nuestro sector favorito por fundamentals."<cite>— Grupo SBS</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>SBS está poniendo más dinero en energía porque los números macro los respaldan. Cuando los grandes fondos rotan hacia un sector, los precios de los bonos suben.</div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin:12px 0">
+        <div><span class="highlight">Riesgo principal:</span> <span style="color:var(--text2);font-size:13px"> Gestión mixta — el Estado tiene participación mayoritaria.</span></div>
+      </div>
+      <div class="example-box"><div class="example-icon">💰</div><div class="example-text">Ejemplo USD 100 invertidos: Rendimiento <strong>5,7% anual</strong> · Total a 2029: <strong>~USD 117,10</strong></div></div>
+    </div>
+
+    <!-- TGS ON -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">TGS ON</div>
+        <div>
+          <div class="asset-name">TGS Obligación Negociable 2029</div>
+          <div class="asset-meta">Vencimiento 2029 · ~5,7% TEA USD · Spread ~+90 bps · 100% privada · EBITDA Q1-26: USD 216M (+19% YoY) · Margen EBITDA: 63%</div>
+        </div>
+      </div>
+
+      <blockquote>"BUY. Precio objetivo USD 43,6/ADR. EBITDA Q1-26 de USD 216M superó nuestras expectativas. FID proyecto NGL es el catalizador inmediato más relevante."<cite>— Mariva</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Mariva dice compren TGS. Números del primer trimestre superaron expectativas. Dos catalizadores concretos que no están en el precio: proyecto NGL y nuevo gasoducto RIGI.</div>
+
+      <blockquote>"TGS 2029 al 5,7% TEA representa valuación atractiva. Con márgenes EBITDA del 63% y catalizadores de crecimiento concretos, TGS es uno de los créditos con mejor relación riesgo-retorno del universo argentino."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>TGS paga lo mismo que YPF pero con mucho menos riesgo — empresa privada pura con márgenes excepcionales.</div>
+
+      <div style="margin:10px 0"><span class="highlight">Riesgo principal:</span> <span style="color:var(--text2);font-size:13px"> Regulatorio tarifario.</span></div>
+      <div class="example-box"><div class="example-icon">💰</div><div class="example-text">Ejemplo USD 100 invertidos: Rendimiento <strong>5,7% anual</strong> · Total a 2029: <strong>~USD 117,10</strong></div></div>
+    </div>
+
+    <!-- PAE ON -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">PAE ON</div>
+        <div>
+          <div class="asset-name">Pan American Energy Obligación Negociable 2027</div>
+          <div class="asset-meta">Vencimiento 2027 · ~5,2% TEA USD · Spread ~+70 bps · 100% privada · Ingresos 100% USD</div>
+        </div>
+      </div>
+
+      <blockquote>"Pan American Energy es el productor de petróleo no convencional de mayor eficiencia operativa de Argentina. Su estructura de deuda en USD con ingresos dolarizados le otorga una cobertura implícita que pocos emisores pueden replicar."<cite>— GMA Capital</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>GMA dice que PAE produce al menor costo y todo lo que gana y debe está en dólares. No tiene el problema de ganar en pesos y deber en dólares.</div>
+
+      <blockquote>"Las ONs de PAE ofrecen uno de los spreads más ajustados del universo corporativo argentino. En contextos de compresión de riesgo país las emisiones tienden a apreciarse significativamente."<cite>— Cohen Aliados Financieros</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El spread bajo de PAE es señal de calidad. Cuando Argentina mejora su calificación, los bonos de PAE son los que más ganan en precio.</div>
+
+      <div style="margin:10px 0"><span class="highlight">Riesgo principal:</span> <span style="color:var(--text2);font-size:13px"> Regulatorio sectorial — reversión de desregulación energética (riesgo de cola).</span></div>
+      <div class="example-box"><div class="example-icon">💰</div><div class="example-text">Ejemplo USD 100 invertidos: Rendimiento <strong>5,2% anual</strong> · Total a 2027: <strong>~USD 110,40</strong></div></div>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <div class="subsection-title">Tabla Comparativa — ONs Corporativas</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>YPF ON</th><th>TGS ON</th><th>PAE ON</th></tr></thead>
+          <tbody>
+            <tr><td>Vencimiento</td><td>2029</td><td>2029</td><td>2027</td></tr>
+            <tr><td>Rendimiento</td><td class="td-gold">~5,7% TEA</td><td class="td-gold">~5,7% TEA</td><td class="td-gold">~5,2% TEA</td></tr>
+            <tr><td>Spread</td><td class="td-red">~+180 bps</td><td class="td-green">~+90 bps</td><td class="td-green">~+70 bps</td></tr>
+            <tr><td>Propiedad</td><td>Mixta</td><td class="td-green">Privada</td><td class="td-green">Privada</td></tr>
+            <tr><td>Cobertura cambiaria</td><td>Alta</td><td>Parcial</td><td class="td-green">Total</td></tr>
+            <tr><td>Riesgo</td><td><span class="risk risk-high">Alto</span></td><td><span class="risk risk-low">Bajo</span></td><td><span class="risk risk-low">Bajo</span></td></tr>
+            <tr><td>Recomendación</td><td class="td-green">BUY</td><td class="td-green">BUY</td><td class="td-green">BUY</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 3 — BONOS PROVINCIALES -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="section-header open" onclick="toggleSection(this)">
+    <div class="section-number">3</div>
+    <div class="section-title">Bonos Provinciales</div>
+    <span class="section-tag">5% del portafolio</span>
+    <span class="chevron">⌄</span>
+  </div>
+  <div class="section-body open">
+
+    <div class="section-intro" style="margin-top:16px">
+      Tres bonos provinciales en dólares (Santa Fe y Córdoba) con TIRs del 8-8,3% USD y upside significativo por compresión de spread en el ciclo actual.
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">¿Qué es un bono provincial?</div>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div>Instrumento de deuda emitido por gobierno subnacional. Respaldado por <strong>ingresos fiscales propios</strong> de la provincia. No tiene respaldo del BCRA ni Tesoro Nacional. Se negocia en BYMA/MAE.</div>
+      <div class="card-simple"><div class="card-simple-label">Simple</div>La provincia le dice al mercado: <em>"prestame USD 100, te pago USD 8 por año y en 2034 te devuelvo los USD 100."</em> La garantía son los impuestos y recursos propios de la provincia.</div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">Bajo la par · A la par · Sobre la par</div>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div>Valor par = 100 (precio de emisión y devolución). Si precio &lt; 100: <strong>bajo la par</strong>. Si precio = 100: <strong>a la par</strong>. Si precio &gt; 100: <strong>sobre la par</strong>. Relación precio-rendimiento es <strong>inversa</strong>.</div>
+      <div class="card-simple"><div class="card-simple-label">Simple</div>Como una entrada de recital. Si el artista es más popular, la entrada sube a $110 (<em>sobre la par</em>). Si genera dudas, baja a $90 (<em>bajo la par</em>). Pero el organizador siempre devuelve $100 al vencimiento.</div>
+      <div class="table-wrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th></th><th>Bajo la par (85)</th><th>A la par (100)</th><th>Sobre la par (110)</th></tr></thead>
+          <tbody>
+            <tr><td>Pagás hoy</td><td class="td-green">USD 85</td><td>USD 100</td><td class="td-red">USD 110</td></tr>
+            <tr><td>Cupón</td><td>Igual (fijo)</td><td>Igual (fijo)</td><td>Igual (fijo)</td></tr>
+            <tr><td>Rendimiento efectivo</td><td class="td-green">Mayor al nominal</td><td>Igual</td><td class="td-red">Menor al nominal</td></tr>
+            <tr><td>Te devuelven</td><td>USD 100</td><td>USD 100</td><td>USD 100</td></tr>
+            <tr><td>Ganancia/pérdida capital</td><td class="td-green">+USD 15</td><td>USD 0</td><td class="td-red">-USD 10</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SFD34 -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">SFD34</div>
+        <div>
+          <div class="asset-name">Santa Fe 2034</div>
+          <div class="asset-meta">Datos al 5 jun 2026 · Precio $157.480 ARS · Paridad <span class="highlight-green">100,4%</span> · TIR 8,19% USD · Cupón 8,1% · Duration 4,85 · Venc. 11/12/2034 · <span class="risk risk-mid">SOBRE LA PAR</span></div>
+        </div>
+      </div>
+
+      <blockquote>"En el tramo largo provincial recomendamos Córdoba 35, Santa Fe 34 y Córdoba 32. Estos instrumentos ofrecen valor relativo superior a soberanos de duration comparable."<cite>— Facimex Valores</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Facimex pone SFD34 en su lista corta de 3 bonos largos recomendados. Santa Fe pasó el filtro más estricto del mercado.</div>
+
+      <blockquote>"Los bonos provinciales de alta calidad como Santa Fe 34 han comprimido históricamente antes que los soberanos en ciclos de mejora crediticia."<cite>— GMA Capital</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>En ciclos anteriores de mejora de Argentina, los provinciales de calidad subieron <em>antes</em> que los soberanos. Si Argentina sigue mejorando, SFD34 captura el upside primero.</div>
+
+      <blockquote>"Santa Fe 34 presenta duration elevada que amplifica el beneficio de la compresión de spread. El upside de precio supera al de soberanos equivalentes."<cite>— Cohen Aliados Financieros</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Duration 4,85 es el multiplicador. Cada 1% que baja el spread, el precio sube 4,85%. En escenario base: ~13% retorno total en USD año 1.</div>
+
+      <h4>Upside si spread comprime</h4>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bear"><div class="scenario-label">Conservador</div><div class="scenario-price">-50 bps</div><div class="scenario-pct">+USD 2,43 · Retorno total ~10,5%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base</div><div class="scenario-price">-100 bps</div><div class="scenario-pct">+USD 4,85 · Retorno total ~13%</div></div>
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull</div><div class="scenario-price">-200 bps</div><div class="scenario-pct">+USD 9,70 · Retorno total ~18%</div></div>
+      </div>
+      <div class="example-box" style="margin-top:12px"><div class="example-icon">💰</div><div class="example-text">Ejemplo USD 100 invertidos: Cupón <strong>USD 8,10/año</strong> · Total a 2034: <strong>USD 165,20</strong></div></div>
+    </div>
+
+    <!-- CO29 -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">CO29</div>
+        <div>
+          <div class="asset-name">Córdoba 2029</div>
+          <div class="asset-meta">Tramo corto-medio · ~7,5-8% USD · Menor riesgo electoral</div>
+        </div>
+      </div>
+
+      <blockquote>"Recomendamos rotar desde GD29/GD30 hacia Córdoba 29 para ganar current yield y reducir volatilidad."<cite>— Facimex Valores</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Facimex dice CO29 paga <em>más</em> que el soberano del mismo plazo con <em>menor</em> volatilidad. Más rendimiento, menos riesgo.</div>
+
+      <blockquote>"CO29 ofrece mejor relación riesgo-retorno para exposición provincial con menor duration. Córdoba tiene superávit fiscal y estructura de gasto flexible."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>IEB lo recomienda porque tiene el plazo justo y Córdoba puede ajustar su gasto si la economía cambia.</div>
+
+      <blockquote>"Córdoba es candidata probable para nueva emisión internacional por su superávit fiscal y royalties hidrocarburíferas crecientes."<cite>— Mariva</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Si Córdoba emite deuda nueva en 2026, el precio de los bonos viejos sube automáticamente por benchmarking.</div>
+    </div>
+
+    <!-- CO32 -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">CO32</div>
+        <div>
+          <div class="asset-name">Córdoba 2032</div>
+          <div class="asset-meta">Rendimiento <span class="highlight">8,3% TEA USD</span> · Duration ~5,5 años</div>
+        </div>
+      </div>
+
+      <blockquote>"Córdoba 2032 (CO32, 8,3% TEA) como favorito para exposición a crédito provincial de calidad con perfil fiscal sólido. Es el mejor punto de entrada del universo sub-soberano argentino."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>IEB dice que CO32 al 8,3% en dólares es la <em>mejor oportunidad del mercado provincial hoy</em>.</div>
+
+      <blockquote>"Córdoba tiene la mayor diversificación sectorial: agro, industria, tecnología y energía. Eso reduce la correlación con shocks sectoriales específicos."<cite>— GMA Capital</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Córdoba no depende de una sola actividad. Si cae el agro tiene industria. Si cae la industria tiene energía. Eso la hace más segura.</div>
+
+      <blockquote>"Los bonos de Córdoba 2032-2035 tienen upside de precio de entre 8% y 12% adicional al cupón bajo escenario de compresión de spread."<cite>— Cohen Aliados Financieros</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>En escenario base, retorno total potencial entre <strong>16% y 20% en dólares</strong> en el primer año.</div>
+      <div class="example-box"><div class="example-icon">💰</div><div class="example-text">Ejemplo USD 100 invertidos: Cupón <strong>USD 8,30/año</strong> · Total a 2032: <strong>~USD 149,80</strong></div></div>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <div class="subsection-title">Tabla Comparativa — Provinciales</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>SFD34 Santa Fe</th><th>CO29 Córdoba</th><th>CO32 Córdoba</th></tr></thead>
+          <tbody>
+            <tr><td>Vencimiento</td><td>2034</td><td>2029</td><td>2032</td></tr>
+            <tr><td>TIR real</td><td class="td-gold">8,19% USD</td><td class="td-gold">~7,5-8% USD</td><td class="td-gold">8,3% USD</td></tr>
+            <tr><td>Paridad real</td><td class="td-green">100,4%</td><td>—</td><td>—</td></tr>
+            <tr><td>Duration</td><td>4,85</td><td>~3 años</td><td>~5,5 años</td></tr>
+            <tr><td>Riesgo electoral</td><td><span class="risk risk-mid">Bajo-medio</span></td><td><span class="risk risk-low">Bajo</span></td><td><span class="risk risk-mid">Medio</span></td></tr>
+            <tr><td>Upside precio base</td><td class="td-green">+4,85%</td><td class="td-green">+4%</td><td class="td-green">+8-12%</td></tr>
+            <tr><td>Retorno total año 1</td><td class="td-green">~13% USD</td><td class="td-green">~11-12% USD</td><td class="td-green">~16-20% USD</td></tr>
+            <tr><td>Recomendación</td><td class="td-blue">Facimex, GMA, Cohen, Mariva</td><td class="td-blue">Facimex, IEB, Balanz, Mariva</td><td class="td-blue">IEB, Facimex, GMA, Cohen, Adcap</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 4 — BONOS CER -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="section-header open" onclick="toggleSection(this)">
+    <div class="section-number">4</div>
+    <div class="section-title">Bonos CER</div>
+    <span class="section-tag">7% del portafolio</span>
+    <span class="chevron">⌄</span>
+  </div>
+  <div class="section-body open">
+
+    <div class="section-intro" style="margin-top:16px">
+      Cobertura inflacionaria en pesos. TZXO6 y TZXD6 son tramo corto — vencen oct y dic 2026. TIR proyectada ~29-29,5% ARS vs TAMAR 23,1%. Margen de 6+ puntos sobre la tasa de referencia.
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">¿Qué es un bono CER?</div>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div>Instrumento cuyo capital ajusta por el <strong>Coeficiente de Estabilización de Referencia (CER)</strong> — índice que sigue la inflación INDEC diariamente. El inversor recibe: <strong>inflación del período + tasa real positiva</strong>.</div>
+      <div class="card-simple"><div class="card-simple-label">Simple</div>Un bono normal paga tasa fija. Si la inflación es 30% y el bono paga 25%, perdiste. Un bono CER <strong>ajusta el capital con la inflación</strong> y encima paga una tasa real extra. Siempre le ganás a la inflación.</div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">¿Qué es tramo corto y tramo largo?</div>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div>Clasificación por plazo de vencimiento. <strong>Tramo corto</strong>: vence en menos de 2 años — baja sensibilidad a tasas, alta liquidez. <strong>Tramo largo</strong>: vence en más de 5 años — mayor rendimiento pero más sensible a tasas y contexto político.</div>
+      <div class="card-simple"><div class="card-simple-label">Simple</div>Si le prestás plata a alguien por 1 mes no cobrás mucho. Si se la prestás por 10 años cobrás más. TZXO6 y TZXD6 son tramo corto — vencen antes de fin de 2026, mínimo riesgo.</div>
+    </div>
+
+    <!-- TZXO6 -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">TZXO6</div>
+        <div>
+          <div class="asset-name">Boncer Octubre 2026</div>
+          <div class="asset-meta">Tramo corto · Vence oct 2026 · TIR proyectada <span class="highlight">~29,5% ARS</span> · Rol: liquidez + cobertura inflacionaria</div>
+        </div>
+      </div>
+
+      <blockquote>"TZXO6 con cobertura Rofex como posición central. Mejor vehículo de manejo de liquidez en pesos del universo actual."<cite>— Balanz Capital</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Balanz lo tiene como apuesta número uno en pesos. Paga más que Lecaps y protege de la inflación al mismo tiempo.</div>
+
+      <blockquote>"TIR proyectada de Bonceres fin 2026 en torno al 29,5% anual, superior a tasa fija y TAMAR comparables. Inflación implícita 30% vs proyección 32% — margen de alfa de 200 bps."<cite>— Parakeet Capital</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>29,5% proyectado en pesos vs TAMAR 23,1%. Más de <strong>6 puntos por encima</strong> de la tasa de referencia.</div>
+
+      <blockquote>"TZXO6 preferido para liquidez sobre alternativas de tasa fija. Desinflación gradual garantiza ajuste CER positivo durante el período."<cite>— Bull Capital</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>La inflación baja gradualmente — no de golpe. Mientras haya inflación positiva, TZXO6 sigue ajustando hacia arriba.</div>
+
+      <div class="example-box"><div class="example-icon">💰</div><div class="example-text">Ejemplo $100.000 ARS: TAMAR → <strong>$111.550</strong> · TZXO6 → <strong style="color:var(--green)">~$114.750</strong></div></div>
+    </div>
+
+    <!-- TZXD6 -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">TZXD6</div>
+        <div>
+          <div class="asset-name">Boncer Diciembre 2026</div>
+          <div class="asset-meta">Tramo corto · Vence dic 2026 · Rol: <span class="highlight-blue">puente de duration</span> — posición intermedia del ladder</div>
+        </div>
+      </div>
+
+      <blockquote>"Barbell CER: TX26 + TZXD6 + TZXS8. TZXD6 como posición intermedia en el ladder de duration CER. CER puros ofrecen 400 bps más que duales."<cite>— PPI</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>PPI usa TZXD6 como escalón del medio en su estrategia. Conecta los vencimientos cortos con los más largos. Y los CER puros pagan <strong>4% más que los duales</strong>.</div>
+
+      <blockquote>"Break-even de inflación bajó 447 bps a 26,5%. Proyección propia 21,4%. Ese diferencial es margen de seguridad para CER cortos incluso en desinflación acelerada."<cite>— Facimex Valores</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El mercado descuenta 26,5% de inflación. Facimex proyecta 21,4%. En cualquier escenario razonable los CER cortos le ganan a la TAMAR.</div>
+
+      <div class="example-box"><div class="example-icon">💰</div><div class="example-text">Ejemplo $100.000 ARS: Capital ajustado por inflación <strong>~$118.000</strong> + tasa real → <strong style="color:var(--green)">~$119.770</strong></div></div>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <div class="subsection-title">Comparativa CER vs Alternativas</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Instrumento</th><th>Tramo</th><th>Rendimiento</th><th>Protección inflación</th><th>Riesgo</th></tr></thead>
+          <tbody>
+            <tr><td class="td-gold">TZXO6</td><td>Corto oct 2026</td><td class="td-green">~29,5% ARS</td><td class="td-green">Total</td><td><span class="risk risk-low">Muy bajo</span></td></tr>
+            <tr><td class="td-gold">TZXD6</td><td>Corto dic 2026</td><td class="td-green">~29,0% ARS</td><td class="td-green">Total</td><td><span class="risk risk-low">Bajo</span></td></tr>
+            <tr><td>TAMAR</td><td>Corto</td><td class="td-red">23,1% ARS</td><td class="td-red">No</td><td><span class="risk risk-low">Bajo</span></td></tr>
+            <tr><td>Lecap</td><td>Corto</td><td>~26% ARS</td><td class="td-red">No</td><td><span class="risk risk-low">Bajo</span></td></tr>
+            <tr><td>Plazo fijo</td><td>Corto</td><td>~28-30% TNA</td><td class="td-red">No</td><td><span class="risk risk-mid">Sin liquidez</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 5 — BONOS SOBERANOS USD -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="section-header open" onclick="toggleSection(this)">
+    <div class="section-number">5</div>
+    <div class="section-title">Bonos Soberanos USD</div>
+    <span class="section-tag">15% del portafolio</span>
+    <span class="chevron">⌄</span>
+  </div>
+  <div class="section-body open">
+
+    <div class="section-intro" style="margin-top:16px">
+      GD35 (tramo largo, upside 12% precio) + AL30 (tramo corto-medio, yield 7,7%). Combinación que captura upside del ciclo de mejora argentina con gestión de riesgo electoral.
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">¿Qué es un bono soberano?</div>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div>Deuda emitida por el <strong>gobierno nacional</strong> en el mercado internacional. Respaldado por la capacidad del país de generar divisas y recaudar impuestos. <strong>Globales (GD)</strong> bajo ley NY — mayor protección. <strong>Bonares (AL)</strong> bajo ley argentina.</div>
+      <div class="card-simple"><div class="card-simple-label">Simple</div>El bono más conocido y líquido de Argentina. El gobierno le dice al mundo: <em>"prestame dólares, te pago intereses todos los años y en 2035 te devuelvo todo."</em> El precio refleja cuánto confía el mundo en Argentina en cada momento.</div>
+    </div>
+
+    <!-- GD35 -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">GD35</div>
+        <div>
+          <div class="asset-name">Global Argentina 2035</div>
+          <div class="asset-meta">Tramo largo · TIR <span class="highlight">~9,5% USD</span> · Upside proyectado +12% precio · <span class="td-green">Recomendación: Overweight</span></div>
+        </div>
+      </div>
+
+      <blockquote>"Overweight soberanos argentinos. El upgrade Fitch expande masivamente el pool de inversores elegibles. Trade concreto: entrada 84,5, objetivo 92,0."<cite>— BofA Securities</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>BofA no solo dice compren — dice exactamente a qué precio entrar y vender. Upside 8,9% de precio más el cupón de 9,5%. Cuando BofA da un precio objetivo, el mercado lo toma muy en serio.</div>
+
+      <blockquote>"Proyectamos upside de 12% en GD35/GD41 bajo normalización a B- con yield objetivo de 8%. Los Globales subieron hasta 2,8% en la semana del upgrade de Fitch."<cite>— Mariva</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Si el yield comprime de 9,5% a 8% — consistente con rating B- — el precio sube 12%. Y eso ya empezó: en la semana del upgrade los soberanos subieron 2,8%.</div>
+
+      <blockquote>"Retornos directos a dic-26: 27-31% asumiendo MEP constante, 48-55% asumiendo ajuste ITCRM. Horizonte limitado — 2027 será año de tensión."<cite>— Parakeet Capital</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Para el horizonte del fondo (hasta dic 2026), retorno entre <strong>27% y 31% en pesos</strong>. El riesgo empieza en 2027 — el fondo termina antes.</div>
+
+      <div class="example-box"><div class="example-icon">💰</div><div class="example-text">Ejemplo USD 100 invertidos: Cupón ~9,5%/año + upside precio +12% → Retorno total año 1: <strong style="color:var(--green)">~21-22% USD</strong></div></div>
+    </div>
+
+    <!-- AL30 -->
+    <div class="asset-card">
+      <div class="asset-header">
+        <div class="asset-ticker">AL30</div>
+        <div>
+          <div class="asset-name">Bonar Argentina 2030</div>
+          <div class="asset-meta">Tramo corto-medio · TIR <span class="highlight">~7,7% USD</span> · Menor riesgo electoral · Vence antes de elecciones 2027</div>
+        </div>
+      </div>
+
+      <blockquote>"Exposición balanceada entre AL30 y GD35. AL30 ofrece menor sensibilidad al riesgo electoral 2027 con yield atractivo de 7,7%."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>IEB tiene exactamente la misma combinación que el fondo: AL30 + GD35. AL30 da estabilidad, GD35 da upside. La combinación captura lo mejor de los dos.</div>
+
+      <blockquote>"Preferimos bonos cortos: AL30 en 7,7% ofrece el mejor balance del universo soberano. A medida que los Globales se acercan al 9%, el riesgo-retorno se vuelve asimétrico."<cite>— Banco Comafi</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Comafi dice que AL30 es el <em>punto dulce</em> del universo soberano — paga suficiente sin asumir el riesgo extra del tramo largo.</div>
+
+      <div class="example-box"><div class="example-icon">💰</div><div class="example-text">Ejemplo USD 100 invertidos: Cupón <strong>7,7%/año</strong> · Total a 2030: <strong>~USD 138,50</strong></div></div>
+    </div>
+
+    <div class="subsection" style="margin-top:24px">
+      <div class="subsection-title">Tabla Comparativa — Soberanos</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th></th><th>GD35</th><th>AL30</th><th>GD29</th></tr></thead>
+          <tbody>
+            <tr><td>Vencimiento</td><td>2035</td><td>2030</td><td>2029</td></tr>
+            <tr><td>TIR</td><td class="td-gold">~9,5% USD</td><td class="td-gold">~7,7% USD</td><td class="td-gold">~8,5% USD</td></tr>
+            <tr><td>Tramo</td><td>Largo</td><td>Corto-medio</td><td>Corto</td></tr>
+            <tr><td>Riesgo electoral</td><td><span class="risk risk-high">Alto</span></td><td><span class="risk risk-low">Bajo</span></td><td><span class="risk risk-low">Muy bajo</span></td></tr>
+            <tr><td>Upside precio</td><td class="td-green">+12%</td><td class="td-green">+5-7%</td><td class="td-green">+3-4%</td></tr>
+            <tr><td>Recomendación</td><td class="td-blue">Overweight — BofA, Mariva, IEB</td><td class="td-blue">Balanceado — IEB, Comafi</td><td class="td-blue">Conservadores — Comafi</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SECCIÓN 6 — RENTA VARIABLE -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="section-header open" onclick="toggleSection(this)">
+    <div class="section-number">6</div>
+    <div class="section-title">Renta Variable</div>
+    <span class="section-tag">60% del portafolio</span>
+    <span class="chevron">⌄</span>
+  </div>
+  <div class="section-body open">
+
+    <div class="section-intro" style="margin-top:16px">
+      Motor de retorno del fondo. CEDEARs EE.UU. (35%) + Acciones ARG (25%). Research de JPMorgan, Goldman Sachs, Morgan Stanley, IEB, Grupo SBS, Mariva y Balanz.
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">¿Qué es una acción?</div>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div>Fracción del capital de una empresa. El accionista es <strong>propietario proporcional</strong> del negocio. El retorno viene de dividendos y ganancia de capital. No hay promesa de devolución de capital.</div>
+      <div class="card-simple"><div class="card-simple-label">Simple</div>Comprás un pedazo de la empresa. Si vale más, tu pedazo vale más. <strong>Sin techo ni garantía.</strong></div>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">¿Qué es un CEDEAR?</div>
+      <div class="card-tecnico"><div class="card-tecnico-label">Técnico</div><strong>Certificado de Depósito Argentino</strong>. Representa una fracción de acción extranjera depositada en el exterior. Cotiza en BYMA en pesos. Precio = valor acción USD × tipo de cambio implícito.</div>
+      <div class="card-simple"><div class="card-simple-label">Simple</div>La misma acción de Nvidia envuelta en papel argentino. Si Nvidia sube, el CEDEAR sube. Si el dólar sube, el CEDEAR también sube en pesos. <strong>Doble protección.</strong></div>
+    </div>
+
+    <div class="divider"></div>
+    <h3 style="color:var(--gold);font-size:18px;margin-bottom:20px">CEDEARs EE.UU. — 35% del portafolio</h3>
+
+    <!-- MA -->
+    <div class="asset-card" id="ma">
+      <div class="asset-header">
+        <div class="asset-ticker">MA</div>
+        <div>
+          <div class="asset-name">Mastercard</div>
+          <div class="asset-meta">Precio USD 494 · Peso 30,3% CEDEARs · Infraestructura financiera global</div>
+        </div>
+      </div>
+      <blockquote>"Mastercard representa el negocio de infraestructura financiera más eficiente del mundo. Modelo asset-light protege de ciclos de crédito adversos. Precio objetivo: <strong>USD 580</strong>."<cite>— JPMorgan</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Dueña de la red de pagos — cobra el peaje de cada transacción. No presta dinero, no tiene riesgo de impago. Y con digitalización global el peaje se cobra más veces cada año.</div>
+      <blockquote>"Poder de fijación de precios, ventajas de escala insuperables y exposición al crecimiento de pagos digitales en mercados emergentes."<cite>— Goldman Sachs</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Puede subir sus precios sin perder clientes. Eso se llama <em>poder de fijación de precios</em> — la característica más valiosa de cualquier empresa.</div>
+      <blockquote>"Overweight MA. Estimamos crecimiento de EPS de 15-18% anual para 2026-2028."<cite>— Morgan Stanley</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Ganancias por acción crecen 15-18% anual hasta 2028. Crecimiento sólido y predecible, no especulativo.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull</div><div class="scenario-price">USD 620</div><div class="scenario-pct">+25,5%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base (JPM)</div><div class="scenario-price">USD 580</div><div class="scenario-pct">+17,4%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (regulación)</div><div class="scenario-price">USD 440</div><div class="scenario-pct">-10,9%</div></div>
+      </div>
+    </div>
+
+    <!-- NVDA -->
+    <div class="asset-card" id="nvda">
+      <div class="asset-header">
+        <div class="asset-ticker">NVDA</div>
+        <div>
+          <div class="asset-name">Nvidia</div>
+          <div class="asset-meta">Precio USD 216 · Peso 19,6% CEDEARs · Monopolio de facto en GPUs para IA</div>
+        </div>
+      </div>
+      <blockquote>"Monopolio de facto en GPUs para IA. Transición hacia chips de inferencia representa el próximo vector de crecimiento. Precio objetivo: <strong>USD 280</strong>."<cite>— JPMorgan</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>No tiene competidor real en el negocio más importante del mundo hoy. Y el próximo ciclo — inferencia — necesita todavía más chips que el entrenamiento.</div>
+      <blockquote>"Mercado de data centers de IA pasará de USD 150.000M en 2025 a USD 500.000M en 2028. Nvidia captura 70-80% de ese mercado."<cite>— Goldman Sachs</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El mercado total se triplica en 3 años y Nvidia se queda con 70-80%.</div>
+      <blockquote>"Mercado chino de IA representa USD 50.000M bloqueados por restricciones. Cualquier flexibilización generaría salto de 15-20%."<cite>— Morgan Stanley</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Upside enorme no visto por el mercado: China. La cumbre Trump-Xi de mayo 2026 abre esa posibilidad.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull (China)</div><div class="scenario-price">USD 320</div><div class="scenario-pct">+48,1%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base (JPM)</div><div class="scenario-price">USD 280</div><div class="scenario-pct">+29,6%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (capex)</div><div class="scenario-price">USD 160</div><div class="scenario-pct">-25,9%</div></div>
+      </div>
+    </div>
+
+    <!-- AMZN -->
+    <div class="asset-card" id="amzn">
+      <div class="asset-header">
+        <div class="asset-ticker">AMZN</div>
+        <div>
+          <div class="asset-name">Amazon</div>
+          <div class="asset-meta">Precio USD 272 · Peso 14,5% CEDEARs · AWS + Publicidad digital</div>
+        </div>
+      </div>
+      <blockquote>"AWS genera más del 60% del beneficio operativo con márgenes del 38%. Integración de IA en AWS posiciona a Amazon para capturar gasto empresarial en IA cloud. Precio objetivo: <strong>USD 340</strong>."<cite>— Goldman Sachs</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>AWS genera 60% de las ganancias siendo solo 17% de los ingresos. Márgenes altísimos + IA integrada.</div>
+      <blockquote>"Negocio de publicidad digital crece al 19% YoY con márgenes superiores al 50%. Precio objetivo: <strong>USD 320</strong>."<cite>— JPMorgan</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Negocio de publicidad que nadie ve — los productos destacados en búsquedas son anuncios pagos, 19% de crecimiento anual, márgenes del 50%.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull (GS)</div><div class="scenario-price">USD 340</div><div class="scenario-pct">+25%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base (JPM)</div><div class="scenario-price">USD 320</div><div class="scenario-pct">+17,6%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (antitrust)</div><div class="scenario-price">USD 220</div><div class="scenario-pct">-19,1%</div></div>
+      </div>
+    </div>
+
+    <!-- META -->
+    <div class="asset-card" id="meta">
+      <div class="asset-header">
+        <div class="asset-ticker">META</div>
+        <div>
+          <div class="asset-name">Meta Platforms</div>
+          <div class="asset-meta">Precio USD 628 · Peso 11,2% CEDEARs · 3.200M usuarios activos diarios</div>
+        </div>
+      </div>
+      <blockquote>"Retorno sobre inversión publicitaria más alto del ecosistema. IA generativa para anuncios automatizados expande el mercado total. Precio objetivo: <strong>USD 750</strong>."<cite>— Morgan Stanley</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Usando IA para que cualquier empresa cree anuncios efectivos automáticamente. Más anunciantes, más ingresos, sin contratar más gente.</div>
+      <blockquote>"Reels, Threads y WhatsApp Business en etapas tempranas de monetización con runway de 3-5 años. Precio objetivo: <strong>USD 720</strong>."<cite>— Goldman Sachs</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Tres negocios dentro de Meta con cientos de millones de usuarios que todavía no monetizan bien. Cuando lo hagan, las ganancias dan un salto.</div>
+      <blockquote>"3.200 millones de usuarios activos diarios. Cada USD 1 en publicidad genera USD 4 de ventas para el anunciante. Precio objetivo: <strong>USD 700</strong>."<cite>— JPMorgan</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Retorno tan alto para los anunciantes que nadie los abandona. Demanda cautiva.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull (MS)</div><div class="scenario-price">USD 750</div><div class="scenario-pct">+19,4%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base (GS)</div><div class="scenario-price">USD 720</div><div class="scenario-pct">+14,6%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (EU reg)</div><div class="scenario-price">USD 520</div><div class="scenario-pct">-17,2%</div></div>
+      </div>
+    </div>
+
+    <!-- LLY -->
+    <div class="asset-card" id="lly">
+      <div class="asset-header">
+        <div class="asset-ticker">LLY</div>
+        <div>
+          <div class="asset-name">Eli Lilly</div>
+          <div class="asset-meta">Precio USD 1.096 · Peso 9,8% CEDEARs · Duopolio GLP-1 con Novo Nordisk</div>
+        </div>
+      </div>
+      <blockquote>"Mercado GLP-1 pasará de USD 24.000M a USD 130.000M en 2030. Lilly captura 45-50% con Mounjaro y Zepbound. Precio objetivo: <strong>USD 1.350</strong>."<cite>— JPMorgan</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El mercado de medicamentos para obesidad se multiplica por 5 en 6 años y Lilly tiene la mitad. Producto probado, mercado enorme, poca competencia.</div>
+      <blockquote>"Expansión de capacidad en Irlanda e Indiana es el catalizador operativo más importante 2026-2027. Sin capacidad productiva el upside no se captura. Precio objetivo: <strong>USD 1.400</strong>."<cite>— Goldman Sachs</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El único límite de Lilly es que no puede fabricar suficiente. Cuando las nuevas plantas estén listas, los ingresos crecen directamente con la producción.</div>
+      <blockquote>"Duopolio Lilly-Novo Nordisk en el mercado de más rápido crecimiento de la industria farmacéutica global. Precio objetivo: <strong>USD 1.400</strong>."<cite>— Morgan Stanley</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Solo dos empresas pueden fabricar estos medicamentos a escala global. Duopolio en mercado que crece al 40% anual.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull (MS)</div><div class="scenario-price">USD 1.400</div><div class="scenario-pct">+27,7%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base (JPM)</div><div class="scenario-price">USD 1.350</div><div class="scenario-pct">+23,2%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (precios)</div><div class="scenario-price">USD 900</div><div class="scenario-pct">-17,9%</div></div>
+      </div>
+    </div>
+
+    <!-- AVGO -->
+    <div class="asset-card" id="avgo">
+      <div class="asset-header">
+        <div class="asset-ticker">AVGO</div>
+        <div>
+          <div class="asset-name">Broadcom</div>
+          <div class="asset-meta">Precio USD 422 · Peso 8,5% CEDEARs · ASICs personalizados para hiperescaladores</div>
+        </div>
+      </div>
+      <blockquote>"Combinación más atractiva de semiconductores + software. Contratos ASIC con Google, Apple y Meta garantizan demanda a 3-5 años. Precio objetivo: <strong>USD 520</strong>."<cite>— Morgan Stanley</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Tiene contratos firmados con las empresas más grandes del mundo para diseñarles chips personalizados. Visibilidad de ingresos garantizada a años vista.</div>
+      <blockquote>"ASIC personalizado para hiperescaladores es el negocio de mayor crecimiento y mayor margen. Precio objetivo: <strong>USD 500</strong>."<cite>— JPMorgan</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Google, Meta y Apple prefieren chips a medida — Broadcom los diseña. Clientes que no van a cambiar de proveedor fácilmente.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull (MS)</div><div class="scenario-price">USD 520</div><div class="scenario-pct">+23,2%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base (JPM)</div><div class="scenario-price">USD 500</div><div class="scenario-pct">+18,5%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (ciclo)</div><div class="scenario-price">USD 340</div><div class="scenario-pct">-19,4%</div></div>
+      </div>
+    </div>
+
+    <!-- MSFT -->
+    <div class="asset-card" id="msft">
+      <div class="asset-header">
+        <div class="asset-ticker">MSFT</div>
+        <div>
+          <div class="asset-name">Microsoft</div>
+          <div class="asset-meta">Precio USD 450 · Peso 5,7% CEDEARs · Azure + OpenAI integrado</div>
+        </div>
+      </div>
+      <blockquote>"Azure crece 31% YoY. Integración de OpenAI en todos los productos crea flywheel de adopción de IA. Precio objetivo: <strong>USD 540</strong>."<cite>— Goldman Sachs</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Metió IA en absolutamente todo. Cuanto más la gente los usa con IA, más dependientes se vuelven. Ingresos recurrentes que crecen solos.</div>
+      <blockquote>"Única mega-cap tech con exposición simultánea a nube, IA, gaming y productividad empresarial. Precio objetivo: <strong>USD 520</strong>."<cite>— JPMorgan</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Si falla un sector, los otros sostienen. Más resistente que cualquier otra mega-cap tech.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull (GS)</div><div class="scenario-price">USD 540</div><div class="scenario-pct">+20%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base (JPM)</div><div class="scenario-price">USD 520</div><div class="scenario-pct">+15,6%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (antitrust)</div><div class="scenario-price">USD 380</div><div class="scenario-pct">-15,6%</div></div>
+      </div>
+    </div>
+
+    <!-- XOM -->
+    <div class="asset-card" id="xom">
+      <div class="asset-header">
+        <div class="asset-ticker">XOM</div>
+        <div>
+          <div class="asset-name">Exxon Mobil</div>
+          <div class="asset-meta">Precio USD 145 · Dividendo 3,4% · Free cash flow USD 35.000M anuales</div>
+        </div>
+      </div>
+      <blockquote>"Con Brent USD 100+, genera free cash flow de USD 35.000M anuales. Precio objetivo: <strong>USD 175</strong>."<cite>— Goldman Sachs</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>USD 35.000M de caja libre por año para pagar dividendos y recomprar acciones. Te pagan mientras esperás que el precio suba.</div>
+      <blockquote>"Producción en Guyana a USD 25/barril vendida a USD 105. Dividendo 3,4% + recompras = retorno del capital 7% anual independiente del precio acción."<cite>— JPMorgan</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Margen de USD 80 por barril. Encima paga dividendo del 3,4% — te pagan por tenerla.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull (Brent $120)</div><div class="scenario-price">USD 195</div><div class="scenario-pct">+37,9%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base (GS) +div</div><div class="scenario-price">USD 175</div><div class="scenario-pct">+24,1%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (Brent $70)</div><div class="scenario-price">USD 115</div><div class="scenario-pct">-17,3%</div></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+    <h3 style="color:var(--blue);font-size:18px;margin-bottom:20px">Acciones Argentinas — 25% del portafolio</h3>
+
+    <!-- VIST -->
+    <div class="asset-card" id="vist">
+      <div class="asset-header">
+        <div class="asset-ticker" style="background:rgba(0,176,204,0.1);border-color:rgba(0,176,204,0.25);color:var(--blue)">VIST</div>
+        <div>
+          <div class="asset-name">Vista Oil &amp; Gas</div>
+          <div class="asset-meta">Precio USD 75,54 · Peso 40% tramo ARG · Beta -0,137 · Empresa privada pura</div>
+        </div>
+      </div>
+      <blockquote>"VIST es nuestra acción favorita del sector energético argentino. Menor sensibilidad al contexto macro local vs YPFD. Expansión Vaca Muerta genera upside que el mercado no terminó de descontar."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Empresa privada pura — sin riesgo del Estado. Con petróleo caro y Vaca Muerta creciendo, VIST gana más de lo esperado. Cuando eso pasa, el precio sube.</div>
+      <blockquote>"Rotamos hacia energía. VIST como acción favorita del sector O&amp;G — exposición directa al boom exportador con el mejor management del sector privado."<cite>— Grupo SBS</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El contexto macro argentino — superávit récord, RIGI aprobado — es el mejor ambiente posible para una empresa que exporta petróleo.</div>
+      <blockquote>"VIST tiene mayor palanca operativa al precio del crudo en el universo argentino. Con Brent entre USD 104-107, márgenes en máximos históricos."<cite>— Balanz Capital</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>La empresa más directamente expuesta al precio del petróleo. Cada dólar que sube el Brent va directo a sus ganancias.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull (Brent $120)</div><div class="scenario-price">USD 115</div><div class="scenario-pct">+52,2%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base</div><div class="scenario-price">USD 95</div><div class="scenario-pct">+25,8%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (Brent $70)</div><div class="scenario-price">USD 55</div><div class="scenario-pct">-27,2%</div></div>
+      </div>
+    </div>
+
+    <!-- GGAL -->
+    <div class="asset-card" id="ggal">
+      <div class="asset-header">
+        <div class="asset-ticker" style="background:rgba(0,176,204,0.1);border-color:rgba(0,176,204,0.25);color:var(--blue)">GGAL</div>
+        <div>
+          <div class="asset-name">Grupo Galicia</div>
+          <div class="asset-meta">Precio USD 45,92 · Peso 16,9% tramo ARG · Beta -0,423 · <span class="risk risk-high">Mayor sensibilidad al ciclo ARG</span></div>
+        </div>
+      </div>
+      <blockquote>"GGAL como play Argentina de alto beta. Reducción de encajes del BCRA es el catalizador operativo más concreto. Riesgo: mora en familias 11,5% máximo desde 2004."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El activo que más sube cuando Argentina mejora. BCRA redujo encajes — los bancos pueden prestar más — más ingresos para Galicia.</div>
+      <blockquote>"Mayor sensibilidad al ciclo económico argentino. En contextos de mejora de actividad y baja de tasas, los bancos son los primeros en beneficiarse."<cite>— Grupo SBS</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Si el plan económico funciona, GGAL es de los primeros activos en reflejarlo. Es el termómetro más sensible de la confianza en Argentina.</div>
+      <blockquote>"Crédito al sector privado representa apenas el 8% del PBI, contra 50-60% en países comparables. Esa brecha es el mayor driver estructural de crecimiento para bancos."<cite>— Mariva</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Los bancos argentinos prestan muy poco comparado con cualquier país similar. Esa brecha se va a cerrar gradualmente — y cada punto que cierra genera ganancias extraordinarias.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull</div><div class="scenario-price">USD 75</div><div class="scenario-pct">+63,3%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base</div><div class="scenario-price">USD 60</div><div class="scenario-pct">+30,7%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (mora)</div><div class="scenario-price">USD 35</div><div class="scenario-pct">-23,8%</div></div>
+      </div>
+    </div>
+
+    <!-- BMA -->
+    <div class="asset-card" id="bma">
+      <div class="asset-header">
+        <div class="asset-ticker" style="background:rgba(0,176,204,0.1);border-color:rgba(0,176,204,0.25);color:var(--blue)">BMA</div>
+        <div>
+          <div class="asset-name">Banco Macro</div>
+          <div class="asset-meta">Precio USD 87,80 · Peso 4,3% tramo ARG · Banco del interior productivo</div>
+        </div>
+      </div>
+      <blockquote>"BMA ofrece diversificación geográfica con foco en el interior productivo — regiones con recuperación más rápida en ciclos de mejora agropecuaria y energética."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Opera en las provincias que producen commodities. Con boom energético y buena cosecha, esas regiones están en su mejor momento.</div>
+      <blockquote>"El interior del país muestra recuperación más robusta que GBA en el ciclo actual — impulsado por agro, minería y energía. BMA captura ese upside regional."<cite>— Grupo SBS</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>La recuperación en el interior es más fuerte que en Buenos Aires. BMA es el banco del interior.</div>
+      <div class="asset-scenarios">
+        <div class="scenario scenario-bull"><div class="scenario-label">Bull</div><div class="scenario-price">USD 140</div><div class="scenario-pct">+59,5%</div></div>
+        <div class="scenario scenario-base"><div class="scenario-label">Base</div><div class="scenario-price">USD 115</div><div class="scenario-pct">+31%</div></div>
+        <div class="scenario scenario-bear"><div class="scenario-label">Bear (mora)</div><div class="scenario-price">USD 65</div><div class="scenario-pct">-25,9%</div></div>
+      </div>
+    </div>
+
+    <!-- TGS Acción -->
+    <div class="asset-card" id="tgs">
+      <div class="asset-header">
+        <div class="asset-ticker" style="background:rgba(0,176,204,0.1);border-color:rgba(0,176,204,0.25);color:var(--blue)">TGS</div>
+        <div>
+          <div class="asset-name">Transportadora de Gas del Sur</div>
+          <div class="asset-meta">Precio objetivo <span class="highlight">USD 43,6/ADR</span> · Margen EBITDA 63% · EBITDA Q1-26: USD 216M (+19% YoY)</div>
+        </div>
+      </div>
+      <blockquote>"BUY TGS. Precio objetivo USD 43,6/ADR. EBITDA Q1-26 USD 216M (+19% YoY). FID proyecto NGL es catalizador inmediato. Pipeline Perito Moreno RIGI agrega visibilidad hasta 2028."<cite>— Mariva</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Números del primer trimestre superaron expectativas. Dos catalizadores que no están en el precio. Cuando se anuncien, el mercado va a revaluar TGS al alza.</div>
+      <blockquote>"Mejor visibilidad de cash flow del universo O&amp;G. Negocio regulado estable + midstream en expansión. Margen EBITDA 63%."<cite>— Grupo SBS</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Dos negocios complementarios — uno estable, uno en crecimiento. Margen del 63% excepcional para cualquier empresa de infraestructura del mundo.</div>
+      <blockquote>"Pipeline Perito Moreno bajo RIGI (USD 700M) agrega capacidad 21-33 MMm3/d — salto estructural en la capacidad del negocio."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El nuevo gasoducto transforma la escala del negocio de TGS para los próximos años.</div>
+    </div>
+
+    <!-- YPF Acción -->
+    <div class="asset-card" id="ypf">
+      <div class="asset-header">
+        <div class="asset-ticker" style="background:rgba(0,176,204,0.1);border-color:rgba(0,176,204,0.25);color:var(--blue)">YPF</div>
+        <div>
+          <div class="asset-name">YPF</div>
+          <div class="asset-meta">Peso satélite tramo ARG · <span class="risk risk-mid">Gestión mixta — riesgo de gobernanza</span></div>
+        </div>
+      </div>
+      <blockquote>"Estructura de gestión mixta introduce riesgo de gobernanza diferencial. Sin embargo exposición a Vaca Muerta y proyectos RIGI la mantienen como posición satélite."<cite>— IEB Research</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>El Estado como accionista mayoritario introduce riesgo de decisiones políticas. Por eso la tienen como complemento menor, no como posición principal.</div>
+      <blockquote>"Rotación estratégica: más VIST, menos YPFD. Preferimos operadores privados puros. YPFD mantiene valor por su escala y activos en Vaca Muerta."<cite>— Grupo SBS</cite></blockquote>
+      <div class="quote-resumen"><div class="quote-resumen-label">Resumen</div>Redujeron YPF en favor de VIST. En contexto de desregulación, empresas privadas puras tienen más libertad. YPF tiene activos valiosos pero la gestión mixta es un freno.</div>
+    </div>
+
+    <!-- TABLA FINAL -->
+    <div class="subsection" style="margin-top:32px">
+      <div class="subsection-title">Tabla Comparativa — Renta Variable Completa</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Acción</th><th>Tipo</th><th>Peso</th><th>Precio</th><th>P.Objetivo</th><th>Upside base</th><th>Recomendación</th></tr></thead>
+          <tbody>
+            <tr><td class="td-gold">MA</td><td>CEDEAR</td><td>30,3%</td><td>USD 494</td><td class="td-green">USD 580</td><td class="td-green">+17,4%</td><td class="td-blue">Overweight JPM/GS/MS</td></tr>
+            <tr><td class="td-gold">NVDA</td><td>CEDEAR</td><td>19,6%</td><td>USD 216</td><td class="td-green">USD 280</td><td class="td-green">+29,6%</td><td class="td-blue">Overweight JPM/GS/MS</td></tr>
+            <tr><td class="td-gold">AMZN</td><td>CEDEAR</td><td>14,5%</td><td>USD 272</td><td class="td-green">USD 320</td><td class="td-green">+17,6%</td><td class="td-blue">BUY JPM/GS</td></tr>
+            <tr><td class="td-gold">META</td><td>CEDEAR</td><td>11,2%</td><td>USD 628</td><td class="td-green">USD 720</td><td class="td-green">+14,6%</td><td class="td-blue">BUY GS/MS/JPM</td></tr>
+            <tr><td class="td-gold">LLY</td><td>CEDEAR</td><td>9,8%</td><td>USD 1.096</td><td class="td-green">USD 1.350</td><td class="td-green">+23,2%</td><td class="td-blue">BUY JPM/GS/MS</td></tr>
+            <tr><td class="td-gold">AVGO</td><td>CEDEAR</td><td>8,5%</td><td>USD 422</td><td class="td-green">USD 500</td><td class="td-green">+18,5%</td><td class="td-blue">BUY JPM/MS</td></tr>
+            <tr><td class="td-gold">MSFT</td><td>CEDEAR</td><td>5,7%</td><td>USD 450</td><td class="td-green">USD 520</td><td class="td-green">+15,6%</td><td class="td-blue">BUY JPM/GS</td></tr>
+            <tr><td class="td-gold">XOM</td><td>CEDEAR</td><td>resto</td><td>USD 145</td><td class="td-green">USD 175</td><td class="td-green">+24,1%</td><td class="td-blue">BUY JPM/GS</td></tr>
+            <tr><td class="td-blue">VIST</td><td>ARG</td><td>40% ARG</td><td>USD 75,54</td><td class="td-green">USD 95</td><td class="td-green">+25,8%</td><td class="td-blue">BUY IEB/SBS/Balanz</td></tr>
+            <tr><td class="td-blue">GGAL</td><td>ARG</td><td>16,9% ARG</td><td>USD 45,92</td><td class="td-green">USD 60</td><td class="td-green">+30,7%</td><td class="td-blue">BUY IEB/SBS/Mariva</td></tr>
+            <tr><td class="td-blue">BMA</td><td>ARG</td><td>4,3% ARG</td><td>USD 87,80</td><td class="td-green">USD 115</td><td class="td-green">+31%</td><td class="td-blue">BUY IEB/SBS</td></tr>
+            <tr><td class="td-blue">TGS</td><td>ARG</td><td>resto</td><td>—</td><td class="td-green">USD 43,6 ADR</td><td class="td-green">real</td><td class="td-blue">BUY Mariva/SBS/IEB</td></tr>
+            <tr><td class="td-blue">YPF</td><td>ARG</td><td>satélite</td><td>—</td><td>—</td><td>+20-25%</td><td style="color:var(--gold)">HOLD IEB/SBS</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <strong style="color:var(--gold)">Fondo Tendencias</strong> · FCI Abierto de Renta Mixta · CNV Ley 24.083<br>
+  <span style="margin-top:6px;display:block">Guía Oral · Trabajo Final Matemática Financiera · Junio 2026</span>
+  <a href="https://pulsofinance.github.io/Fondo-Tendencias/" style="color:var(--blue);text-decoration:none;margin-top:8px;display:inline-block" target="_blank">pulsofinance.github.io/Fondo-Tendencias</a>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Volver arriba">↑</button>
+
+<script>
+  // Toggle section
+  function toggleSection(header) {
+    header.classList.toggle('open');
+    header.nextElementSibling.classList.toggle('open');
+  }
+
+  // Sidebar mobile
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('open');
+  }
+  function closeSidebar() {
+    document.getElementById('sidebar').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  // Back to top
+  window.addEventListener('scroll', () => {
+    document.getElementById('back-top').classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Active sidebar link on scroll
+  const sections = document.querySelectorAll('[id]');
+  const navLinks = document.querySelectorAll('.sidebar a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
