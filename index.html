@@ -1839,9 +1839,101 @@ const EXTRA_HTML = {
     <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1px">
       Las acciones argentinas tienen <strong style="color:var(--a)">beta negativo vs S&P500</strong> — cuando EE.UU. cae, ARG no necesariamente cae igual. Eso las convierte en <strong style="color:#22A055">diversificación genuina</strong>. Catalizador clave: upgrade MSCI de Frontier a Emerging Markets obligaría a fondos globales a comprar acciones argentinas.
     </div>
-    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1rem 0 .5rem">VACA MUERTA — EL CATALIZADOR ESTRUCTURAL</div>
-    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7">
-      <strong style="color:var(--a)">VIST y YPF</strong> son los principales operadores de Vaca Muerta — segunda reserva de shale gas del mundo. Producción +35% YoY. <strong style="color:var(--a)">GGAL y BMA</strong> son los bancos que financian el crecimiento económico post-normalización. JPMorgan los tiene como top picks para el upgrade MSCI.
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1rem">
+      <strong style="color:var(--a)">VIST y YPF</strong> operan en Vaca Muerta — segunda reserva shale gas del mundo. Producción +35% YoY. <strong style="color:var(--a)">GGAL y BMA</strong> bancos del crecimiento post-normalización. JPMorgan top picks para el upgrade MSCI.
+    </div>
+
+    <!-- Botón toggle recomendaciones -->
+    <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'; this.innerHTML=this.innerHTML.includes('▼')?'▲  Ocultar recomendaciones':'▼  Recomendaciones detalladas — VIST · GGAL · BMA · TGS · YPF'"
+      style="width:100%;background:rgba(224,48,32,.08);border:1px solid rgba(224,48,32,.35);color:#E03020;font-family:Inter,sans-serif;font-size:10px;font-weight:700;padding:.7rem 1rem;cursor:pointer;text-align:left;letter-spacing:.06em;border-radius:2px;margin-bottom:.5rem">
+      ▼  Recomendaciones detalladas — VIST · GGAL · BMA · TGS · YPF
+    </button>
+    <div style="display:none">
+
+      <!-- VIST -->
+      <div style="background:var(--bg3);border-left:3px solid var(--cyan);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(0,176,204,.12);border:1px solid rgba(0,176,204,.3);color:var(--cyan);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">VIST</div>
+          <div>
+            <div style="font-weight:700;color:var(--t1);font-size:12px">Vista Oil &amp; Gas</div>
+            <div style="font-size:9px;color:var(--t3)">Precio USD 75,54 · Peso 40% tramo ARG · Beta -0,137 · Empresa privada pura</div>
+          </div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"VIST es nuestra acción favorita del sector energético argentino. Menor sensibilidad al contexto macro local vs YPFD. Expansión Vaca Muerta genera upside que el mercado no terminó de descontar."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— IEB Research</span></blockquote>
+        <div style="background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.15);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--cyan)">En simple:</strong> Empresa privada pura — sin riesgo del Estado. Con petróleo caro y Vaca Muerta creciendo, VIST gana más de lo esperado.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"VIST tiene mayor palanca operativa al precio del crudo en el universo argentino. Con Brent entre USD 104-107, márgenes en máximos históricos."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Balanz Capital</span></blockquote>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (Brent $120)</div><div style="font-size:15px;font-weight:800;color:#22A055">USD 115</div><div style="font-size:9px;color:#22A055">+52.2%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE</div><div style="font-size:15px;font-weight:800;color:var(--a)">USD 95</div><div style="font-size:9px;color:var(--a)">+25.8%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (Brent $70)</div><div style="font-size:15px;font-weight:800;color:#E03020">USD 55</div><div style="font-size:9px;color:#E03020">-27.2%</div></div>
+        </div>
+      </div>
+
+      <!-- GGAL -->
+      <div style="background:var(--bg3);border-left:3px solid var(--cyan);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(0,176,204,.12);border:1px solid rgba(0,176,204,.3);color:var(--cyan);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">GGAL</div>
+          <div>
+            <div style="font-weight:700;color:var(--t1);font-size:12px">Grupo Galicia</div>
+            <div style="font-size:9px;color:var(--t3)">Precio USD 45,92 · Peso 16,9% tramo ARG · Beta -0,423 · Mayor sensibilidad al ciclo ARG</div>
+          </div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"GGAL como play Argentina de alto beta. Reducción de encajes del BCRA es el catalizador operativo más concreto."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— IEB Research</span></blockquote>
+        <div style="background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.15);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--cyan)">En simple:</strong> El activo que más sube cuando Argentina mejora. BCRA redujo encajes — los bancos pueden prestar más — más ingresos para Galicia.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Crédito al sector privado representa apenas el 8% del PBI, contra 50-60% en países comparables. Esa brecha es el mayor driver estructural."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Mariva</span></blockquote>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL</div><div style="font-size:15px;font-weight:800;color:#22A055">USD 75</div><div style="font-size:9px;color:#22A055">+63.3%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE</div><div style="font-size:15px;font-weight:800;color:var(--a)">USD 60</div><div style="font-size:9px;color:var(--a)">+30.7%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (mora)</div><div style="font-size:15px;font-weight:800;color:#E03020">USD 35</div><div style="font-size:9px;color:#E03020">-23.8%</div></div>
+        </div>
+      </div>
+
+      <!-- BMA -->
+      <div style="background:var(--bg3);border-left:3px solid var(--cyan);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(0,176,204,.12);border:1px solid rgba(0,176,204,.3);color:var(--cyan);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">BMA</div>
+          <div>
+            <div style="font-weight:700;color:var(--t1);font-size:12px">Banco Macro</div>
+            <div style="font-size:9px;color:var(--t3)">Precio USD 87,80 · Peso 4,3% tramo ARG · Banco del interior productivo</div>
+          </div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"BMA ofrece diversificación geográfica con foco en el interior productivo — regiones con recuperación más rápida en ciclos de mejora agropecuaria y energética."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— IEB Research</span></blockquote>
+        <div style="background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.15);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--cyan)">En simple:</strong> Opera en las provincias que producen commodities. Con boom energético y buena cosecha, esas regiones están en su mejor momento.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"El interior del país muestra recuperación más robusta que GBA en el ciclo actual — impulsado por agro, minería y energía."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Grupo SBS</span></blockquote>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL</div><div style="font-size:15px;font-weight:800;color:#22A055">USD 140</div><div style="font-size:9px;color:#22A055">+59.5%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE</div><div style="font-size:15px;font-weight:800;color:var(--a)">USD 115</div><div style="font-size:9px;color:var(--a)">+31%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (mora)</div><div style="font-size:15px;font-weight:800;color:#E03020">USD 65</div><div style="font-size:9px;color:#E03020">-25.9%</div></div>
+        </div>
+      </div>
+
+      <!-- TGS Acción -->
+      <div style="background:var(--bg3);border-left:3px solid var(--cyan);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(0,176,204,.12);border:1px solid rgba(0,176,204,.3);color:var(--cyan);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">TGS</div>
+          <div>
+            <div style="font-weight:700;color:var(--t1);font-size:12px">Transportadora de Gas del Sur</div>
+            <div style="font-size:9px;color:var(--t3)">Precio objetivo USD 43,6/ADR · Margen EBITDA 63% · EBITDA Q1-26: USD 216M (+19% YoY)</div>
+          </div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"BUY TGS. Precio objetivo USD 43,6/ADR. EBITDA Q1-26 USD 216M (+19% YoY). FID proyecto NGL es catalizador inmediato. Pipeline Perito Moreno RIGI agrega visibilidad hasta 2028."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Mariva</span></blockquote>
+        <div style="background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.15);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--cyan)">En simple:</strong> Números del primer trimestre superaron expectativas. Dos catalizadores concretos que no están en el precio todavía.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Pipeline Perito Moreno bajo RIGI (USD 700M) agrega capacidad 21-33 MMm3/d — salto estructural en la capacidad del negocio."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— IEB Research</span></blockquote>
+      </div>
+
+      <!-- YPF Acción -->
+      <div style="background:var(--bg3);border-left:3px solid #888;padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(136,136,136,.12);border:1px solid rgba(136,136,136,.3);color:#aaa;font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">YPF</div>
+          <div>
+            <div style="font-weight:700;color:var(--t1);font-size:12px">YPF <span style="font-size:9px;font-weight:400;color:#E06000">Posición satélite · riesgo de gobernanza</span></div>
+            <div style="font-size:9px;color:var(--t3)">Gestión mixta — riesgo de decisiones políticas</div>
+          </div>
+        </div>
+        <blockquote style="border-left:2px solid #666;margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(136,136,136,.05);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Rotación estratégica: más VIST, menos YPFD. Preferimos operadores privados puros. YPFD mantiene valor por su escala y activos en Vaca Muerta."<br><span style="color:#aaa;font-style:normal;font-size:9px;font-weight:600">— Grupo SBS</span></blockquote>
+        <div style="background:rgba(136,136,136,.06);border:1px solid rgba(136,136,136,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6"><strong style="color:#aaa">En simple:</strong> El Estado como accionista mayoritario introduce riesgo de decisiones políticas. Por eso está como posición satélite, no como posición principal.</div>
+      </div>
+
     </div>`,
 
   'Dólar Futuro': `
