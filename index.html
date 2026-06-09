@@ -282,6 +282,61 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
   </div>
 </div>
 
+<!-- RENDIMIENTO COMPARATIVO PROYECTADO -->
+<div class="sdiv"><span class="sdiv-label">Rendimiento comparativo proyectado</span><div class="sdiv-line"></div><span class="sdiv-meta">Jun 2026 → Jun 2027 · en pesos argentinos (ARS) · pasá el mouse por el gráfico para comparar</span></div>
+<div style="background:var(--card);padding:1.6rem 1.8rem 1.8rem">
+
+  <!-- Leyenda manual -->
+  <div style="display:flex;gap:1.8rem;margin-bottom:1.4rem;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:.5rem;font-size:11px;font-weight:600;color:#22A055">
+      <span style="width:28px;height:3px;background:#22A055;display:inline-block;border-radius:2px"></span>Fondo Tendencias (USD→ARS)
+    </div>
+    <div style="display:flex;align-items:center;gap:.5rem;font-size:11px;font-weight:600;color:#3B82F6">
+      <span style="width:28px;height:3px;background:#3B82F6;display:inline-block;border-radius:2px"></span>Plazo fijo
+    </div>
+    <div style="display:flex;align-items:center;gap:.5rem;font-size:11px;font-weight:600;color:#EF4444">
+      <span style="width:28px;height:3px;background:#EF4444;display:inline-block;border-radius:2px"></span>Inflación (IPC)
+    </div>
+    <div style="display:flex;align-items:center;gap:.5rem;font-size:11px;font-weight:600;color:#D97706">
+      <span style="width:28px;height:3px;background:#D97706;display:inline-block;border-radius:2px"></span>Dólar (BNA)
+    </div>
+  </div>
+
+  <canvas id="rendComp" height="320"></canvas>
+
+  <!-- KPI final del año -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:1.2rem">
+    <div style="background:var(--card2);padding:1rem;text-align:center">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.15em;color:#22A055;margin-bottom:.3rem">FONDO TENDENCIAS</div>
+      <div style="font-size:22px;font-weight:800;color:#22A055">+53.8%</div>
+      <div style="font-size:9px;color:var(--t3);margin-top:.2rem">anual proyectado ARS</div>
+    </div>
+    <div style="background:var(--card2);padding:1rem;text-align:center">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.15em;color:#3B82F6;margin-bottom:.3rem">PLAZO FIJO</div>
+      <div style="font-size:22px;font-weight:800;color:#3B82F6">+31.0%</div>
+      <div style="font-size:9px;color:var(--t3);margin-top:.2rem">TNA capitalizada 30d</div>
+    </div>
+    <div style="background:var(--card2);padding:1rem;text-align:center">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.15em;color:#EF4444;margin-bottom:.3rem">INFLACIÓN IPC</div>
+      <div style="font-size:22px;font-weight:800;color:#EF4444">+25.5%</div>
+      <div style="font-size:9px;color:var(--t3);margin-top:.2rem">consenso REM/BCRA</div>
+    </div>
+    <div style="background:var(--card2);padding:1rem;text-align:center">
+      <div style="font-size:9px;font-weight:700;letter-spacing:.15em;color:#D97706;margin-bottom:.3rem">DÓLAR BNA</div>
+      <div style="font-size:22px;font-weight:800;color:#D97706">+19.9%</div>
+      <div style="font-size:9px;color:var(--t3);margin-top:.2rem">variación proyectada</div>
+    </div>
+  </div>
+
+  <div style="margin-top:.8rem;font-size:9px;color:var(--t3);line-height:1.7">
+    Fondo de inversión: rendimiento 28,23% anual en USD, convertido a ARS (1,2823 × 1,199) − 1 &nbsp;|&nbsp;
+    Plazo fijo: BCRA TNA promedio mensual capitalizada a 30 días &nbsp;|&nbsp;
+    Inflación: INDEC IPC, dato may 2026 estimado según consenso REM/BCRA &nbsp;|&nbsp;
+    Dólar: Banco Nación Argentina / dolarito.ar, variación proyectada anual &nbsp;·&nbsp;
+    <em>Período proyectado: 01/06/2026 – 01/06/2027</em>
+  </div>
+</div>
+
 <!-- PESOS COMPLETOS -->
 <div class="sdiv"><span class="sdiv-label">Pesos absolutos en el fondo</span><div class="sdiv-line"></div><span class="sdiv-meta">Resultado Black-Litterman + Markowitz</span></div>
 <div style="background:var(--card);padding:1.2rem 1.5rem">
@@ -1676,6 +1731,146 @@ new Chart(mcCtx, {
     }
   }
 });
+
+// ============================================================
+// RENDIMIENTO COMPARATIVO PROYECTADO — Jun 2026 / Jun 2027
+// ============================================================
+(function() {
+  const meses = [
+    'Jun 2026','Jul 2026','Ago 2026','Sep 2026','Oct 2026','Nov 2026','Dic 2026',
+    'Ene 2027','Feb 2027','Mar 2027','Abr 2027','May 2027','Jun 2027'
+  ];
+
+  // Retorno anual en ARS de cada alternativa
+  const ANNUAL = { fondo: 53.8, plazo: 31.0, infl: 25.5, dolar: 19.9 };
+
+  function cumSeries(annualPct) {
+    const r = Math.pow(1 + annualPct / 100, 1 / 12) - 1;
+    return meses.map((_, i) => parseFloat(((Math.pow(1 + r, i) - 1) * 100).toFixed(2)));
+  }
+
+  // Plugin de crosshair vertical al hacer hover
+  const crosshairPlugin = {
+    id: 'rendCompCrosshair',
+    afterDraw(chart) {
+      if (!chart.tooltip._active || !chart.tooltip._active.length) return;
+      const ctx = chart.ctx;
+      const x   = chart.tooltip._active[0].element.x;
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(x, chart.scales.y.top);
+      ctx.lineTo(x, chart.scales.y.bottom);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+      ctx.setLineDash([5, 4]);
+      ctx.stroke();
+      ctx.restore();
+    }
+  };
+
+  const rc = document.getElementById('rendComp');
+  if (!rc) return;
+
+  new Chart(rc.getContext('2d'), {
+    type: 'line',
+    plugins: [crosshairPlugin],
+    data: {
+      labels: meses,
+      datasets: [
+        {
+          label: 'Fondo Tendencias',
+          data: cumSeries(ANNUAL.fondo),
+          borderColor: '#22A055',
+          backgroundColor: 'rgba(34,160,85,0.07)',
+          fill: true,
+          tension: 0.35,
+          pointRadius: 4,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#22A055',
+          borderWidth: 2.5
+        },
+        {
+          label: 'Plazo fijo',
+          data: cumSeries(ANNUAL.plazo),
+          borderColor: '#3B82F6',
+          backgroundColor: 'transparent',
+          tension: 0.35,
+          pointRadius: 4,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#3B82F6',
+          borderWidth: 2
+        },
+        {
+          label: 'Inflación (IPC)',
+          data: cumSeries(ANNUAL.infl),
+          borderColor: '#EF4444',
+          backgroundColor: 'transparent',
+          tension: 0.35,
+          pointRadius: 4,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#EF4444',
+          borderWidth: 2
+        },
+        {
+          label: 'Dólar (BNA)',
+          data: cumSeries(ANNUAL.dolar),
+          borderColor: '#D97706',
+          backgroundColor: 'transparent',
+          tension: 0.35,
+          pointRadius: 4,
+          pointHoverRadius: 7,
+          pointBackgroundColor: '#D97706',
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0d1117',
+          borderColor: 'rgba(255,255,255,0.12)',
+          borderWidth: 1,
+          titleColor: '#ffffff',
+          titleFont: { family: 'Inter', size: 11, weight: '700' },
+          bodyColor: '#a0a8b8',
+          bodyFont:  { family: 'Inter', size: 11 },
+          padding: 14,
+          caretSize: 6,
+          callbacks: {
+            label: function(ctx) {
+              const val = ctx.parsed.y;
+              const sign = val >= 0 ? '+' : '';
+              return `  ${ctx.dataset.label}: ${sign}${val.toFixed(1)}%`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: 'rgba(255,255,255,0.04)' },
+          ticks: {
+            color: '#6b7280',
+            font: { family: 'Inter', size: 10 },
+            maxRotation: 45
+          }
+        },
+        y: {
+          grid: { color: 'rgba(255,255,255,0.05)' },
+          ticks: {
+            color: '#6b7280',
+            font: { family: 'Inter', size: 10 },
+            callback: v => v + '%'
+          },
+          min: 0,
+          suggestedMax: 60
+        }
+      }
+    }
+  });
+})();
 
 // ============================================================
 // BL: π EQUILIBRIO vs E[R] BLACK-LITTERMAN
