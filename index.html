@@ -1704,6 +1704,175 @@ const TRAMO_DETAIL = {
   ]
 };
 
+// HTML extra por tramo (contenido ya en la página, sin modelos matemáticos)
+const EXTRA_HTML = {
+  'Bonos Soberanos USD': `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">BONOS DEL TRAMO</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid #22A055">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
+          <span style="font-weight:700;color:var(--a)">GD35 / GD41</span>
+          <span style="font-size:9px;color:#22A055;border:1px solid rgba(34,160,85,.4);padding:.15rem .5rem;border-radius:2px">OVERWEIGHT</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Mariva · Grupo SBS &nbsp;·&nbsp; <strong style="color:#22A055">~12% upside · TIR 9.8%</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Upgrade Fitch CCC+ → B-. EMBI+ en 515 bps con margen de compresión hacia 300 bps. Tramo largo captura mayor duration.</div>
+      </div>
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--cyan)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
+          <span style="font-weight:700;color:var(--a)">AO27</span>
+          <span style="font-size:9px;color:var(--cyan);border:1px solid rgba(0,176,204,.4);padding:.15rem .5rem;border-radius:2px">CONSERVADOR</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Grupo SBS &nbsp;·&nbsp; <strong style="color:#22A055">TIR 5.12% · Renta mensual</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Perfil conservador dentro del tramo soberano. Precio máximo USD 1.016,66. Cupón mensual en USD.</div>
+      </div>
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--a)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
+          <span style="font-weight:700;color:var(--a)">AN29 / AO28</span>
+          <span style="font-size:9px;color:var(--a);border:1px solid rgba(212,188,0,.4);padding:.15rem .5rem;border-radius:2px">TRAMO CORTO</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Banco Comafi &nbsp;·&nbsp; <strong style="color:#22A055">8.5–8.9% TEA</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Preferencia tramo corto ante incertidumbre global. Menor duration = menor sensibilidad a tasas Fed.</div>
+      </div>
+    </div>`,
+
+  'ONs Corporativas': `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">¿QUÉ ES UNA ON?</div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1px">
+      Un préstamo que los inversores hacen directamente a una empresa. La empresa emite títulos, vos los comprás y te paga <strong style="color:var(--cyan)">intereses periódicos</strong> + devuelve el capital. Las de YPF, TGS y PAE pagan en <strong style="color:#22A055">hard dollar</strong> porque sus ingresos vienen de exportaciones O&G.
+    </div>
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1rem 0 .6rem">LAS 3 ONs DEL FONDO</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--orange)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">YPF ON 2027/2029</span>
+          <span style="font-size:13px;font-weight:700;color:#22A055">5.7–7% TEA</span>
+        </div>
+        <div style="font-size:9px;color:var(--t3);margin-bottom:.4rem">Yacimientos Petrolíferos Fiscales · Hard dollar · cupón semestral</div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6;margin-bottom:.4rem">Principal empresa O&G de Argentina. Exportaciones reales de Vaca Muerta (USD 4B+/año) respaldan el pago. SBS: <em>"puerta de entrada al boom energético en renta fija."</em></div>
+        <div style="padding:.4rem .7rem;background:rgba(34,160,85,.07);border:1px solid rgba(34,160,85,.2);font-size:9.5px;color:var(--t2)">"Le prestamos plata a la petrolera estatal que exporta dólares reales. Sin importar el tipo de cambio oficial."</div>
+      </div>
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--cyan)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">TGS ON 2027</span>
+          <span style="font-size:13px;font-weight:700;color:#22A055">7–9% TEA</span>
+        </div>
+        <div style="font-size:9px;color:var(--t3);margin-bottom:.4rem">Transportadora de Gas del Sur · RIGI aprobado · EBITDA récord USD 216M Q1 2026</div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6;margin-bottom:.4rem">Cobra por cada m³ que pasa por su gasoducto — no depende del precio del gas. Pipeline Perito Moreno (USD 700M, RIGI) + FID NGL próximo trimestre. Mariva: <em>target ADR USD 43.6</em></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);margin-bottom:.4rem">
+          <div style="background:var(--card);padding:.4rem .6rem;text-align:center"><div style="font-size:7px;color:var(--t4)">EBITDA Q1</div><div style="font-weight:700;color:#22A055">USD 216M</div></div>
+          <div style="background:var(--card);padding:.4rem .6rem;text-align:center"><div style="font-size:7px;color:var(--t4)">Pipeline</div><div style="font-weight:700;color:var(--cyan)">USD 700M</div></div>
+          <div style="background:var(--card);padding:.4rem .6rem;text-align:center"><div style="font-size:7px;color:var(--t4)">RIGI</div><div style="font-weight:700;color:var(--a)">30 años</div></div>
+        </div>
+        <div style="padding:.4rem .7rem;background:rgba(34,160,85,.07);border:1px solid rgba(34,160,85,.2);font-size:9.5px;color:var(--t2)">"No importa si el gas sube o baja — TGS cobra por cada m³. EBITDA récord y proyectos RIGI por 30 años."</div>
+      </div>
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid #22A055">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">PAE ON 2027</span>
+          <span style="font-size:13px;font-weight:700;color:#22A055">7–9% TEA</span>
+        </div>
+        <div style="font-size:9px;color:var(--t3);margin-bottom:.4rem">Pan American Energy · BP (40%) + Bridas (60%) · empresa 100% privada</div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6;margin-bottom:.4rem">Segunda petrolera privada de Argentina. Sin riesgo político (no estatal). BP como socio garantía implícita. Vence antes de elecciones 2027 — evita descuento electoral. Reservas probadas 15+ años.</div>
+        <div style="padding:.4rem .7rem;background:rgba(34,160,85,.07);border:1px solid rgba(34,160,85,.2);font-size:9.5px;color:var(--t2)">"Socia de BP, vence antes de las elecciones, la ON más defensiva del tramo corporativo."</div>
+      </div>
+    </div>`,
+
+  'Bonos CER': `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">LADDER DE DURATION — 3 BONOS CER</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--a)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">TZXO6 <span style="font-weight:400;font-size:9px;color:var(--t3)">· vto. oct 2026</span></span>
+          <span style="font-size:9px;color:var(--a);border:1px solid rgba(212,188,0,.4);padding:.15rem .5rem;border-radius:2px">POSICIÓN CENTRAL</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Balanz Capital · IEB Research &nbsp;·&nbsp; <strong style="color:#22A055">CER + 5%</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Favorito cash mgmt. Combina protección CER y cambiaria hasta oct 2026. TAMAR +2.3%, breakeven TAMAR zona 22.8%. Alta liquidez en mercado secundario.</div>
+      </div>
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid #888">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">TZXD6 <span style="font-weight:400;font-size:9px;color:var(--t3)">· vto. dic 2026</span></span>
+          <span style="font-size:9px;color:#aaa;border:1px solid rgba(150,150,150,.4);padding:.15rem .5rem;border-radius:2px">LADDER</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Research institucional &nbsp;·&nbsp; <strong style="color:#22A055">CER + 6.5%</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Eslabón entre TZXO6 y TZXS8. +150 bps vs TZXO6 con solo 2 meses extra de duration. Completa el ladder para flujo en oct y dic 2026.</div>
+      </div>
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid #22A055">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">TZXS8 <span style="font-weight:400;font-size:9px;color:var(--t3)">· vto. sep 2028</span></span>
+          <span style="font-size:9px;color:#22A055;border:1px solid rgba(34,160,85,.4);padding:.15rem .5rem;border-radius:2px">COMPRA</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Bull Capital · Facimex Valores &nbsp;·&nbsp; <strong style="color:#22A055">CER + 8.3%</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">+300 bps sobre alternativas cortas. Menos de 1 año extra de duration por 300 bps más. Facimex: descuenta tasas reales extremas pre-elección 2027.</div>
+      </div>
+    </div>`,
+
+  'Bonos Provinciales': `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">BONOS DEL TRAMO · +80-120 bps vs soberanos</div>
+    <div style="display:flex;flex-direction:column;gap:1px">
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid #22A055">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">SFD34 — Santa Fe</span>
+          <span style="font-size:9px;color:#22A055;border:1px solid rgba(34,160,85,.4);padding:.15rem .5rem;border-radius:2px">TOP PICK</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Facimex Valores &nbsp;·&nbsp; <strong style="color:#22A055">Z+448 bps · +15%</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Santa Fe tiene <strong>deuda neta NEGATIVA</strong> — única provincia con más activos que pasivos. Liquidez 1.4× el stock de deuda. Máxima calidad sub-soberana.</div>
+      </div>
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--a)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">CO29 / PMM29</span>
+          <span style="font-size:9px;color:var(--a);border:1px solid rgba(212,188,0,.4);padding:.15rem .5rem;border-radius:2px">ROTACIÓN</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Facimex Valores &nbsp;·&nbsp; <strong style="color:#22A055">+80-120 bps vs soberanos</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Córdoba y Mendoza: finanzas sólidas y superávit fiscal sostenido. Mayor current yield con menor volatilidad que soberanos.</div>
+      </div>
+      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--cyan)">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+          <span style="font-weight:700;color:var(--a)">BOCADE — Chubut</span>
+          <span style="font-size:9px;color:var(--cyan);border:1px solid rgba(0,176,204,.4);padding:.15rem .5rem;border-radius:2px">GARANTIZADO</span>
+        </div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">BTG Pactual &nbsp;·&nbsp; <strong style="color:#22A055">Garantía regalías O&G</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Fideicomiso sobre regalías hidrocarburíferas — no pasan por caja fiscal. En reestructuraciones 2020/21 perdió solo 11% VPN. Nueva emisión USD 450-600M en evaluación.</div>
+      </div>
+    </div>`,
+
+  'CEDEARs EE.UU.': `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .5rem">¿POR QUÉ CEDEARs Y NO COMPRA DIRECTA EN NYSE?</div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1px">
+      Los CEDEARs permiten invertir en acciones del NYSE desde Argentina, en pesos, sin necesitar cuenta en el exterior. Además cotizan al dólar MEP implícito — son <strong style="color:var(--a)">cobertura cambiaria automática</strong>. Si el dólar sube, el CEDEAR sube en pesos.
+    </div>
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1rem 0 .5rem">TENDENCIA PRINCIPAL: INTELIGENCIA ARTIFICIAL</div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7">
+      <strong style="color:var(--a)">NVDA, AVGO, META, MSFT, AMZN</strong> son los principales beneficiarios del ciclo de IA. El portafolio captura la tendencia estructural más importante de la década: los modelos de lenguaje, data centers y cloud computing. Research de Santander Private Banking y PULSO: upside promedio <strong style="color:#22A055">+37%</strong> según consenso.
+    </div>`,
+
+  'Acciones ARG': `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .5rem">TENDENCIA PRINCIPAL: NORMALIZACIÓN MACRO ARGENTINA</div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1px">
+      Las acciones argentinas tienen <strong style="color:var(--a)">beta negativo vs S&P500</strong> — cuando EE.UU. cae, ARG no necesariamente cae igual. Eso las convierte en <strong style="color:#22A055">diversificación genuina</strong>. Catalizador clave: upgrade MSCI de Frontier a Emerging Markets obligaría a fondos globales a comprar acciones argentinas.
+    </div>
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1rem 0 .5rem">VACA MUERTA — EL CATALIZADOR ESTRUCTURAL</div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7">
+      <strong style="color:var(--a)">VIST y YPF</strong> son los principales operadores de Vaca Muerta — segunda reserva de shale gas del mundo. Producción +35% YoY. <strong style="color:var(--a)">GGAL y BMA</strong> son los bancos que financian el crecimiento económico post-normalización. JPMorgan los tiene como top picks para el upgrade MSCI.
+    </div>`,
+
+  'Dólar Futuro': `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .5rem">¿QUÉ ES UN CONTRATO DE DÓLAR FUTURO?</div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1px">
+      Un acuerdo para comprar o vender dólares a un precio fijo en una fecha futura. El <strong style="color:var(--a)">DLR102026</strong> fija el tipo de cambio a <strong style="color:#22A055">$1.572</strong> para octubre 2026. Si el dólar sube más, el fondo gana en esta posición — funciona como seguro cambiario.
+    </div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7">
+      <strong style="color:var(--t1)">¿Por qué solo 2%?</strong> Es una <strong style="color:var(--a)">cobertura de cola</strong>, no una apuesta especulativa. El 2% protege al fondo ante un shock cambiario inesperado sin reducir significativamente el retorno esperado. Costo bajo, beneficio asimétrico en escenario de stress.
+    </div>`,
+
+  'Liquidez': `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .5rem">FUNCIÓN EN EL FONDO</div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1px">
+      La CNV exige que los FCIs de renta mixta mantengan un mínimo de liquidez para cubrir rescates en <strong style="color:var(--a)">24 horas hábiles</strong>. El 3% en caución overnight al 20% TNA cumple ese requisito mientras genera retorno positivo.
+    </div>
+    <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7">
+      <strong style="color:var(--t1)">Rol táctico:</strong> También es el buffer para <strong style="color:var(--a)">rebalanceos</strong>. Si una posición supera el límite del 15% CNV por apreciación, la liquidez permite ajustar sin necesidad de vender a precios desfavorables.
+    </div>`
+};
+
 function showDetail(label) {
   const d  = ACTIVOS_DATA[label];
   const c  = d.color;
@@ -1746,6 +1915,8 @@ function showDetail(label) {
     </div>
     ${rows}
     ` : ''}
+
+    ${EXTRA_HTML[label] || ''}
   `;
 }
 
