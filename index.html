@@ -1744,6 +1744,67 @@ const EXTRA_HTML = {
       </div>
 
     </div>
+    <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.innerHTML=this.innerHTML.includes('▼')?'▲  Ocultar resumen':'▼  📚 Resumen para estudiar'"
+      style="width:100%;background:rgba(0,176,204,.05);border:1px dashed rgba(0,176,204,.4);color:var(--cyan);font-family:Inter,sans-serif;font-size:10px;font-weight:700;padding:.7rem 1rem;cursor:pointer;text-align:left;letter-spacing:.06em;border-radius:2px;margin:1rem 0 .5rem">
+      ▼  📚 Resumen para estudiar
+    </button>
+    <div style="display:none;background:var(--bg3);padding:1.2rem;border:1px solid rgba(0,176,204,.15);border-radius:2px;margin-bottom:1rem">
+
+      <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--cyan);margin-bottom:.8rem">¿QUÉ SON LOS BONOS SOBERANOS?</div>
+      <div style="font-size:10px;color:var(--t2);line-height:1.8;margin-bottom:1rem">
+        Son deuda que emite el <strong style="color:var(--t1)">Estado Nacional</strong> y se negocia en mercados internacionales denominada en <strong style="color:#22A055">dólares (hard dollar)</strong>. El inversor le presta dinero al gobierno y este paga <strong style="color:var(--cyan)">cupones periódicos</strong> (intereses) + devuelve el capital al vencimiento. Al cotizar en el mercado secundario, su <strong style="color:var(--a)">precio fluctúa</strong> según confianza en el país.
+      </div>
+
+      <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--cyan);margin-bottom:.6rem">CONCEPTOS CLAVE</div>
+      <div style="display:flex;flex-direction:column;gap:1px;margin-bottom:1rem">
+
+        <div style="background:var(--card);padding:.7rem .9rem;border-left:2px solid var(--cyan)">
+          <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:.2rem">TIR — Tasa Interna de Retorno</div>
+          <div style="font-size:9.5px;color:var(--t2);line-height:1.6">El rendimiento <em>anual en USD</em> que obtenés si comprás hoy y mantenés hasta el vencimiento. GD35 ≈ <strong style="color:#22A055">9.5% TIR</strong> — es lo que "te rinde" el bono si lo llevás a término. Cuanto más bajo el precio, mayor la TIR.</div>
+        </div>
+
+        <div style="background:var(--card);padding:.7rem .9rem;border-left:2px solid var(--a)">
+          <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:.2rem">Duration / Tramo largo vs corto</div>
+          <div style="font-size:9.5px;color:var(--t2);line-height:1.6"><strong style="color:var(--a)">Duration</strong> = sensibilidad al cambio de tasas. Un bono a 2030 (corto) baja 3% si las tasas suben 1%. Uno a 2035 (largo) baja 8%. <strong>Mayor plazo = mayor upside si las tasas bajan, mayor riesgo si suben.</strong></div>
+        </div>
+
+        <div style="background:var(--card);padding:.7rem .9rem;border-left:2px solid #22A055">
+          <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:.2rem">EMBI+ / Riesgo País</div>
+          <div style="font-size:9.5px;color:var(--t2);line-height:1.6">El <strong style="color:#22A055">EMBI+ Argentina</strong> mide cuánto spread extra paga Argentina vs. un bono del Tesoro de EE.UU. Estaba en <strong>515 bps</strong> (5.15% extra). Si comprime a <strong>300 bps</strong> (como proyecta Mariva), el precio de los Globales sube ~12%. Un país más confiable = menor EMBI = precio más alto.</div>
+        </div>
+
+        <div style="background:var(--card);padding:.7rem .9rem;border-left:2px solid #E03020">
+          <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:.2rem">Upgrade de calificadora (Fitch: CCC+ → B-)</div>
+          <div style="font-size:9.5px;color:var(--t2);line-height:1.6">Las calificadoras (Fitch, Moody's, S&P) ponen nota al país. Cuando Argentina subió de <strong style="color:#E03020">CCC+</strong> a <strong style="color:#22A055">B-</strong> en 2025, miles de fondos institucionales que tenían prohibido comprar CCC <strong>de repente pudieron comprar</strong> — más compradores = precio sube. BofA lo llamó el catalizador más importante del año.</div>
+        </div>
+
+        <div style="background:var(--card);padding:.7rem .9rem;border-left:2px solid var(--a)">
+          <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:.2rem">Globales (GD) vs Bonares (AL)</div>
+          <div style="font-size:9.5px;color:var(--t2);line-height:1.6"><strong style="color:var(--cyan)">GD (Globales)</strong> = emitidos bajo ley extranjera (NY). Más protección legal para el inversor, pagan más (9.5% TIR). <strong style="color:var(--a)">AL (Bonares)</strong> = ley argentina. Pagan menos (7.7%) pero son más cortos. Ambos liquidan en <strong>hard dollar</strong> (pago real en USD).</div>
+        </div>
+
+        <div style="background:var(--card);padding:.7rem .9rem;border-left:2px solid #888">
+          <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:.2rem">¿Dónde se compran? MEP vs Cable</div>
+          <div style="font-size:9.5px;color:var(--t2);line-height:1.6">En Argentina se compran con <strong style="color:var(--a)">pesos (AL30)</strong> o con <strong style="color:#22A055">dólares cable (GD35)</strong>. El <strong>tipo de cambio MEP</strong> es el implícito en esa operación. Si el MEP sube y el bono en USD se mantiene, el retorno medido en pesos es mayor.</div>
+        </div>
+
+      </div>
+
+      <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--cyan);margin-bottom:.6rem">¿POR QUÉ EL FONDO TIENE 13% ACÁ?</div>
+      <div style="background:rgba(0,176,204,.05);border:1px solid rgba(0,176,204,.2);padding:.8rem 1rem;font-size:9.5px;color:var(--t2);line-height:1.8">
+        <div style="margin-bottom:.4rem">✅ <strong style="color:var(--t1)">Renta en dólares reales</strong> — los cupones se cobran en USD, independiente del tipo de cambio oficial</div>
+        <div style="margin-bottom:.4rem">✅ <strong style="color:var(--t1)">Upside de precio</strong> — si el EMBI comprime de 515 a 300 bps, los Globales suben ~12% adicional al cupón</div>
+        <div style="margin-bottom:.4rem">✅ <strong style="color:var(--t1)">Diversificación</strong> — baja correlación con acciones argentinas y CEDEARs</div>
+        <div>⚠️ <strong style="color:#E03020">Riesgo electoral 2027</strong> — por eso se limita a 13% y se complementa con AL30 (vence antes)</div>
+      </div>
+
+      <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--cyan);margin:.9rem 0 .6rem">PREGUNTA DE EXAMEN</div>
+      <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.8rem 1rem;font-size:9.5px;color:var(--t2);line-height:1.8">
+        <strong style="color:var(--a)">¿Por qué elegiste GD35 y no solo AL30?</strong><br>
+        "GD35 paga TIR de 9.5% bajo ley NY con mayor protección legal. Si el EMBI comprime de 515 a 300 bps — consistente con el upgrade Fitch a B- — el precio sube ~12% adicional al cupón. AL30 complementa con menor duration para reducir sensibilidad al riesgo electoral 2027."
+      </div>
+
+    </div>
     <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">BONOS DEL TRAMO</div>
     <div style="display:flex;flex-direction:column;gap:1px">
       <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid #22A055">
