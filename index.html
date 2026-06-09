@@ -1705,6 +1705,45 @@ const TRAMO_DETAIL = {
 // HTML extra por tramo (contenido ya en la página, sin modelos matemáticos)
 const EXTRA_HTML = {
   'Bonos Soberanos USD': `
+    <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.innerHTML=this.innerHTML.includes('▼')?'▲  Ocultar recomendaciones':'▼  Recomendaciones detalladas — GD35 · AL30'"
+      style="width:100%;background:rgba(0,176,204,.08);border:1px solid rgba(0,176,204,.35);color:var(--cyan);font-family:Inter,sans-serif;font-size:10px;font-weight:700;padding:.7rem 1rem;cursor:pointer;text-align:left;letter-spacing:.06em;border-radius:2px;margin:1rem 0 .5rem">
+      ▼  Recomendaciones detalladas — GD35 · AL30
+    </button>
+    <div style="display:none">
+
+      <!-- GD35 -->
+      <div style="background:var(--bg3);border-left:3px solid var(--cyan);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(0,176,204,.12);border:1px solid rgba(0,176,204,.3);color:var(--cyan);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">GD35</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Global Argentina 2035</div>
+          <div style="font-size:9px;color:var(--t3)">Tramo largo · TIR ~9.5% USD · Upside proyectado +12% precio · Overweight</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Overweight soberanos argentinos. El upgrade Fitch expande masivamente el pool de inversores elegibles. Trade concreto: entrada 84,5, objetivo 92,0."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— BofA Securities</span></blockquote>
+        <div style="background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.15);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--cyan)">En simple:</strong> BofA no solo dice compren — dice exactamente a qué precio entrar y vender. Upside 8.9% de precio más el cupón de 9.5%.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Proyectamos upside de 12% en GD35/GD41 bajo normalización a B- con yield objetivo de 8%. Los Globales subieron hasta 2,8% en la semana del upgrade de Fitch."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Mariva</span></blockquote>
+        <div style="background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.15);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--cyan)">En simple:</strong> Si el yield comprime de 9.5% a 8% — consistente con rating B- — el precio sube 12%. Y eso ya empezó.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Retornos directos a dic-26: 27-31% asumiendo MEP constante, 48-55% asumiendo ajuste ITCRM. Horizonte limitado — 2027 será año de tensión."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Parakeet Capital</span></blockquote>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL</div><div style="font-size:15px;font-weight:800;color:#22A055">+21-22%</div><div style="font-size:9px;color:#22A055">USD año 1</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE</div><div style="font-size:15px;font-weight:800;color:var(--a)">+12%</div><div style="font-size:9px;color:var(--a)">precio + cupón</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR</div><div style="font-size:15px;font-weight:800;color:#E03020">~0%</div><div style="font-size:9px;color:#E03020">solo cupón</div></div>
+        </div>
+      </div>
+
+      <!-- AL30 -->
+      <div style="background:var(--bg3);border-left:3px solid var(--cyan);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(0,176,204,.12);border:1px solid rgba(0,176,204,.3);color:var(--cyan);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">AL30</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Bonar Argentina 2030</div>
+          <div style="font-size:9px;color:var(--t3)">Tramo corto-medio · TIR ~7.7% USD · Menor riesgo electoral</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Exposición balanceada entre AL30 y GD35. AL30 ofrece menor sensibilidad al riesgo electoral 2027 con yield atractivo de 7,7%."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— IEB Research</span></blockquote>
+        <div style="background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.15);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--cyan)">En simple:</strong> IEB tiene exactamente la misma combinación que el fondo: AL30 + GD35. AL30 da estabilidad, GD35 da upside.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"AL30 en 7,7% ofrece el mejor balance del universo soberano. A medida que los Globales se acercan al 9%, el riesgo-retorno se vuelve asimétrico."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Banco Comafi</span></blockquote>
+        <div style="background:rgba(0,176,204,.06);border:1px solid rgba(0,176,204,.15);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6"><strong style="color:var(--cyan)">En simple:</strong> AL30 es el punto dulce del universo soberano — paga suficiente sin asumir el riesgo extra del tramo largo.</div>
+      </div>
+
+    </div>
     <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">BONOS DEL TRAMO</div>
     <div style="display:flex;flex-direction:column;gap:1px">
       <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid #22A055">
@@ -1734,6 +1773,11 @@ const EXTRA_HTML = {
     </div>`,
 
   'ONs Corporativas': `
+    <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.innerHTML=this.innerHTML.includes('▼')?'▲  Ocultar recomendaciones':'▼  Recomendaciones detalladas — YPF ON · TGS ON · PAE ON'"
+      style="width:100%;background:rgba(224,96,0,.08);border:1px solid rgba(224,96,0,.35);color:var(--orange);font-family:Inter,sans-serif;font-size:10px;font-weight:700;padding:.7rem 1rem;cursor:pointer;text-align:left;letter-spacing:.06em;border-radius:2px;margin:1rem 0 .5rem">
+      ▼  Recomendaciones detalladas — YPF ON · TGS ON · PAE ON
+    </button>
+    <div style="display:none">
     <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">¿QUÉ ES UNA ON?</div>
     <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1px">
       Un préstamo que los inversores hacen directamente a una empresa. La empresa emite títulos, vos los comprás y te paga <strong style="color:var(--cyan)">intereses periódicos</strong> + devuelve el capital. Las de YPF, TGS y PAE pagan en <strong style="color:#22A055">hard dollar</strong> porque sus ingresos vienen de exportaciones O&G.
@@ -1772,9 +1816,54 @@ const EXTRA_HTML = {
         <div style="font-size:10px;color:var(--t2);line-height:1.6;margin-bottom:.4rem">Segunda petrolera privada de Argentina. Sin riesgo político (no estatal). BP como socio garantía implícita. Vence antes de elecciones 2027 — evita descuento electoral. Reservas probadas 15+ años.</div>
         <div style="padding:.4rem .7rem;background:rgba(34,160,85,.07);border:1px solid rgba(34,160,85,.2);font-size:9.5px;color:var(--t2)">"Socia de BP, vence antes de las elecciones, la ON más defensiva del tramo corporativo."</div>
       </div>
+    </div>
     </div>`,
 
   'Bonos CER': `
+    <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.innerHTML=this.innerHTML.includes('▼')?'▲  Ocultar recomendaciones':'▼  Recomendaciones detalladas — TZXO6 · TZXD6 · TZXS8'"
+      style="width:100%;background:rgba(155,93,229,.08);border:1px solid rgba(155,93,229,.35);color:#9B5DE5;font-family:Inter,sans-serif;font-size:10px;font-weight:700;padding:.7rem 1rem;cursor:pointer;text-align:left;letter-spacing:.06em;border-radius:2px;margin:1rem 0 .5rem">
+      ▼  Recomendaciones detalladas — TZXO6 · TZXD6 · TZXS8
+    </button>
+    <div style="display:none">
+
+      <!-- TZXO6 -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">TZXO6</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Boncer Octubre 2026</div>
+          <div style="font-size:9px;color:var(--t3)">Tramo corto · TIR proyectada ~29.5% ARS · Rol: liquidez + cobertura inflacionaria</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"TZXO6 con cobertura Rofex como posición central. Mejor vehículo de manejo de liquidez en pesos del universo actual."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Balanz Capital</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> Balanz lo tiene como apuesta número uno en pesos. Paga más que Lecaps y protege de la inflación al mismo tiempo.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"TIR proyectada de Bonceres fin 2026 en torno al 29,5% anual, superior a tasa fija y TAMAR comparables. Inflación implícita 30% vs proyección 32%."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Parakeet Capital</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6"><strong style="color:var(--a)">En simple:</strong> 29.5% proyectado vs TAMAR 23.1%. Más de <strong>6 puntos por encima</strong> de la tasa de referencia. Ejemplo: $100.000 → <strong style="color:#22A055">~$114.750</strong> vs $111.550 en TAMAR.</div>
+      </div>
+
+      <!-- TZXD6 -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">TZXD6</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Boncer Diciembre 2026</div>
+          <div style="font-size:9px;color:var(--t3)">Tramo corto · Vto dic 2026 · Puente de duration — eslabón intermedio del ladder</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Barbell CER: TX26 + TZXD6 + TZXS8. TZXD6 como posición intermedia en el ladder de duration CER. CER puros ofrecen 400 bps más que duales."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— PPI</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> PPI usa TZXD6 como escalón del medio. Conecta los vencimientos cortos con los más largos. Los CER puros pagan 4% más que los duales.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Break-even de inflación bajó 447 bps a 26,5%. Proyección propia 21,4%. Ese diferencial es margen de seguridad para CER cortos incluso en desinflación acelerada."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Facimex Valores</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6"><strong style="color:var(--a)">En simple:</strong> En cualquier escenario razonable los CER cortos le ganan a la TAMAR. Ejemplo: $100.000 → capital ajustado ~$118.000 → <strong style="color:#22A055">~$119.770</strong> final.</div>
+      </div>
+
+      <!-- TZXS8 -->
+      <div style="background:var(--bg3);border-left:3px solid #22A055;padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(34,160,85,.12);border:1px solid rgba(34,160,85,.3);color:#22A055;font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">TZXS8</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Boncer Septiembre 2028</div>
+          <div style="font-size:9px;color:var(--t3)">Tramo largo · CER + 8.3% · +300 bps sobre alternativas de menor duration</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"+300 bps de rendimiento con menos de 1 año extra de duration. Descuenta tasas reales extremas pre-elección 2027."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Bull Capital · Facimex Valores</span></blockquote>
+        <div style="background:rgba(34,160,85,.06);border:1px solid rgba(34,160,85,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6"><strong style="color:#22A055">En simple:</strong> Paga 300 bps más que el tramo corto con solo meses extra de plazo. El mercado sobreestima el riesgo pre-2027 — eso crea la oportunidad.</div>
+      </div>
+
+    </div>
     <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">LADDER DE DURATION — 3 BONOS CER</div>
     <div style="display:flex;flex-direction:column;gap:1px">
       <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--a)">
@@ -1804,6 +1893,48 @@ const EXTRA_HTML = {
     </div>`,
 
   'Bonos Provinciales': `
+    <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.innerHTML=this.innerHTML.includes('▼')?'▲  Ocultar recomendaciones':'▼  Recomendaciones detalladas — SFD34 · CO29'"
+      style="width:100%;background:rgba(34,160,85,.08);border:1px solid rgba(34,160,85,.35);color:#22A055;font-family:Inter,sans-serif;font-size:10px;font-weight:700;padding:.7rem 1rem;cursor:pointer;text-align:left;letter-spacing:.06em;border-radius:2px;margin:1rem 0 .5rem">
+      ▼  Recomendaciones detalladas — SFD34 · CO29
+    </button>
+    <div style="display:none">
+
+      <!-- SFD34 -->
+      <div style="background:var(--bg3);border-left:3px solid #22A055;padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(34,160,85,.12);border:1px solid rgba(34,160,85,.3);color:#22A055;font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">SFD34</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Santa Fe 2034</div>
+          <div style="font-size:9px;color:var(--t3)">Precio $157.480 ARS · Paridad 100.4% · TIR 8.19% USD · Duration 4.85 · Venc. 11/12/2034</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"En el tramo largo provincial recomendamos Córdoba 35, Santa Fe 34 y Córdoba 32. Estos instrumentos ofrecen valor relativo superior a soberanos de duration comparable."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Facimex Valores</span></blockquote>
+        <div style="background:rgba(34,160,85,.06);border:1px solid rgba(34,160,85,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:#22A055">En simple:</strong> Facimex pone SFD34 en su lista corta de 3 bonos largos recomendados. Santa Fe pasó el filtro más estricto del mercado.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Los bonos provinciales de alta calidad como Santa Fe 34 han comprimido históricamente antes que los soberanos en ciclos de mejora crediticia."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— GMA Capital</span></blockquote>
+        <div style="background:rgba(34,160,85,.06);border:1px solid rgba(34,160,85,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:#22A055">En simple:</strong> En ciclos anteriores de mejora, los provinciales de calidad subieron antes que los soberanos. Si Argentina sigue mejorando, SFD34 captura el upside primero.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Santa Fe 34 presenta duration elevada que amplifica el beneficio de la compresión de spread. El upside de precio supera al de soberanos equivalentes."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Cohen Aliados Financieros</span></blockquote>
+        <div style="background:rgba(34,160,85,.06);border:1px solid rgba(34,160,85,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:#22A055">En simple:</strong> Duration 4.85 es el multiplicador. Cada 1% que baja el spread, el precio sube 4.85%. Escenario base: ~13% retorno total en USD año 1.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:rgba(224,48,32,.08);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">CONSERVADOR (-50 bps)</div><div style="font-size:13px;font-weight:800;color:#E03020">+10.5%</div><div style="font-size:9px;color:#E03020">retorno total USD</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (-100 bps)</div><div style="font-size:13px;font-weight:800;color:var(--a)">~13%</div><div style="font-size:9px;color:var(--a)">retorno total USD</div></div>
+          <div style="background:#0d2a1a;padding:.5rem .7rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (-200 bps)</div><div style="font-size:13px;font-weight:800;color:#22A055">~18%</div><div style="font-size:9px;color:#22A055">retorno total USD</div></div>
+        </div>
+      </div>
+
+      <!-- CO29 -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">CO29</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Córdoba 2029</div>
+          <div style="font-size:9px;color:var(--t3)">Tramo corto-medio · ~7.5-8% USD · Menor riesgo electoral · Superávit fiscal sostenido</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Recomendamos rotar desde GD29/GD30 hacia Córdoba 29 para ganar current yield y reducir volatilidad."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Facimex Valores</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> Facimex dice CO29 paga más que el soberano del mismo plazo con menor volatilidad. Más rendimiento, menos riesgo.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"CO29 ofrece mejor relación riesgo-retorno para exposición provincial con menor duration. Córdoba tiene superávit fiscal y estructura de gasto flexible."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— IEB Research</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> IEB lo recomienda porque tiene el plazo justo y Córdoba puede ajustar su gasto si la economía cambia.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Córdoba es candidata probable para nueva emisión internacional por su superávit fiscal y royalties hidrocarburíferas crecientes."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Mariva</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6"><strong style="color:var(--a)">En simple:</strong> Si Córdoba emite deuda nueva en 2026, el precio de los bonos viejos sube automáticamente por benchmarking.</div>
+      </div>
+
+    </div>
     <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .6rem">BONOS DEL TRAMO · +80-120 bps vs soberanos</div>
     <div style="display:flex;flex-direction:column;gap:1px">
       <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid #22A055">
@@ -1825,6 +1956,143 @@ const EXTRA_HTML = {
     </div>`,
 
   'CEDEARs EE.UU.': `
+    <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.innerHTML=this.innerHTML.includes('▼')?'▲  Ocultar recomendaciones':'▼  Recomendaciones detalladas — MA · NVDA · AMZN · META · LLY · AVGO · MSFT · XOM'"
+      style="width:100%;background:rgba(212,188,0,.08);border:1px solid rgba(212,188,0,.35);color:var(--a);font-family:Inter,sans-serif;font-size:10px;font-weight:700;padding:.7rem 1rem;cursor:pointer;text-align:left;letter-spacing:.06em;border-radius:2px;margin:1rem 0 .5rem">
+      ▼  Recomendaciones detalladas — MA · NVDA · AMZN · META · LLY · AVGO · MSFT · XOM
+    </button>
+    <div style="display:none">
+
+      <!-- MA -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">MA</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Mastercard</div>
+          <div style="font-size:9px;color:var(--t3)">Precio USD 494 · Peso 30.3% CEDEARs · Infraestructura financiera global</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Mastercard representa el negocio de infraestructura financiera más eficiente del mundo. Modelo asset-light protege de ciclos de crédito adversos. Precio objetivo: USD 580."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— JPMorgan</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> Dueña de la red de pagos — cobra el peaje de cada transacción. No presta dinero, no tiene riesgo de impago. Y con digitalización global el peaje se cobra más veces cada año.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Overweight MA. Estimamos crecimiento de EPS de 15-18% anual para 2026-2028."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Morgan Stanley</span></blockquote>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL</div><div style="font-size:14px;font-weight:800;color:#22A055">USD 620</div><div style="font-size:9px;color:#22A055">+25.5%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (JPM)</div><div style="font-size:14px;font-weight:800;color:var(--a)">USD 580</div><div style="font-size:9px;color:var(--a)">+17.4%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR</div><div style="font-size:14px;font-weight:800;color:#E03020">USD 440</div><div style="font-size:9px;color:#E03020">-10.9%</div></div>
+        </div>
+      </div>
+
+      <!-- NVDA -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">NVDA</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Nvidia</div>
+          <div style="font-size:9px;color:var(--t3)">Precio USD 216 · Peso 19.6% CEDEARs · Monopolio de facto en GPUs para IA</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Monopolio de facto en GPUs para IA. Transición hacia chips de inferencia representa el próximo vector de crecimiento. Precio objetivo: USD 280."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— JPMorgan</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> No tiene competidor real en el negocio más importante del mundo hoy. El mercado de data centers de IA pasa de USD 150.000M a USD 500.000M en 2028 y Nvidia captura 70-80%.</div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Mercado chino de IA representa USD 50.000M bloqueados por restricciones. Cualquier flexibilización generaría salto de 15-20%."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Morgan Stanley</span></blockquote>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (China)</div><div style="font-size:14px;font-weight:800;color:#22A055">USD 320</div><div style="font-size:9px;color:#22A055">+48.1%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (JPM)</div><div style="font-size:14px;font-weight:800;color:var(--a)">USD 280</div><div style="font-size:9px;color:var(--a)">+29.6%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (capex)</div><div style="font-size:14px;font-weight:800;color:#E03020">USD 160</div><div style="font-size:9px;color:#E03020">-25.9%</div></div>
+        </div>
+      </div>
+
+      <!-- AMZN -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">AMZN</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Amazon</div>
+          <div style="font-size:9px;color:var(--t3)">Precio USD 272 · Peso 14.5% CEDEARs · AWS + Publicidad digital</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"AWS genera más del 60% del beneficio operativo con márgenes del 38%. Integración de IA en AWS posiciona a Amazon para capturar gasto empresarial en IA cloud. Precio objetivo: USD 340."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Goldman Sachs</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> AWS genera 60% de las ganancias siendo solo 17% de los ingresos. Márgenes altísimos + IA integrada. El negocio de publicidad digital crece 19% YoY con márgenes del 50%.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (GS)</div><div style="font-size:14px;font-weight:800;color:#22A055">USD 340</div><div style="font-size:9px;color:#22A055">+25%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (JPM)</div><div style="font-size:14px;font-weight:800;color:var(--a)">USD 320</div><div style="font-size:9px;color:var(--a)">+17.6%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (antitrust)</div><div style="font-size:14px;font-weight:800;color:#E03020">USD 220</div><div style="font-size:9px;color:#E03020">-19.1%</div></div>
+        </div>
+      </div>
+
+      <!-- META -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">META</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Meta Platforms</div>
+          <div style="font-size:9px;color:var(--t3)">Precio USD 628 · Peso 11.2% CEDEARs · 3.200M usuarios activos diarios</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Retorno sobre inversión publicitaria más alto del ecosistema. IA generativa para anuncios automatizados expande el mercado total. Precio objetivo: USD 750."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Morgan Stanley</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> Usando IA para que cualquier empresa cree anuncios efectivos automáticamente. Reels, Threads y WhatsApp Business todavía en etapas tempranas de monetización — cuando lo hagan, las ganancias dan un salto.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (MS)</div><div style="font-size:14px;font-weight:800;color:#22A055">USD 750</div><div style="font-size:9px;color:#22A055">+19.4%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (GS)</div><div style="font-size:14px;font-weight:800;color:var(--a)">USD 720</div><div style="font-size:9px;color:var(--a)">+14.6%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (EU reg)</div><div style="font-size:14px;font-weight:800;color:#E03020">USD 520</div><div style="font-size:9px;color:#E03020">-17.2%</div></div>
+        </div>
+      </div>
+
+      <!-- LLY -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">LLY</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Eli Lilly</div>
+          <div style="font-size:9px;color:var(--t3)">Precio USD 1.096 · Peso 9.8% CEDEARs · Duopolio GLP-1 con Novo Nordisk</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Mercado GLP-1 pasará de USD 24.000M a USD 130.000M en 2030. Lilly captura 45-50% con Mounjaro y Zepbound. Precio objetivo: USD 1.350."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— JPMorgan</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> El mercado de medicamentos para obesidad se multiplica por 5 en 6 años y Lilly tiene la mitad. Solo dos empresas en el mundo pueden fabricarlos a escala — duopolio en mercado que crece 40% anual.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (MS)</div><div style="font-size:14px;font-weight:800;color:#22A055">USD 1.400</div><div style="font-size:9px;color:#22A055">+27.7%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (JPM)</div><div style="font-size:14px;font-weight:800;color:var(--a)">USD 1.350</div><div style="font-size:9px;color:var(--a)">+23.2%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (precios)</div><div style="font-size:14px;font-weight:800;color:#E03020">USD 900</div><div style="font-size:9px;color:#E03020">-17.9%</div></div>
+        </div>
+      </div>
+
+      <!-- AVGO -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">AVGO</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Broadcom</div>
+          <div style="font-size:9px;color:var(--t3)">Precio USD 422 · Peso 8.5% CEDEARs · ASICs personalizados para hiperescaladores</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Combinación más atractiva de semiconductores + software. Contratos ASIC con Google, Apple y Meta garantizan demanda a 3-5 años. Precio objetivo: USD 520."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Morgan Stanley</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> Tiene contratos firmados con Google, Meta y Apple para diseñarles chips personalizados. Clientes que no van a cambiar de proveedor fácilmente.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (MS)</div><div style="font-size:14px;font-weight:800;color:#22A055">USD 520</div><div style="font-size:9px;color:#22A055">+23.2%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (JPM)</div><div style="font-size:14px;font-weight:800;color:var(--a)">USD 500</div><div style="font-size:9px;color:var(--a)">+18.5%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (ciclo)</div><div style="font-size:14px;font-weight:800;color:#E03020">USD 340</div><div style="font-size:9px;color:#E03020">-19.4%</div></div>
+        </div>
+      </div>
+
+      <!-- MSFT -->
+      <div style="background:var(--bg3);border-left:3px solid var(--a);padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);color:var(--a);font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">MSFT</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Microsoft</div>
+          <div style="font-size:9px;color:var(--t3)">Precio USD 450 · Peso 5.7% CEDEARs · Azure + OpenAI integrado</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Azure crece 31% YoY. Integración de OpenAI en todos los productos crea flywheel de adopción de IA. Precio objetivo: USD 540."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Goldman Sachs</span></blockquote>
+        <div style="background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:var(--a)">En simple:</strong> Metió IA en absolutamente todo — cuanto más la gente lo usa, más dependientes se vuelven. Única mega-cap con exposición simultánea a cloud, IA, gaming y productividad.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (GS)</div><div style="font-size:14px;font-weight:800;color:#22A055">USD 540</div><div style="font-size:9px;color:#22A055">+20%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (JPM)</div><div style="font-size:14px;font-weight:800;color:var(--a)">USD 520</div><div style="font-size:9px;color:var(--a)">+15.6%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (antitrust)</div><div style="font-size:14px;font-weight:800;color:#E03020">USD 380</div><div style="font-size:9px;color:#E03020">-15.6%</div></div>
+        </div>
+      </div>
+
+      <!-- XOM -->
+      <div style="background:var(--bg3);border-left:3px solid #888;padding:1rem;margin-bottom:1px">
+        <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.7rem">
+          <div style="background:rgba(136,136,136,.12);border:1px solid rgba(136,136,136,.3);color:#aaa;font-weight:800;font-size:14px;padding:.3rem .8rem;border-radius:3px">XOM</div>
+          <div><div style="font-weight:700;color:var(--t1);font-size:12px">Exxon Mobil</div>
+          <div style="font-size:9px;color:var(--t3)">Precio USD 145 · Dividendo 3.4% · Free cash flow USD 35.000M anuales</div></div>
+        </div>
+        <blockquote style="border-left:2px solid var(--a);margin:0 0 .5rem;padding:.5rem .8rem;background:rgba(212,188,0,.04);font-size:10px;color:var(--t2);font-style:italic;line-height:1.6">"Con Brent USD 100+, genera free cash flow de USD 35.000M anuales. Precio objetivo: USD 175."<br><span style="color:var(--a);font-style:normal;font-size:9px;font-weight:600">— Goldman Sachs</span></blockquote>
+        <div style="background:rgba(136,136,136,.06);border:1px solid rgba(136,136,136,.2);padding:.5rem .8rem;font-size:9.5px;color:var(--t2);line-height:1.6;margin-bottom:.5rem"><strong style="color:#aaa">En simple:</strong> USD 35.000M de caja libre por año. Producción en Guyana a USD 25/barril vendida a USD 105 — margen de USD 80. Dividendo 3.4% — te pagan por tenerla.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)">
+          <div style="background:#0d2a1a;padding:.5rem;text-align:center"><div style="font-size:8px;color:#22A055;font-weight:700">BULL (Brent $120)</div><div style="font-size:14px;font-weight:800;color:#22A055">USD 195</div><div style="font-size:9px;color:#22A055">+37.9%</div></div>
+          <div style="background:rgba(212,188,0,.07);padding:.5rem;text-align:center"><div style="font-size:8px;color:var(--a);font-weight:700">BASE (GS)+div</div><div style="font-size:14px;font-weight:800;color:var(--a)">USD 175</div><div style="font-size:9px;color:var(--a)">+24.1%</div></div>
+          <div style="background:rgba(224,48,32,.08);padding:.5rem;text-align:center"><div style="font-size:8px;color:#E03020;font-weight:700">BEAR (Brent $70)</div><div style="font-size:14px;font-weight:800;color:#E03020">USD 115</div><div style="font-size:9px;color:#E03020">-17.3%</div></div>
+        </div>
+      </div>
+
+    </div>
     <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin:1.2rem 0 .5rem">¿POR QUÉ CEDEARs Y NO COMPRA DIRECTA EN NYSE?</div>
     <div style="background:var(--bg3);padding:.8rem 1rem;font-size:10px;color:var(--t2);line-height:1.7;margin-bottom:1px">
       Los CEDEARs permiten invertir en acciones del NYSE desde Argentina, en pesos, sin necesitar cuenta en el exterior. Además cotizan al dólar MEP implícito — son <strong style="color:var(--a)">cobertura cambiaria automática</strong>. Si el dólar sube, el CEDEAR sube en pesos.
