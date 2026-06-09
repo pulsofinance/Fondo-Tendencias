@@ -1585,8 +1585,8 @@ const ACTIVOS_DATA = {
     pct: 7, color: '#9B5DE5',
     tipo: 'Renta Fija ARS',
     banco: 'Balanz · Bull Capital · BofA · Facimex',
-    why: 'Cobertura contra inflación argentina. CER + 5-8.3% de retorno real. TZXS8 con +300 bps vs alternativas de menor duration.',
-    ret: 'CER + 6% real (~35% ARS)',
+    why: 'Cobertura contra inflación argentina con ladder de duration. TZXO6 y TZXD6 para liquidez de corto plazo, TZXS8 para capturar tasas reales altas pre-elección 2027. CER + 5% a CER + 8.3% de retorno real.',
+    ret: 'CER + 6.6% real promedio (~35% ARS)',
     activos: 'TZXO6 · TZXD6 · TZXS8'
   },
   'Bonos Provinciales': {
@@ -1687,9 +1687,9 @@ const TRAMO_DETAIL = {
     { ticker:'PAE ON',  peso:'~25%', ret:'TIR 5.7%', nota:'Pan American Energy. IG local, spread corporativo atractivo.'},
   ],
   'Bonos CER': [
-    { ticker:'TZXO6',       peso:'~40%', ret:'CER + 5%',   nota:'Favorito cash mgmt. Combina cobertura CER + cambiaria a jun 2026.'},
-    { ticker:'TZXS8',       peso:'~40%', ret:'CER + 8.3%', nota:'+300 bps vs TZXD7. Bull Capital: descuenta tasas reales extremas.'},
-    { ticker:'BONCER 2028', peso:'~20%', ret:'+8.9% cap',  nota:'Trade activo BofA: entrada 84,5 → target 92,0. FX cubierto.'},
+    { ticker:'TZXO6', peso:'~35%', ret:'CER + 5%',   nota:'Vto. octubre 2026. Favorito cash mgmt. Combina cobertura CER + cambiaria. Alta liquidez mercado secundario.'},
+    { ticker:'TZXD6', peso:'~35%', ret:'CER + 6.5%', nota:'Vto. diciembre 2026. Ladder de duration: eslabón entre TZXO6 y TZXS8. +150 bps vs TZXO6 con solo 2 meses más de plazo.'},
+    { ticker:'TZXS8', peso:'~30%', ret:'CER + 8.3%', nota:'Vto. septiembre 2028. +300 bps sobre alternativas cortas. Bull Capital: descuenta tasas reales extremas pre-elección 2027.'},
   ],
   'Bonos Provinciales': [
     { ticker:'SFD34',  peso:'~40%', ret:'+15%', nota:'Santa Fe: deuda neta negativa. Máxima calidad sub-soberana. Facimex.'},
