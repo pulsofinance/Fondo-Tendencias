@@ -1736,84 +1736,55 @@ new Chart(mcCtx, {
 // RENDIMIENTO COMPARATIVO PROYECTADO — Jun 2026 / Jun 2027
 // ============================================================
 (function() {
-  const meses = [
-    'Jun 2026','Jul 2026','Ago 2026','Sep 2026','Oct 2026','Nov 2026','Dic 2026',
-    'Ene 2027','Feb 2027','Mar 2027','Abr 2027','May 2027','Jun 2027'
-  ];
-
-  // Retorno anual en ARS de cada alternativa
-  const ANNUAL = { fondo: 53.8, plazo: 31.0, infl: 25.5, dolar: 19.9 };
-
-  function cumSeries(annualPct) {
-    const r = Math.pow(1 + annualPct / 100, 1 / 12) - 1;
-    return meses.map((_, i) => parseFloat(((Math.pow(1 + r, i) - 1) * 100).toFixed(2)));
-  }
-
-  // Plugin de crosshair vertical al hacer hover
-  const crosshairPlugin = {
-    id: 'rendCompCrosshair',
-    afterDraw(chart) {
-      if (!chart.tooltip._active || !chart.tooltip._active.length) return;
-      const ctx = chart.ctx;
-      const x   = chart.tooltip._active[0].element.x;
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(x, chart.scales.y.top);
-      ctx.lineTo(x, chart.scales.y.bottom);
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
-      ctx.setLineDash([5, 4]);
-      ctx.stroke();
-      ctx.restore();
-    }
-  };
-
   const rc = document.getElementById('rendComp');
   if (!rc) return;
 
+  // Plugin para mostrar el valor encima de cada barra
+  const dataLabelPlugin = {
+    id: 'barLabels',
+    afterDatasetsDraw(chart) {
+      const { ctx, data } = chart;
+      chart.getDatasetMeta(0).data.forEach((bar, i) => {
+        const val = data.datasets[0].data[i];
+        ctx.save();
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '700 14px Inter';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText('+' + val + '%', bar.x, bar.y - 6);
+        ctx.restore();
+      });
+    }
+  };
+
   new Chart(rc.getContext('2d'), {
     type: 'bar',
-    plugins: [crosshairPlugin],
+    plugins: [dataLabelPlugin],
     data: {
-      labels: meses,
-      datasets: [
-        {
-          label: 'Fondo Tendencias',
-          data: cumSeries(ANNUAL.fondo),
-          backgroundColor: 'rgba(34,160,85,0.75)',
-          hoverBackgroundColor: '#22A055',
-          borderRadius: 4,
-          borderSkipped: false
-        },
-        {
-          label: 'Plazo fijo',
-          data: cumSeries(ANNUAL.plazo),
-          backgroundColor: 'rgba(59,130,246,0.75)',
-          hoverBackgroundColor: '#3B82F6',
-          borderRadius: 4,
-          borderSkipped: false
-        },
-        {
-          label: 'Inflación (IPC)',
-          data: cumSeries(ANNUAL.infl),
-          backgroundColor: 'rgba(239,68,68,0.75)',
-          hoverBackgroundColor: '#EF4444',
-          borderRadius: 4,
-          borderSkipped: false
-        },
-        {
-          label: 'Dólar (BNA)',
-          data: cumSeries(ANNUAL.dolar),
-          backgroundColor: 'rgba(217,119,6,0.75)',
-          hoverBackgroundColor: '#D97706',
-          borderRadius: 4,
-          borderSkipped: false
-        }
-      ]
+      labels: [
+        ['Fondo Tendencias', '(USD→ARS)'],
+        ['Plazo fijo', '(REM)'],
+        ['Inflación', '(IPC)'],
+        ['Dólar', '(BNA)']
+      ],
+      datasets: [{
+        label: 'Rendimiento anual acumulado',
+        data: [53.8, 22.1, 25.5, 19.9],
+        backgroundColor: [
+          'rgba(34,160,85,0.80)',
+          'rgba(59,130,246,0.80)',
+          'rgba(239,68,68,0.80)',
+          'rgba(217,119,6,0.80)'
+        ],
+        hoverBackgroundColor: ['#22A055','#3B82F6','#EF4444','#D97706'],
+        borderRadius: 6,
+        borderSkipped: false,
+        barPercentage: 0.50
+      }]
     },
     options: {
       responsive: true,
-      interaction: { mode: 'index', intersect: false },
+      layout: { padding: { top: 30 } },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -1821,27 +1792,22 @@ new Chart(mcCtx, {
           borderColor: 'rgba(255,255,255,0.12)',
           borderWidth: 1,
           titleColor: '#ffffff',
-          titleFont: { family: 'Inter', size: 11, weight: '700' },
+          titleFont: { family: 'Inter', size: 12, weight: '700' },
           bodyColor: '#a0a8b8',
-          bodyFont:  { family: 'Inter', size: 11 },
+          bodyFont:  { family: 'Inter', size: 12 },
           padding: 14,
-          caretSize: 6,
           callbacks: {
-            label: function(ctx) {
-              const val = ctx.parsed.y;
-              const sign = val >= 0 ? '+' : '';
-              return `  ${ctx.dataset.label}: ${sign}${val.toFixed(1)}%`;
-            }
+            title: ctx => ctx[0].label,
+            label: ctx => `  Rendimiento anual: +${ctx.parsed.y}%`
           }
         }
       },
       scales: {
         x: {
-          grid: { color: 'rgba(255,255,255,0.04)' },
+          grid: { display: false },
           ticks: {
-            color: '#6b7280',
-            font: { family: 'Inter', size: 10 },
-            maxRotation: 45
+            color: '#9ca3af',
+            font: { family: 'Inter', size: 11, weight: '600' }
           }
         },
         y: {
@@ -1852,7 +1818,7 @@ new Chart(mcCtx, {
             callback: v => v + '%'
           },
           min: 0,
-          suggestedMax: 60
+          suggestedMax: 65
         }
       }
     }
