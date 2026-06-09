@@ -1772,7 +1772,7 @@ new Chart(mcCtx, {
   if (!rc) return;
 
   new Chart(rc.getContext('2d'), {
-    type: 'line',
+    type: 'bar',
     plugins: [crosshairPlugin],
     data: {
       labels: meses,
@@ -1780,47 +1780,34 @@ new Chart(mcCtx, {
         {
           label: 'Fondo Tendencias',
           data: cumSeries(ANNUAL.fondo),
-          borderColor: '#22A055',
-          backgroundColor: 'rgba(34,160,85,0.07)',
-          fill: true,
-          tension: 0.35,
-          pointRadius: 4,
-          pointHoverRadius: 7,
-          pointBackgroundColor: '#22A055',
-          borderWidth: 2.5
+          backgroundColor: 'rgba(34,160,85,0.75)',
+          hoverBackgroundColor: '#22A055',
+          borderRadius: 4,
+          borderSkipped: false
         },
         {
           label: 'Plazo fijo',
           data: cumSeries(ANNUAL.plazo),
-          borderColor: '#3B82F6',
-          backgroundColor: 'transparent',
-          tension: 0.35,
-          pointRadius: 4,
-          pointHoverRadius: 7,
-          pointBackgroundColor: '#3B82F6',
-          borderWidth: 2
+          backgroundColor: 'rgba(59,130,246,0.75)',
+          hoverBackgroundColor: '#3B82F6',
+          borderRadius: 4,
+          borderSkipped: false
         },
         {
           label: 'Inflación (IPC)',
           data: cumSeries(ANNUAL.infl),
-          borderColor: '#EF4444',
-          backgroundColor: 'transparent',
-          tension: 0.35,
-          pointRadius: 4,
-          pointHoverRadius: 7,
-          pointBackgroundColor: '#EF4444',
-          borderWidth: 2
+          backgroundColor: 'rgba(239,68,68,0.75)',
+          hoverBackgroundColor: '#EF4444',
+          borderRadius: 4,
+          borderSkipped: false
         },
         {
           label: 'Dólar (BNA)',
           data: cumSeries(ANNUAL.dolar),
-          borderColor: '#D97706',
-          backgroundColor: 'transparent',
-          tension: 0.35,
-          pointRadius: 4,
-          pointHoverRadius: 7,
-          pointBackgroundColor: '#D97706',
-          borderWidth: 2
+          backgroundColor: 'rgba(217,119,6,0.75)',
+          hoverBackgroundColor: '#D97706',
+          borderRadius: 4,
+          borderSkipped: false
         }
       ]
     },
