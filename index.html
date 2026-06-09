@@ -267,11 +267,12 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
     <div style="font-size:11px;color:var(--t3);margin-bottom:1.5rem;letter-spacing:.05em">Fondo Tendencias · Patrimonio inicial $50,000 USD · 13 activos</div>
     <canvas id="tortaChart" width="560" height="560" style="max-width:min(560px,90vw)"></canvas>
     <div style="margin-top:1.2rem;display:flex;gap:2rem;font-size:11px;color:var(--t2)">
-      <span>🟠 <strong style="color:var(--orange)">Renta Variable</strong> 40%</span>
-      <span>🔵 <strong style="color:var(--cyan)">Bonos Soberanos</strong> 15%</span>
-      <span>🟡 <strong style="color:var(--a)">Bonos CER</strong> 13%</span>
-      <span>🟢 <strong style="color:var(--g)">Bonos Provinciales</strong> 12%</span>
-      <span>⚪ <strong style="color:var(--t2)">ONs + Caución</strong> 20%</span>
+      <span>🟠 <strong style="color:var(--orange)">Renta Variable</strong> 60%</span>
+      <span>🔵 <strong style="color:var(--cyan)">Bonos Soberanos</strong> 10%</span>
+      <span>🟡 <strong style="color:var(--a)">Bonos CER</strong> 7%</span>
+      <span>🟢 <strong style="color:var(--g)">Bonos Provinciales</strong> 5%</span>
+      <span>⚪ <strong style="color:var(--t2)">ONs + Caución</strong> 13%</span>
+      <span>🩵 <strong style="color:#0EA5E9">Dólar Futuro</strong> 5%</span>
     </div>
   </div>
   <div class="torta-detail">
@@ -343,7 +344,8 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
   <table class="tbl">
     <thead><tr><th>Activo</th><th>Tipo</th><th>% Fondo</th><th>USD asignado</th><th>ARS asignado</th><th>Retorno BL</th><th>Banco research</th><th>Señal CAPM</th></tr></thead>
     <tbody>
-      <tr><td class="am">GD35/AL30</td><td><span class="tag tag-b">Soberano USD</span></td><td class="am">15.00%</td><td>$5,357</td><td>$7,500,000</td><td class="up">12.0%</td><td>Mariva · SBS</td><td>—</td></tr>
+      <tr><td class="am">GD35/AL30</td><td><span class="tag tag-b">Soberano USD</span></td><td class="am">10.00%</td><td>$3,571</td><td>$5,000,000</td><td class="up">12.0%</td><td>Mariva · SBS</td><td>—</td></tr>
+      <tr><td class="am">DLR102026</td><td><span class="tag" style="color:#0EA5E9;border-color:rgba(14,165,233,.4)">Dólar Futuro</span></td><td class="am">5.00%</td><td>$1,786</td><td>$2,500,000</td><td class="up">FX cover</td><td>ROFEX · BYMA</td><td class="up">✅ Cobertura</td></tr>
       <tr><td class="am">MA</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">10.60%</td><td>$3,787</td><td>$5,302,000</td><td class="up">14.9%</td><td>Santander PB</td><td class="up">✅ +27.14%</td></tr>
       <tr><td class="am">VIST</td><td><span class="tag tag-a">Acción ARG</span></td><td class="am">10.00%</td><td>$3,571</td><td>$5,000,000</td><td class="up">47.1%</td><td>JPM · SBS · IEB</td><td class="up">✅ +58.47%</td></tr>
       <tr><td class="am">YPF ON/TGS ON</td><td><span class="tag tag-b">ON Corp</span></td><td class="am">10.00%</td><td>$3,571</td><td>$5,000,000</td><td class="up">10.0%</td><td>Grupo SBS · IEB</td><td>—</td></tr>
@@ -1558,12 +1560,20 @@ const ACTIVOS_DATA = {
     activos: 'VIST · GGAL · BMA · TGS · YPF'
   },
   'Bonos Soberanos USD': {
-    pct: 15, color: '#00B0CC',
+    pct: 10, color: '#00B0CC',
     tipo: 'Renta Fija USD',
     banco: 'Mariva · Grupo SBS · Banco Comafi',
     why: 'Ancla en dólares del fondo. Upgrade Fitch CCC+ → B- abre espacio de compresión de spread. GD35/AL30 como top picks con TIR 9.8%.',
     ret: '+12.0% upside estimado',
     activos: 'GD35 · AL30 · AN29'
+  },
+  'Dólar Futuro': {
+    pct: 5, color: '#0EA5E9',
+    tipo: 'Derivado cambiario',
+    banco: 'ROFEX · BYMA',
+    why: 'Cobertura cambiaria ante riesgo de devaluación. Contrato DLR102026 a $1.572 implica una tasa implícita del tipo de cambio a octubre 2026. Protege el portafolio en escenarios de stress cambiario.',
+    ret: 'Cobertura + tasa implícita FX',
+    activos: 'DLR102026 · precio $1.572'
   },
   'ONs Corporativas': {
     pct: 10, color: '#E06000',
