@@ -142,6 +142,70 @@ nav{position:sticky;top:0;z-index:400;background:rgba(0,0,0,.95);backdrop-filter
 .out-metric-sub{font-size:8px;color:var(--t4);margin-top:.15rem}
 .out-note{font-size:9.5px;color:var(--t3);line-height:1.65;padding:.5rem .6rem;background:var(--bg3);border-left:2px solid var(--border2);margin-top:.4rem}
 
+/* TABS */
+.tabs-nav{display:flex;gap:0;border-bottom:2px solid var(--border);background:var(--bg2);padding:0 1.5rem;position:sticky;top:50px;z-index:300}
+.tab-btn{padding:.75rem 1.4rem;font-size:12px;font-weight:600;color:var(--t3);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;cursor:pointer;transition:all .2s;letter-spacing:.03em;font-family:'Inter',sans-serif}
+.tab-btn:hover{color:var(--t)}
+.tab-btn.active{color:var(--a);border-bottom-color:var(--a)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* MODELOS PAGE */
+.mod-hero{padding:2rem 1.5rem 1.5rem;background:linear-gradient(180deg,#0A0A0A 0%,#000 100%);border-bottom:1px solid var(--border)}
+.mod-hero-title{font-size:22px;font-weight:700;color:var(--t);margin-bottom:.3rem}
+.mod-hero-title span{color:var(--a)}
+.mod-hero-sub{font-size:11px;color:var(--t3)}
+.mod-section{padding:1.5rem}
+.mod-card{background:var(--card);border:1px solid var(--border2);border-radius:4px;margin-bottom:1rem;overflow:hidden}
+.mod-card-header{padding:1rem 1.2rem;background:var(--card2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.mod-card-header:hover{background:var(--card3)}
+.mod-num{width:28px;height:28px;background:rgba(212,188,0,.12);border:1px solid rgba(212,188,0,.3);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--a);flex-shrink:0}
+.mod-card-title{font-size:14px;font-weight:600;color:var(--t);flex:1}
+.mod-card-tag{font-size:10px;padding:2px 8px;border-radius:3px;background:rgba(0,176,204,.1);color:var(--cyan);border:1px solid rgba(0,176,204,.2)}
+.mod-chevron{color:var(--t3);font-size:16px;transition:transform .2s}
+.mod-card-header.open .mod-chevron{transform:rotate(180deg)}
+.mod-card-body{display:none;padding:1.2rem}
+.mod-card-body.open{display:block}
+.mod-step{margin-bottom:1.4rem}
+.mod-step-title{font-size:11px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:.8px;margin-bottom:.7rem;padding-bottom:.5rem;border-bottom:1px solid rgba(212,188,0,.15)}
+.mod-tecnico{background:#1a1f2e;border-left:3px solid #a371f7;border-radius:0 4px 4px 0;padding:10px 14px;margin:8px 0;font-size:12.5px;color:var(--t2);line-height:1.6}
+.mod-tecnico-lbl{font-size:9px;font-weight:700;color:#a371f7;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.mod-simple{background:#1a2233;border-left:3px solid var(--cyan);border-radius:0 4px 4px 0;padding:10px 14px;margin:8px 0;font-size:12.5px;color:var(--t2);line-height:1.6}
+.mod-simple-lbl{font-size:9px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.mod-warning{background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);border-radius:4px;padding:10px 14px;margin:10px 0;font-size:12.5px;color:var(--t2);line-height:1.6}
+.mod-warning-lbl{font-size:9px;font-weight:700;color:var(--a);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.mod-tbl-wrap{overflow-x:auto;margin:10px 0;border-radius:4px;border:1px solid var(--border)}
+.mod-tbl{width:100%;border-collapse:collapse;font-size:12.5px}
+.mod-tbl thead tr{background:#1c2128}
+.mod-tbl th{padding:8px 12px;text-align:left;font-weight:600;color:var(--t3);font-size:11px;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+.mod-tbl td{padding:8px 12px;border-bottom:1px solid rgba(48,54,61,.5);color:var(--t2);vertical-align:top}
+.mod-tbl tr:last-child td{border-bottom:none}
+.mod-tbl tr:hover td{background:rgba(22,27,34,.6)}
+.td-gold{color:var(--a);font-weight:600}
+.td-green{color:var(--g);font-weight:600}
+.td-blue{color:var(--cyan)}
+.td-red{color:var(--r)}
+.mod-formula{background:var(--bg3);border-left:2px solid var(--cyan);padding:10px 14px;margin:10px 0;font-size:12px;color:var(--cyan);border-radius:0 4px 4px 0;font-family:'IBM Plex Mono',monospace}
+.mod-kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.mod-kpi{background:var(--card2);border:1px solid var(--border2);border-radius:4px;padding:12px 14px;text-align:center}
+.mod-kpi-val{font-size:20px;font-weight:700;color:var(--a)}
+.mod-kpi-lbl{font-size:10px;color:var(--t3);margin-top:3px;text-transform:uppercase;letter-spacing:.5px}
+.mod-scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.mod-sc{padding:10px;border-radius:4px;text-align:center;border:1px solid}
+.mod-sc-bull{background:rgba(34,160,85,.07);border-color:rgba(34,160,85,.2)}
+.mod-sc-base{background:rgba(0,176,204,.07);border-color:rgba(0,176,204,.2)}
+.mod-sc-bear{background:rgba(224,48,32,.07);border-color:rgba(224,48,32,.2)}
+.mod-sc-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.mod-sc-bull .mod-sc-lbl{color:var(--g)}
+.mod-sc-base .mod-sc-lbl{color:var(--cyan)}
+.mod-sc-bear .mod-sc-lbl{color:var(--r)}
+.mod-sc-val{font-size:14px;font-weight:700}
+.mod-sc-bull .mod-sc-val{color:var(--g)}
+.mod-sc-base .mod-sc-val{color:var(--cyan)}
+.mod-sc-bear .mod-sc-val{color:var(--r)}
+.mod-sc-sub{font-size:10px;color:var(--t3);margin-top:2px}
+.mod-cierre{background:rgba(212,188,0,.06);border:1px solid rgba(212,188,0,.2);border-radius:4px;padding:14px 18px;margin:16px 0;font-size:13px;color:var(--t2);line-height:1.7;font-style:italic}
+
 /* FOOTER */
 footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;display:flex;justify-content:space-between;align-items:center;margin-top:2rem}
 .footer-l{font-size:9px;color:var(--t3)}
@@ -170,6 +234,15 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
     <span class="badge badge-r">7 MODELOS MATEMÁTICOS</span>
   </div>
 </nav>
+
+<!-- TABS NAV -->
+<div class="tabs-nav">
+  <button class="tab-btn active" onclick="switchTab('portafolio',this)">📊 Portafolio</button>
+  <button class="tab-btn" onclick="switchTab('modelos',this)">🧮 Modelos Matemáticos</button>
+</div>
+
+<!-- TAB: PORTAFOLIO -->
+<div id="tab-portafolio" class="tab-content active">
 
 <!-- HERO -->
 <div class="hero">
@@ -1145,6 +1218,233 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
   </div>
 </div>
 
+</div><!-- /tab-portafolio -->
+
+<!-- TAB: MODELOS MATEMÁTICOS -->
+<div id="tab-modelos" class="tab-content">
+
+<div class="mod-hero">
+  <div class="mod-hero-title">Modelos <span>Matemáticos</span></div>
+  <div class="mod-hero-sub">Guía completa · Black-Litterman · Markowitz · CAPM · Fama-French · CVaR · Monte Carlo · con datos reales 2024-2026</div>
+</div>
+
+<div class="mod-section">
+
+<!-- ══ AVISO RETORNOS ══ -->
+<div class="mod-warning">
+  <div class="mod-warning-lbl">⚠️ Para no confundirse — 28,2% vs 81,5%</div>
+  Son dos modelos distintos que miden cosas distintas:<br><br>
+  <strong style="color:var(--a)">28,2% anual</strong> — Markowitz/Black-Litterman · retorno anual proyectado · usa retornos ajustados conservadores · período 12 meses.<br>
+  <strong style="color:var(--g)">81,5% acumulado</strong> — Monte Carlo · retorno acumulado a 18 meses · usa retornos históricos reales 2024-2026 donde NVDA subió 170%, GGAL 200%, VIST 120% · incluye interés compuesto y upside asimétrico.<br><br>
+  No se contradicen — se complementan. El 28,2% es la proyección conservadora. El 81,5% es lo que el momentum histórico real proyecta a 18 meses.
+</div>
+
+<!-- ══ MODELO 1 — BL + MARKOWITZ ══ -->
+<div class="mod-card">
+  <div class="mod-card-header open" onclick="toggleMod(this)">
+    <div class="mod-num">1</div>
+    <div class="mod-card-title">Black-Litterman + Markowitz</div>
+    <span class="mod-card-tag">Construcción del portafolio</span>
+    <span class="mod-chevron">⌄</span>
+  </div>
+  <div class="mod-card-body open">
+
+    <div class="mod-step">
+      <div class="mod-step-title">¿Qué hizo el modelo?</div>
+      <p style="font-size:13px;color:var(--t2);margin-bottom:10px">Descargó <strong style="color:var(--t)">604 días de precios reales</strong> de los 14 activos, desde enero 2024 hasta mayo 2026. Combinó dos procesos en paralelo:</p>
+      <div class="mod-tecnico"><div class="mod-tecnico-lbl">A) Black-Litterman</div>Combina los retornos implícitos de equilibrio del mercado (π) con las "visiones PULSO" — el research de 20+ bancos globales — usando la fórmula:<br><br><span style="color:var(--cyan);font-family:'IBM Plex Mono',monospace">E[R] = [(τΣ)⁻¹ + P'Ω⁻¹P]⁻¹ × [(τΣ)⁻¹π + P'Ω⁻¹Q]</span></div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>El mercado dice que NVDA va a rendir 37,5%. JPMorgan y Goldman dicen 51,4%. Le creemos al research con 85% de confianza. El modelo promedia los dos y llega a 48,2%. Ni el extremo del mercado ni el del banco — un punto intermedio ponderado.</div>
+      <div class="mod-tbl-wrap">
+        <table class="mod-tbl">
+          <thead><tr><th>Activo</th><th>Mercado (π)</th><th>Visión research</th><th>Confianza</th><th>Resultado BL</th></tr></thead>
+          <tbody>
+            <tr><td class="td-gold">NVDA</td><td>37,5%</td><td>51,4%</td><td>85%</td><td class="td-green">48,2%</td></tr>
+            <tr><td class="td-gold">MA</td><td>5,6%</td><td>36,8%</td><td>85%</td><td class="td-green">15,1%</td></tr>
+            <tr><td class="td-gold">VIST</td><td>10,3%</td><td>58,0%</td><td>85%</td><td class="td-green">23,8%</td></tr>
+            <tr><td class="td-gold">YPF</td><td>12,6%</td><td>10,0%</td><td>85%</td><td class="td-green">22,7%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mod-tecnico" style="margin-top:10px"><div class="mod-tecnico-lbl">B) Markowitz — Frontera Eficiente</div>Con los retornos BL corrió <strong>5.000 combinaciones posibles</strong> de pesos. Cada punto del gráfico es una cartera. La frontera verde es el borde de las mejores combinaciones.<br><br>
+      ★ Máximo Sharpe: <strong style="color:var(--a)">Retorno 28,3% · Vol 23,1% · SR 1,14</strong><br>
+      ◆ Mínima Varianza: <strong style="color:var(--cyan)">Retorno 20% · Vol 17,7% · SR 1,02</strong></div>
+      <div class="mod-simple"><div class="mod-simple-lbl">¿Por qué el rombo parece suelto en el gráfico?</div>No está fuera — es el vértice izquierdo de la parábola. Los 5.000 puntos son aleatorios y ninguno cae exactamente en ese mínimo. El optimizador lo calcula analíticamente.</div>
+    </div>
+
+    <div class="mod-step">
+      <div class="mod-step-title">Pesos óptimos — Tramo Renta Variable</div>
+      <div class="mod-tbl-wrap">
+        <table class="mod-tbl">
+          <thead><tr><th>Activo</th><th>Peso</th><th>Tipo</th><th>Retorno BL</th></tr></thead>
+          <tbody>
+            <tr><td class="td-gold">NVDA</td><td class="td-green">15%</td><td>CEDEAR</td><td>48,2%</td></tr>
+            <tr><td class="td-gold">MA</td><td class="td-green">15%</td><td>CEDEAR</td><td>15,1%</td></tr>
+            <tr><td class="td-gold">AMZN</td><td class="td-green">15%</td><td>CEDEAR</td><td>28,2%</td></tr>
+            <tr><td class="td-gold">META</td><td>13,1%</td><td>CEDEAR</td><td>32,9%</td></tr>
+            <tr><td class="td-gold">VIST</td><td>8,1%</td><td>Acción ARG</td><td>23,8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>NVDA, MA y AMZN llegaron al tope del 15% porque el modelo hubiera querido poner más si pudiera. Markowitz los consideró los mejores por relación retorno/riesgo.</div>
+    </div>
+
+    <div class="mod-step">
+      <div class="mod-step-title">Resultado final — Fondo completo con bonos</div>
+      <div class="mod-kpi-grid">
+        <div class="mod-kpi"><div class="mod-kpi-val">28,2%</div><div class="mod-kpi-lbl">Retorno anual USD</div></div>
+        <div class="mod-kpi"><div class="mod-kpi-val" style="color:var(--cyan)">14,7%</div><div class="mod-kpi-lbl">Volatilidad anual</div></div>
+        <div class="mod-kpi"><div class="mod-kpi-val">1,78</div><div class="mod-kpi-lbl">Sharpe Ratio</div></div>
+      </div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>Agregar los bonos bajó la volatilidad a la mitad (de 23% a 14,7%) sin bajar casi el retorno (28,3% → 28,2%). El Sharpe saltó de 1,14 a 1,78. Eso es la diversificación bien hecha.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ MODELO 2 — CAPM + FF ══ -->
+<div class="mod-card">
+  <div class="mod-card-header open" onclick="toggleMod(this)">
+    <div class="mod-num">2</div>
+    <div class="mod-card-title">CAPM + Fama-French 3 Factores</div>
+    <span class="mod-card-tag">Validación de activos</span>
+    <span class="mod-chevron">⌄</span>
+  </div>
+  <div class="mod-card-body open">
+
+    <div class="mod-step">
+      <div class="mod-step-title">¿Qué pregunta responde?</div>
+      <div class="mod-tecnico"><div class="mod-tecnico-lbl">CAPM — Capital Asset Pricing Model</div>
+      Markowitz dijo cuánto poner en cada activo. El CAPM responde: ¿ese activo está barato o caro dado su riesgo?<br><br>
+      <span style="color:var(--cyan);font-family:'IBM Plex Mono',monospace">E[R] = Rf + β × (Rm - Rf)</span><br><br>
+      Rf = 0,1667% mensual · Benchmark = S&P 500</div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>Si un activo rinde más de lo que el CAPM dice que debería rendir dado su riesgo, está barato — hay alpha para capturar.</div>
+    </div>
+
+    <div class="mod-step">
+      <div class="mod-step-title">Security Market Line — ¿Barato o caro?</div>
+      <p style="font-size:12.5px;color:var(--t2);margin-bottom:8px">Puntos <strong style="color:var(--g)">SOBRE la línea</strong> = subvaluados = COMPRAR · Puntos <strong style="color:var(--r)">BAJO la línea</strong> = sobrevaluados = revisar</p>
+      <div class="mod-tbl-wrap">
+        <table class="mod-tbl">
+          <thead><tr><th>Activo</th><th>Beta</th><th>CAPM pide</th><th>PULSO proyecta</th><th>Alpha</th><th>Señal</th></tr></thead>
+          <tbody>
+            <tr><td class="td-gold">GGAL</td><td>-0,423</td><td>-5,65%</td><td>35,0%</td><td class="td-green">+40,65%</td><td>✅ Subvaluado</td></tr>
+            <tr><td class="td-gold">BMA</td><td>0,325</td><td>7,88%</td><td>30,0%</td><td class="td-green">+22,12%</td><td>✅ Subvaluado</td></tr>
+            <tr><td class="td-gold">VIST</td><td>-0,137</td><td>-0,47%</td><td>58,0%</td><td class="td-green">+58,47%</td><td>✅ Subvaluado</td></tr>
+            <tr><td class="td-gold">NVDA</td><td>1,986</td><td>37,92%</td><td>51,4%</td><td class="td-green">+13,48%</td><td>✅ Subvaluado</td></tr>
+            <tr><td class="td-gold">MSFT</td><td>1,353</td><td>26,46%</td><td>20,0%</td><td class="td-red">-6,46%</td><td>❌ Sobrevaluado</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>9 de 13 activos están por encima de la línea. MSFT es el único que quedó por debajo — por eso tiene el peso más chico del fondo.</div>
+    </div>
+
+    <div class="mod-step">
+      <div class="mod-step-title">Beta de cada activo</div>
+      <div class="mod-tecnico"><div class="mod-tecnico-lbl">Técnico</div>
+        <strong>Beta &gt; 1</strong> — más volátil que el mercado: AVGO 2,11 · META 1,79 · NVDA 1,74 · LLY 1,71<br>
+        <strong>Beta negativo</strong> — se mueven en dirección contraria al S&P: TGS -0,92 · GGAL -0,65 · BMA -0,61 · YPF -0,46 · VIST -0,14
+      </div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>Las argentinas tienen beta negativo — se mueven por drivers locales (petróleo, tasas, tipo de cambio). Cuando el S&P cae, estas no necesariamente caen. Son el seguro natural del fondo.</div>
+    </div>
+
+    <div class="mod-step">
+      <div class="mod-step-title">Fama-French 3 Factores — Las 3 barras del gráfico</div>
+      <div class="mod-tbl-wrap">
+        <table class="mod-tbl">
+          <thead><tr><th>Color</th><th>Factor</th><th>Positivo (barra sube)</th><th>Negativo (barra baja)</th></tr></thead>
+          <tbody>
+            <tr><td style="color:var(--cyan)">■ Celeste</td><td>β MKT</td><td>Se mueve con el S&P</td><td>Se mueve contra el S&P</td></tr>
+            <tr><td style="color:var(--a)">■ Amarillo</td><td>β SMB</td><td>Empresa chica — más volátil</td><td>Empresa grande — más estable</td></tr>
+            <tr><td style="color:var(--r)">■ Rojo</td><td>β HML</td><td>Value — empresa barata</td><td>Growth — empresa cara (tech, IA, biotech)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mod-tbl-wrap" style="margin-top:8px">
+        <table class="mod-tbl">
+          <thead><tr><th>Activo</th><th>β MKT</th><th>β SMB</th><th>β HML</th><th>R²</th><th>Perfil</th></tr></thead>
+          <tbody>
+            <tr><td class="td-gold">NVDA</td><td>1,74</td><td>-0,43</td><td>-0,66</td><td>0,52</td><td>Grande / Growth agresivo</td></tr>
+            <tr><td class="td-gold">AVGO</td><td>0,18</td><td>0,36</td><td>-2,63</td><td>0,62</td><td>Growth extremo — contratos ASIC</td></tr>
+            <tr><td class="td-gold">LLY</td><td>1,71</td><td>-2,20</td><td>+1,22</td><td>0,26</td><td>Grande / Value — única americana value</td></tr>
+            <tr><td class="td-gold">MSFT</td><td>1,03</td><td>-0,32</td><td>-0,76</td><td><strong style="color:var(--r)">0,79</strong></td><td>R² más alto — factores lo explican todo</td></tr>
+            <tr><td class="td-blue">VIST</td><td>-0,35</td><td>0,38</td><td>-0,25</td><td><strong style="color:var(--g)">0,006</strong></td><td>99,4% movimiento = drivers locales ARG</td></tr>
+            <tr><td class="td-blue">GGAL</td><td>-0,65</td><td>-0,91</td><td>-0,83</td><td><strong style="color:var(--g)">0,043</strong></td><td>95,7% movimiento = drivers locales ARG</td></tr>
+            <tr><td class="td-blue">TGS</td><td>-0,92</td><td>0,61</td><td>-0,59</td><td><strong style="color:var(--g)">0,026</strong></td><td>Beta más negativo del portafolio</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mod-simple"><div class="mod-simple-lbl">El mensaje clave del gráfico</div>Las americanas tienen barras grandes y R² 0,19–0,79 — los factores globales las explican bien. Las argentinas tienen barras chicas y R² 0,006–0,049 — los factores globales casi no las explican. Cuando el mercado americano cae, las argentinas no necesariamente caen con él.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ MODELO 3 — CVaR + MONTE CARLO ══ -->
+<div class="mod-card">
+  <div class="mod-card-header open" onclick="toggleMod(this)">
+    <div class="mod-num">3</div>
+    <div class="mod-card-title">CVaR + Monte Carlo</div>
+    <span class="mod-card-tag">Análisis de riesgo 18 meses</span>
+    <span class="mod-chevron">⌄</span>
+  </div>
+  <div class="mod-card-body open">
+
+    <div class="mod-step">
+      <div class="mod-step-title">VAR y CVaR histórico</div>
+      <div class="mod-kpi-grid">
+        <div class="mod-kpi"><div class="mod-kpi-val" style="color:var(--r)">-1,75%</div><div class="mod-kpi-lbl">VaR diario 95%</div></div>
+        <div class="mod-kpi"><div class="mod-kpi-val" style="color:var(--r)">-2,31%</div><div class="mod-kpi-lbl">CVaR diario 95%</div></div>
+        <div class="mod-kpi"><div class="mod-kpi-val" style="color:var(--r)">-10,56%</div><div class="mod-kpi-lbl">CVaR mensual 95%</div></div>
+      </div>
+      <div class="mod-tecnico"><div class="mod-tecnico-lbl">Técnico</div><strong>VaR -1,75%</strong>: en 95 de cada 100 días el fondo no pierde más del 1,75%. Solo en 5 días del año podría perder más.<br><strong>CVaR -2,31%</strong>: en esos 5 días extremos, la pérdida promedio esperada es 2,31%.</div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>El VaR te dice el límite del 95% de los días. El CVaR te dice qué pasa en los días que superan ese límite. El CVaR es más honesto porque no ignora los días malos.</div>
+    </div>
+
+    <div class="mod-step">
+      <div class="mod-step-title">Monte Carlo — 10.000 simulaciones a 18 meses</div>
+      <div class="mod-tecnico"><div class="mod-tecnico-lbl">Técnico — Geometric Brownian Motion</div>
+      <span style="font-family:'IBM Plex Mono',monospace;color:var(--cyan)">dS = μS·dt + σS·dW</span><br><br>
+      S = precio · μ = retorno esperado · σ = volatilidad · dW = componente aleatoria</div>
+      <div class="mod-kpi-grid">
+        <div class="mod-kpi"><div class="mod-kpi-val" style="color:var(--g)">81,5%</div><div class="mod-kpi-lbl">Retorno promedio (media)</div></div>
+        <div class="mod-kpi"><div class="mod-kpi-val" style="color:var(--g)">76,9%</div><div class="mod-kpi-lbl">Retorno mediana ← más honesto</div></div>
+        <div class="mod-kpi"><div class="mod-kpi-val" style="color:var(--g)">99,5%</div><div class="mod-kpi-lbl">P(ganar algo)</div></div>
+        <div class="mod-kpi"><div class="mod-kpi-val" style="color:var(--g)">0,0%</div><div class="mod-kpi-lbl">P(perder más del 20%)</div></div>
+      </div>
+      <div class="mod-warning"><div class="mod-warning-lbl">Media vs Mediana</div>
+      <strong style="color:var(--a)">Media 81,5%</strong> = promedio de las 10.000 simulaciones — inflado por escenarios extremos positivos (hasta 333%).<br>
+      <strong style="color:var(--g)">Mediana 76,9%</strong> = el valor del medio — 5.000 terminan abajo, 5.000 arriba. No se distorsiona por los extremos. <strong>Es el número más honesto para reportar.</strong></div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>Corrimos 10.000 futuros posibles del fondo. En 9.950 termina en positivo. Ninguno pierde más del 20%. Usamos la mediana (76,9%) porque es más conservadora y no está inflada por los escenarios más optimistas.</div>
+    </div>
+
+    <div class="mod-step">
+      <div class="mod-step-title">Stress Test — 5 escenarios forzados</div>
+      <div class="mod-tbl-wrap">
+        <table class="mod-tbl">
+          <thead><tr><th>Escenario</th><th>Retorno mediano</th><th>P(ganar)</th><th>¿Qué significa?</th></tr></thead>
+          <tbody>
+            <tr><td>Base</td><td class="td-green">+78%</td><td class="td-green">99,6%</td><td>Todo sigue igual que hoy</td></tr>
+            <tr><td>Bull</td><td class="td-green">+141%</td><td class="td-green">100%</td><td>Argentina sube al MSCI + Fed baja tasas</td></tr>
+            <tr><td>Bear leve</td><td class="td-gold">+14%</td><td class="td-gold">66,8%</td><td>Guerra se prolonga + inflación ARG sube</td></tr>
+            <tr><td>Crisis EM</td><td class="td-red">-32%</td><td class="td-red">18,8%</td><td>Fed sube tasas + salida capitales EM</td></tr>
+            <tr><td>Crisis ARG</td><td class="td-red">-53%</td><td class="td-red">8,2%</td><td>Devaluación + ruptura programa FMI</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mod-simple"><div class="mod-simple-lbl">Simple</div>En el peor escenario posible — devaluación + ruptura FMI — el fondo pierde 53%. En el escenario base gana 78% con 99,6% de probabilidad. El riesgo existe, está cuantificado, y lo mostramos con transparencia.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CIERRE -->
+<div class="mod-cierre">
+  "Usamos cuatro modelos en cadena. Markowitz y Black-Litterman construyeron el portafolio óptimo. El CAPM y Fama-French validaron que los activos elegidos estén baratos. Y Monte Carlo con CVaR cuantificó exactamente cuánto podemos ganar y cuánto podemos perder en 18 meses. No elegimos activos por intuición — cada uno pasó por un filtro matemático distinto. Eso es lo que diferencia a un FCI profesional de una cartera improvisada."
+</div>
+
+</div><!-- /mod-section -->
+</div><!-- /tab-modelos -->
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-l">FONDO TENDENCIAS · <b>Trabajo Final Matemática Financiera 2026</b> · Basado en PULSO Finance · Research institucional real</div>
@@ -1162,6 +1462,19 @@ function toggleOut(btn) {
   body.classList.toggle('open', !isOpen);
   btn.classList.toggle('open', !isOpen);
   icon.style.transform = isOpen ? '' : 'rotate(180deg)';
+}
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleMod(header) {
+  header.classList.toggle('open');
+  header.nextElementSibling.classList.toggle('open');
 }
 
 // ============================================================
