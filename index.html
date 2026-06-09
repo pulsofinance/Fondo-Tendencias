@@ -774,8 +774,7 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
 <div style="padding:.5rem 1.5rem .3rem;margin-top:1px;background:var(--bg3);font-size:8px;font-weight:700;letter-spacing:.2em;color:var(--t3)">BONOS PROVINCIALES USD</div>
 <div class="bono-grid">
   <div class="bono-card"><div class="bc-ticker">SFD34 (Santa Fe)</div><div class="bc-banco">Facimex Valores</div><span class="bc-tag" style="color:var(--g);border-color:rgba(34,160,85,.4)">TOP PICK</span><div class="bc-ret">Z+448 bps · Tramo largo calidad</div><div class="bc-why">Santa Fe tiene deuda neta NEGATIVA — más activos que pasivos. Única provincia del país en esa situación. Liquidez 1.4× el stock de deuda.</div></div>
-  <div class="bono-card"><div class="bc-ticker">CO29 / PMM29</div><div class="bc-banco">Facimex Valores</div><span class="bc-tag" style="color:var(--a);border-color:rgba(212,188,0,.4)">ROTACIÓN</span><div class="bc-ret">+80-120 bps vs soberanos</div><div class="bc-why">Rotar desde GD29/GD30. Mayor current yield con menor volatilidad que soberanos. Córdoba y Mendoza: finanzas sólidas.</div></div>
-  <div class="bono-card"><div class="bc-ticker">BOCADE (Chubut)</div><div class="bc-banco">BTG Pactual</div><span class="bc-tag" style="color:var(--cyan);border-color:rgba(0,176,204,.4)">GARANTIZADO</span><div class="bc-ret">Garantía sobre regalías O&G</div><div class="bc-why">Fideicomiso sobre regalías hidrocarburíferas — no pasan por caja fiscal provincial. En restructuraciones 2020/21 perdió solo 11% VPN. Nueva emisión USD 450-600M en evaluación.</div></div>
+  <div class="bono-card"><div class="bc-ticker">CO29 — Córdoba</div><div class="bc-banco">BTG Pactual</div><span class="bc-tag" style="color:var(--a);border-color:rgba(212,188,0,.4)">ROTACIÓN</span><div class="bc-ret">+80-120 bps vs soberanos · +13%</div><div class="bc-why">Córdoba: superávit fiscal sostenido y finanzas sólidas. Mayor current yield con menor volatilidad que soberanos. Rotar desde GD29/GD30.</div></div>
 </div>
 
 <!-- ONs -->
@@ -1595,7 +1594,7 @@ const ACTIVOS_DATA = {
     banco: 'Facimex · BTG Pactual · IEB',
     why: 'Santa Fe deuda neta negativa — top pick calidad. BOCADE Chubut con garantía sobre regalías O&G. +80-120 bps vs soberanos.',
     ret: '+15.0% estimado anual',
-    activos: 'SFD34 · BOCADE · CO29'
+    activos: 'SFD34 · CO29'
   },
   'Liquidez': {
     pct: 3, color: '#555',
@@ -1692,9 +1691,8 @@ const TRAMO_DETAIL = {
     { ticker:'TZXS8', peso:'~30%', ret:'CER + 8.3%', nota:'Vto. septiembre 2028. +300 bps sobre alternativas cortas. Bull Capital: descuenta tasas reales extremas pre-elección 2027.'},
   ],
   'Bonos Provinciales': [
-    { ticker:'SFD34',  peso:'~40%', ret:'+15%', nota:'Santa Fe: deuda neta negativa. Máxima calidad sub-soberana. Facimex.'},
-    { ticker:'BOCADE', peso:'~35%', ret:'+12%', nota:'Chubut: garantía sobre regalías O&G. +80-120 bps vs soberanos.'},
-    { ticker:'CO29',   peso:'~25%', ret:'+13%', nota:'Córdoba 2029. Provincia con superávit fiscal sostenido. BTG Pactual.'},
+    { ticker:'SFD34', peso:'~55%', ret:'+15%', nota:'Santa Fe: deuda neta negativa. Máxima calidad sub-soberana. Facimex.'},
+    { ticker:'CO29',  peso:'~45%', ret:'+13%', nota:'Córdoba 2029. Provincia con superávit fiscal sostenido. BTG Pactual.'},
   ],
   'Dólar Futuro': [
     { ticker:'DLR102026', peso:'100%', ret:'Cobertura FX', nota:'Precio $1.572 · tasa implícita al TC octubre 2026. Cobertura ante riesgo de devaluación. ROFEX · BYMA.'},
@@ -1818,19 +1816,11 @@ const EXTRA_HTML = {
       </div>
       <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--a)">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
-          <span style="font-weight:700;color:var(--a)">CO29 / PMM29</span>
+          <span style="font-weight:700;color:var(--a)">CO29 — Córdoba</span>
           <span style="font-size:9px;color:var(--a);border:1px solid rgba(212,188,0,.4);padding:.15rem .5rem;border-radius:2px">ROTACIÓN</span>
         </div>
-        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">Facimex Valores &nbsp;·&nbsp; <strong style="color:#22A055">+80-120 bps vs soberanos</strong></div>
-        <div style="font-size:10px;color:var(--t2);line-height:1.6">Córdoba y Mendoza: finanzas sólidas y superávit fiscal sostenido. Mayor current yield con menor volatilidad que soberanos.</div>
-      </div>
-      <div style="background:var(--bg3);padding:.9rem 1rem;border-left:3px solid var(--cyan)">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
-          <span style="font-weight:700;color:var(--a)">BOCADE — Chubut</span>
-          <span style="font-size:9px;color:var(--cyan);border:1px solid rgba(0,176,204,.4);padding:.15rem .5rem;border-radius:2px">GARANTIZADO</span>
-        </div>
-        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">BTG Pactual &nbsp;·&nbsp; <strong style="color:#22A055">Garantía regalías O&G</strong></div>
-        <div style="font-size:10px;color:var(--t2);line-height:1.6">Fideicomiso sobre regalías hidrocarburíferas — no pasan por caja fiscal. En reestructuraciones 2020/21 perdió solo 11% VPN. Nueva emisión USD 450-600M en evaluación.</div>
+        <div style="font-size:9px;color:var(--cyan);margin-bottom:.3rem">BTG Pactual &nbsp;·&nbsp; <strong style="color:#22A055">+80-120 bps vs soberanos · +13%</strong></div>
+        <div style="font-size:10px;color:var(--t2);line-height:1.6">Córdoba: superávit fiscal sostenido y finanzas sólidas. Mayor current yield con menor volatilidad que soberanos.</div>
       </div>
     </div>`,
 
