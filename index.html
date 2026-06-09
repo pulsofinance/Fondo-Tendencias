@@ -57,9 +57,9 @@ nav{position:sticky;top:0;z-index:400;background:rgba(0,0,0,.95);backdrop-filter
 .panel-title::before{content:"// "}
 
 /* TORTA */
-.torta-wrap{display:grid;grid-template-columns:380px 1fr;gap:0;background:var(--border)}
-.torta-chart{background:var(--card);padding:1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.torta-detail{background:var(--card2);padding:1.5rem;overflow-y:auto;max-height:480px}
+.torta-wrap{display:flex;flex-direction:column;gap:1px;background:var(--border)}
+.torta-chart{background:var(--card);padding:2.5rem 2rem 2rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.torta-detail{background:var(--card2);padding:1.5rem 2rem}
 .torta-detail-title{font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--a);margin-bottom:1rem}
 .detail-card{padding:.8rem;border:1px solid var(--border2);margin-bottom:.6rem;border-radius:2px;cursor:pointer;transition:all .15s}
 .detail-card:hover{border-color:var(--a);background:var(--card3)}
@@ -215,7 +215,7 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero-metrics{grid-template-columns:repeat(3,1fr)}
-  .torta-wrap{grid-template-columns:1fr}
+  .torta-wrap{flex-direction:column}
   .grid2,.grid3,.bono-grid,.stress-grid{grid-template-columns:1fr}
 }
 </style>
@@ -263,8 +263,16 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
 
 <div class="torta-wrap">
   <div class="torta-chart">
-    <div class="panel-title" style="margin-bottom:.5rem">Distribución por tramo</div>
-    <canvas id="tortaChart" width="320" height="320"></canvas>
+    <div class="panel-title" style="margin-bottom:.3rem;font-size:14px;letter-spacing:.15em">DISTRIBUCIÓN DEL PORTAFOLIO</div>
+    <div style="font-size:11px;color:var(--t3);margin-bottom:1.5rem;letter-spacing:.05em">Fondo Tendencias · Patrimonio inicial $50,000 USD · 13 activos</div>
+    <canvas id="tortaChart" width="560" height="560" style="max-width:min(560px,90vw)"></canvas>
+    <div style="margin-top:1.2rem;display:flex;gap:2rem;font-size:11px;color:var(--t2)">
+      <span>🟠 <strong style="color:var(--orange)">Renta Variable</strong> 40%</span>
+      <span>🔵 <strong style="color:var(--cyan)">Bonos Soberanos</strong> 15%</span>
+      <span>🟡 <strong style="color:var(--a)">Bonos CER</strong> 13%</span>
+      <span>🟢 <strong style="color:var(--g)">Bonos Provinciales</strong> 12%</span>
+      <span>⚪ <strong style="color:var(--t2)">ONs + Caución</strong> 20%</span>
+    </div>
   </div>
   <div class="torta-detail">
     <div class="torta-detail-title">// DETALLE POR ACTIVO</div>
@@ -300,12 +308,9 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
   </table>
 </div>
 
-<!-- MODELOS MATEMÁTICOS -->
-<div class="sdiv"><span class="sdiv-label">Los 4 modelos matemáticos</span><div class="sdiv-line"></div><span class="sdiv-meta">Implementados con Python · datos reales 2024-2026</span></div>
-
-<div style="padding:0 0 1px">
-  <!-- BL -->
-  <div class="modelo-card">
+<!-- MODELOS MATEMÁTICOS REMOVIDOS — ver pestaña Modelos Matemáticos -->
+<div style="display:none">
+  <div class="modelo-card-hidden">
     <div style="font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--orange);margin-bottom:.4rem">01 · BLACK-LITTERMAN</div>
     <div class="mc-desc">Combina lo que dice el mercado (retornos de equilibrio implícitos en los market caps) con las visiones del research institucional PULSO. Resuelve el principal problema de Markowitz puro: la sensibilidad extrema a los retornos esperados.</div>
     <div class="mc-formula">E[R] = [(τΣ)⁻¹ + P'Ω⁻¹P]⁻¹ × [(τΣ)⁻¹π + P'Ω⁻¹Q]</div>
