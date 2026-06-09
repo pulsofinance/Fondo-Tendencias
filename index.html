@@ -2156,7 +2156,7 @@ function normalDist(x, mu, sigma) {
   return (1/(sigma*Math.sqrt(2*Math.PI))) * Math.exp(-0.5*((x-mu)/sigma)**2);
 }
 
-const mcCtx = document.getElementById('mcChart').getContext('2d');
+const mcCtxEl = document.getElementById('mcChart');
 const mcLabels = [];
 const mcData   = [];
 for (let x = -50; x <= 350; x += 5) {
@@ -2164,7 +2164,7 @@ for (let x = -50; x <= 350; x += 5) {
   mcData.push(normalDist(x, 81.52, 40.38) * 100);
 }
 
-new Chart(mcCtx, {
+if (mcCtxEl) new Chart(mcCtxEl.getContext('2d'), {
   type: 'line',
   data: {
     labels: mcLabels,
