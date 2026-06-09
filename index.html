@@ -57,9 +57,9 @@ nav{position:sticky;top:0;z-index:400;background:rgba(0,0,0,.95);backdrop-filter
 .panel-title::before{content:"// "}
 
 /* TORTA */
-.torta-wrap{display:flex;flex-direction:column;gap:1px;background:var(--border)}
-.torta-chart{background:var(--card);padding:2.5rem 2rem 2rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.torta-detail{background:var(--card2);padding:1.5rem 2rem}
+.torta-wrap{display:grid;grid-template-columns:400px 1fr;gap:1px;background:var(--border);min-height:500px}
+.torta-chart{background:var(--card);padding:1.8rem 1.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.torta-detail{background:var(--card2);padding:1.6rem 1.8rem;overflow-y:auto}
 .torta-detail-title{font-size:9px;font-weight:700;letter-spacing:.2em;color:var(--a);margin-bottom:1rem}
 .detail-card{padding:.8rem;border:1px solid var(--border2);margin-bottom:.6rem;border-radius:2px;cursor:pointer;transition:all .15s}
 .detail-card:hover{border-color:var(--a);background:var(--card3)}
@@ -215,7 +215,7 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero-metrics{grid-template-columns:repeat(3,1fr)}
-  .torta-wrap{flex-direction:column}
+  .torta-wrap{grid-template-columns:1fr}
   .grid2,.grid3,.bono-grid,.stress-grid{grid-template-columns:1fr}
 }
 </style>
@@ -263,22 +263,20 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
 
 <div class="torta-wrap">
   <div class="torta-chart">
-    <div class="panel-title" style="margin-bottom:.3rem;font-size:14px;letter-spacing:.15em">DISTRIBUCIÓN DEL PORTAFOLIO</div>
-    <div style="font-size:11px;color:var(--t3);margin-bottom:1.5rem;letter-spacing:.05em">Fondo Tendencias · Patrimonio inicial $50,000 USD · 13 activos</div>
-    <canvas id="tortaChart" width="560" height="560" style="max-width:min(560px,90vw)"></canvas>
-    <div style="margin-top:1.2rem;display:flex;gap:2rem;font-size:11px;color:var(--t2)">
-      <span>🟠 <strong style="color:var(--orange)">Renta Variable</strong> 60%</span>
-      <span>🔵 <strong style="color:var(--cyan)">Bonos Soberanos</strong> 13%</span>
-      <span>🟡 <strong style="color:var(--a)">Bonos CER</strong> 7%</span>
-      <span>🟢 <strong style="color:var(--g)">Bonos Provinciales</strong> 5%</span>
-      <span>⚪ <strong style="color:var(--t2)">ONs + Caución</strong> 13%</span>
-      <span>🩵 <strong style="color:#0EA5E9">Dólar Futuro</strong> 2%</span>
+    <div class="panel-title" style="margin-bottom:.2rem;font-size:13px;letter-spacing:.15em">DISTRIBUCIÓN DEL PORTAFOLIO</div>
+    <div style="font-size:10px;color:var(--t3);margin-bottom:1.2rem;letter-spacing:.04em">$50,000 USD · 13 activos · clickeá un sector</div>
+    <canvas id="tortaChart" width="360" height="360" style="max-width:min(360px,90vw)"></canvas>
+    <!-- leyenda como chips clicables -->
+    <div style="margin-top:1.2rem;display:flex;flex-direction:column;gap:.4rem;width:100%">
+      <div style="display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center" id="legendaChips"></div>
     </div>
   </div>
   <div class="torta-detail">
-    <div class="torta-detail-title">// DETALLE POR ACTIVO</div>
     <div id="detailPanel">
-      <div style="color:var(--t3);font-size:10px;padding:1rem 0">← Hacé click en un sector de la torta para ver el detalle</div>
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:2rem;text-align:center;color:var(--t4)">
+        <div style="font-size:28px;margin-bottom:.8rem">←</div>
+        <div style="font-size:11px;line-height:1.7">Hacé click en un sector<br>para ver toda la info</div>
+      </div>
     </div>
   </div>
 </div>
@@ -345,7 +343,7 @@ footer{background:var(--bg2);border-top:2px solid var(--a);padding:.8rem 1.5rem;
     <thead><tr><th>Activo</th><th>Tipo</th><th>% Fondo</th><th>USD asignado</th><th>ARS asignado</th><th>Retorno BL</th><th>Banco research</th><th>Señal CAPM</th></tr></thead>
     <tbody>
       <tr><td class="am">GD35/AL30</td><td><span class="tag tag-b">Soberano USD</span></td><td class="am">13.00%</td><td>$4,643</td><td>$6,500,000</td><td class="up">12.0%</td><td>Mariva · SBS</td><td>—</td></tr>
-      <tr><td class="am">DLR102026</td><td><span class="tag" style="color:#0EA5E9;border-color:rgba(14,165,233,.4)">Dólar Futuro</span></td><td class="am">2.00%</td><td>$714</td><td>$1,000,000</td><td class="up">FX cover</td><td>ROFEX · BYMA</td><td class="up">✅ Cobertura</td></tr>
+      <tr><td class="am">DLR102026</td><td><span class="tag" style="color:#888888;border-color:rgba(14,165,233,.4)">Dólar Futuro</span></td><td class="am">2.00%</td><td>$714</td><td>$1,000,000</td><td class="up">FX cover</td><td>ROFEX · BYMA</td><td class="up">✅ Cobertura</td></tr>
       <tr><td class="am">MA</td><td><span class="tag tag-c">CEDEAR</span></td><td class="am">10.60%</td><td>$3,787</td><td>$5,302,000</td><td class="up">14.9%</td><td>Santander PB</td><td class="up">✅ +27.14%</td></tr>
       <tr><td class="am">VIST</td><td><span class="tag tag-a">Acción ARG</span></td><td class="am">10.00%</td><td>$3,571</td><td>$5,000,000</td><td class="up">47.1%</td><td>JPM · SBS · IEB</td><td class="up">✅ +58.47%</td></tr>
       <tr><td class="am">YPF ON/TGS ON</td><td><span class="tag tag-b">ON Corp</span></td><td class="am">10.00%</td><td>$3,571</td><td>$5,000,000</td><td class="up">10.0%</td><td>Grupo SBS · IEB</td><td>—</td></tr>
@@ -1568,7 +1566,7 @@ const ACTIVOS_DATA = {
     activos: 'GD35 · AL30 · AN29'
   },
   'Dólar Futuro': {
-    pct: 2, color: '#0EA5E9',
+    pct: 2, color: '#888888',
     tipo: 'Derivado cambiario',
     banco: 'ROFEX · BYMA',
     why: 'Cobertura cambiaria ante riesgo de devaluación. Contrato DLR102026 a $1.572 implica una tasa implícita del tipo de cambio a octubre 2026. Protege el portafolio en escenarios de stress cambiario.',
@@ -1660,23 +1658,113 @@ const tortaChart = new Chart(tortaCtx, {
   }
 });
 
+// Detalle extendido por tramo
+const TRAMO_DETAIL = {
+  'CEDEARs EE.UU.': [
+    { ticker:'NVDA',  peso:'19.6%', ret:'+47.4%', nota:'IA · GPUs · data centers. Líder indiscutido del ciclo de inteligencia artificial.'},
+    { ticker:'MA',    peso:'30.3%', ret:'+14.9%', nota:'Pagos digitales globales. Bajo beta, alto Sharpe. Red de 3.000M de tarjetas.'},
+    { ticker:'AMZN',  peso:'14.5%', ret:'+28.0%', nota:'AWS + e-commerce. Reaceleración de margen operativo. Cloud #1 mundial.'},
+    { ticker:'META',  peso:'11.2%', ret:'+32.6%', nota:'Publicidad digital + IA Llama. Free Cash Flow récord 2025.'},
+    { ticker:'LLY',   peso:'9.8%',  ret:'+16.9%', nota:'GLP-1 obesidad y diabetes. Pipeline oncología. Mercado $130B global.'},
+    { ticker:'AVGO',  peso:'8.5%',  ret:'+42.9%', nota:'ASICs custom IA + semiconductores RF. Clientes hiperescaladores.'},
+    { ticker:'MSFT',  peso:'5.7%',  ret:'+19.5%', nota:'Azure + Copilot. Crecimiento cloud sostenido. IA integrada en Office 365.'},
+    { ticker:'ASML',  peso:'0.3%',  ret:'+31.9%', nota:'Monopolio litografía EUV. Sin ASML no hay chips avanzados en el mundo.'},
+  ],
+  'Acciones ARG': [
+    { ticker:'VIST',  peso:'40.0%', ret:'+47.1%', nota:'Vaca Muerta operator. Top pick para MSCI upgrade. Producción +35% YoY.'},
+    { ticker:'YPF',   peso:'38.6%', ret:'+45.3%', nota:'Exportaciones O&G. Exposición directa crecimiento Vaca Muerta.'},
+    { ticker:'GGAL',  peso:'16.9%', ret:'+51.2%', nota:'Banco líder argentino. Beneficiario normalización macro y crédito privado.'},
+    { ticker:'BMA',   peso:'4.3%',  ret:'+51.2%', nota:'Beta bancario ARG. Catalizador: recuperación crédito hipotecario UVA.'},
+  ],
+  'Bonos Soberanos USD': [
+    { ticker:'GD35 / GD41', peso:'~60%', ret:'TIR 9.8%',  nota:'Upgrade Fitch CCC+→B-. Compresión EMBI de 515 a 300 bps. Tramo largo.'},
+    { ticker:'AO27',        peso:'~25%', ret:'TIR 5.12%', nota:'Perfil conservador. Cupón mensual en USD. Precio máx $1.016,66.'},
+    { ticker:'AN29 / AO28', peso:'~15%', ret:'8.5-8.9%',  nota:'Tramo corto. Menor sensibilidad a tasas Fed. Banco Comafi.'},
+  ],
+  'ONs Corporativas': [
+    { ticker:'YPF ON',  peso:'~40%', ret:'TIR 9.0%', nota:'Ingresos en USD por exportaciones Vaca Muerta. Grupo SBS · IEB.'},
+    { ticker:'TGS ON',  peso:'~35%', ret:'TIR 7.5%', nota:'Gas natural. Contratos take-or-pay en USD. Facimex Valores.'},
+    { ticker:'PAE ON',  peso:'~25%', ret:'TIR 5.7%', nota:'Pan American Energy. IG local, spread corporativo atractivo.'},
+  ],
+  'Bonos CER': [
+    { ticker:'TZXO6',       peso:'~40%', ret:'CER + 5%',   nota:'Favorito cash mgmt. Combina cobertura CER + cambiaria a jun 2026.'},
+    { ticker:'TZXS8',       peso:'~40%', ret:'CER + 8.3%', nota:'+300 bps vs TZXD7. Bull Capital: descuenta tasas reales extremas.'},
+    { ticker:'BONCER 2028', peso:'~20%', ret:'+8.9% cap',  nota:'Trade activo BofA: entrada 84,5 → target 92,0. FX cubierto.'},
+  ],
+  'Bonos Provinciales': [
+    { ticker:'SFD34',  peso:'~40%', ret:'+15%', nota:'Santa Fe: deuda neta negativa. Máxima calidad sub-soberana. Facimex.'},
+    { ticker:'BOCADE', peso:'~35%', ret:'+12%', nota:'Chubut: garantía sobre regalías O&G. +80-120 bps vs soberanos.'},
+    { ticker:'CO29',   peso:'~25%', ret:'+13%', nota:'Córdoba 2029. Provincia con superávit fiscal sostenido. BTG Pactual.'},
+  ],
+  'Dólar Futuro': [
+    { ticker:'DLR102026', peso:'100%', ret:'Cobertura FX', nota:'Precio $1.572 · tasa implícita al TC octubre 2026. Cobertura ante riesgo de devaluación. ROFEX · BYMA.'},
+  ],
+  'Liquidez': [
+    { ticker:'Caución overnight', peso:'100%', ret:'20% TNA', nota:'Mínimo regulatorio CNV. Buffer para rescates en 24hs hábiles y rebalanceos tácticos.'},
+  ]
+};
+
 function showDetail(label) {
-  const d = ACTIVOS_DATA[label];
-  const color = d.color;
+  const d  = ACTIVOS_DATA[label];
+  const c  = d.color;
+  const items = TRAMO_DETAIL[label] || [];
+
+  // Marcar chip activo
+  document.querySelectorAll('.leyenda-chip').forEach(ch => {
+    ch.style.opacity = ch.dataset.label === label ? '1' : '0.45';
+    ch.style.outline = ch.dataset.label === label ? `2px solid ${c}` : 'none';
+  });
+
+  const rows = items.map(it => `
+    <div style="display:grid;grid-template-columns:90px 48px 72px 1fr;gap:.4rem .8rem;align-items:start;padding:.55rem 0;border-bottom:1px solid var(--border)">
+      <div style="font-weight:700;font-size:11px;color:${c}">${it.ticker}</div>
+      <div style="font-size:10px;color:var(--t2);padding-top:1px">${it.peso}</div>
+      <div style="font-size:10px;color:#22A055;padding-top:1px">${it.ret}</div>
+      <div style="font-size:10px;color:var(--t3);line-height:1.5">${it.nota}</div>
+    </div>`).join('');
+
   document.getElementById('detailPanel').innerHTML = `
-    <div class="detail-card active" style="border-color:${color}">
-      <div class="dc-header">
-        <span class="dc-name">${label}</span>
-        <span class="dc-pct" style="color:${color}">${d.pct}%</span>
-      </div>
-      <span class="dc-tipo tag" style="color:${color};border-color:${color}44">${d.tipo}</span>
-      <div class="dc-banco" style="color:${color}">${d.banco}</div>
-      <div class="dc-why">${d.why}</div>
-      <div class="dc-why" style="margin-top:.4rem;color:#888">Instrumentos: <span style="color:#F0F0E8">${d.activos}</span></div>
-      <div class="dc-ret" style="color:${color}">Retorno estimado: ${d.ret}</div>
+    <div style="border-left:3px solid ${c};padding-left:1rem;margin-bottom:1.1rem">
+      <div style="font-size:19px;font-weight:800;color:${c};line-height:1.2">${label}</div>
+      <div style="font-size:10px;color:var(--t3);margin-top:.25rem">${d.tipo} &nbsp;·&nbsp; <strong style="color:${c}">${d.pct}% del fondo</strong></div>
     </div>
+
+    <div style="background:var(--bg3);padding:.8rem 1rem;border-radius:3px;margin-bottom:1rem;font-size:10px;color:var(--t2);line-height:1.65">
+      <strong style="color:var(--t1);display:block;margin-bottom:.3rem">Tesis de inversión</strong>
+      ${d.why}
+    </div>
+
+    <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.1rem">
+      <div style="font-size:10px"><span style="color:var(--t4)">Research:</span><br><span style="color:${c};font-weight:600">${d.banco}</span></div>
+      <div style="font-size:10px"><span style="color:var(--t4)">Retorno estimado:</span><br><strong style="color:#22A055;font-size:13px">${d.ret}</strong></div>
+    </div>
+
+    ${items.length > 0 ? `
+    <div style="font-size:8px;font-weight:700;letter-spacing:.18em;color:var(--t4);margin-bottom:.4rem">INSTRUMENTOS</div>
+    <div style="font-size:8px;color:var(--t4);display:grid;grid-template-columns:90px 48px 72px 1fr;gap:.3rem .8rem;padding-bottom:.3rem;border-bottom:1px solid var(--border2);text-transform:uppercase;letter-spacing:.08em">
+      <span>Ticker</span><span>Peso</span><span>Retorno</span><span>Descripción</span>
+    </div>
+    ${rows}
+    ` : ''}
   `;
 }
+
+// Generar leyenda de chips clicables
+(function buildLeyenda() {
+  const container = document.getElementById('legendaChips');
+  if (!container) return;
+  Object.entries(ACTIVOS_DATA).forEach(([label, d]) => {
+    const chip = document.createElement('button');
+    chip.className = 'leyenda-chip';
+    chip.dataset.label = label;
+    chip.style.cssText = `background:${d.color}22;border:1px solid ${d.color}66;color:${d.color};font-size:9px;font-weight:700;padding:.25rem .6rem;border-radius:20px;cursor:pointer;letter-spacing:.04em;transition:all .15s;font-family:Inter,sans-serif;opacity:.75`;
+    chip.innerHTML = `${label} <span style="opacity:.7">${d.pct}%</span>`;
+    chip.onmouseenter = () => { chip.style.opacity='1'; chip.style.background=`${d.color}44`; };
+    chip.onmouseleave = () => { chip.style.opacity = chip.dataset.active==='1'?'1':'.75'; chip.style.background=`${d.color}22`; };
+    chip.onclick = () => showDetail(label);
+    container.appendChild(chip);
+  });
+})();
 
 // ============================================================
 // MONTE CARLO — Distribución normal aproximada
